@@ -1,0 +1,59 @@
+# coding: UTF-8
+import urllib
+import requests
+import csv
+import random
+import time
+import socket
+import http.client
+# import urllib.request
+from bs4 import BeautifulSoup
+import gzip
+
+def get_content(url, data = None):
+    header = {
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+        'Accept-Language': 'zh-CN,zh;q=0.9',
+        'Cache-Control': 'max-age=0',
+        'Connection': 'keep-alive',
+        'cookies': 'd_c0="AICCHBWhLgyPTorl5-Q2G6Do3Ba2SR8gxSI=|1502067664"; _zap=fb7f5051-9174-4f8d-970d-9103f78ede54; q_c1=fb2bf1af07984107a74da3ee2c69dcd6|1508391364000|1502067664000; q_c1=fb2bf1af07984107a74da3ee2c69dcd6|1512646974000|1502067664000; aliyungf_tc=AQAAAOp/7RBS6QkAZ52otG053mo3jHNg; _xsrf=41e3c234-2556-44d6-bdcb-dbb09f572be9; __utmc=51854390; __utma=51854390.94265862.1502067665.1513238904.1513242306.33; __utmb=51854390.0.10.1513242306; __utmz=51854390.1513242306.33.28.utmcsr=zhihu.com|utmccn=(referral)|utmcmd=referral|utmcct=/; __utmv=51854390.000--|2=registration_date=20160516=1^3=entry_date=20170807=1; z_c0=Mi4xcXFrSkF3QUFBQUFBZ0lJY0ZhRXVEQmNBQUFCaEFsVk5aWkFmV3dCd3FJUjE5WXZ4TU9SR0lqMmtFU05STWFBaGxR|1513243237|4d1055c565a94ceaf5b712ce24bb63a41606817d; r_cap_id="NjE2YzQ0NWMyNzhlNDBmMmFmNDExYTAzNGJlODY1MjA=|1513243236|04b80daf079666237873e7c29b3827c1f595a1d8"; cap_id="ZGY5ZmVlYzIyNmRjNDU0ZmJlMzJiYmUxYjJmY2Y5ZGI=|1513243236|a4a06a9bfc97d56f0222f194fc3606a93f484856"',
+        'Host': 'www.zhihu.com',
+        'Upgrade-Insecure-Requests': '1',
+        'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/63.0.3239.84 Chrome/63.0.3239.84 Safari/537.36}'
+    }
+    timeout = random.choice(range(80, 180))
+    while True:
+        try:
+            requests_session = requests.session()
+            rep = requests_session.post(url, headers = header, timeout = timeout)
+            break
+        except socket.timeout as e:
+            print('3:', e)
+            time.sleep(random.choice(range(8, 15)))
+        except socket.timeout as e:
+            print('4:', e)
+            time.sleep(random.choice(range(20, 60)))
+        except socket.timeout as e:
+            print('5:', e)
+            time.sleep(random.choice(range(80, 150)))
+        except socket.timeout as e:
+            print('6:', e)
+            time.sleep(random.choice(range(5, 15)))
+
+    # return html
+    return rep.text
+
+def get_data(html_text):
+    bs = BeautifulSoup(html_text, "html.parser")
+    body = bs.body
+    data = body.find('div', {'class': 'ContentItem ArticleItem'})
+    data_zop = data.find('data-zop')
+    titles = data_zop.find_all('title')
+    for ti in data_zop:
+        print(ti)
+
+if __name__ == "__main__":
+    url = 'http://www.zhihu.com'
+    data = {'phone_num': '18323787009', 'password': 'wang0010'}
+    html = get_content(url)
+    get_data(html)
