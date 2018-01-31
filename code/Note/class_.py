@@ -140,13 +140,13 @@ class Student(object):
         if value < 0 or value > 100:
             raise ValueError('score must between 0 adn 100')
         self.score = value
-print_line()
+# print_line()
 
 #type动态创建类
-def fn(self, name='world'):
-    print('hello, {0}'.format(name))
+def fn(self):
+    print('hello, {0}'.format(self.__name))
 
-Hello = type('Hello', (object,), dict(hello=fn))
+Hello = type('Hello', (object,), dict(hello=fn, __name='wjc'))
 hello = Hello()
 hello.hello()
 print_line()
@@ -209,6 +209,7 @@ class Model(dict, metaclass=ModelMetaClass):
 
     def __setattr__(self, key, value):
         self[key] = value
+
     def save(self):
         fields = []
         params = []

@@ -23,7 +23,7 @@ print(isinstance((), Iterator))
 print(isinstance({}, Iterator))
 print(isinstance("abc", Iterator))
 print(isinstance((x for x in range(0, 10)), Iterator))
-print("===================  ")
+print("===================")
 
 it = iter("abc")
 print(isinstance(it, Iterator))

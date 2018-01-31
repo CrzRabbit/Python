@@ -2,8 +2,8 @@ import os
 
 def print_line(n=40):
     print(n * '=')
-print('Process {0} is running...'.format(os.getpid()))
 
+#print('Process {0} is running...'.format(os.getpid()))
 #fork()
 # pid = os.fork()
 # if pid == 0:#子进程返回0
