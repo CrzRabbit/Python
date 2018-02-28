@@ -1,21 +1,25 @@
-from flask import Flask
-from flask import request
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
+def open_html(name):
+    return open(name).read()
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    return b'<h1>Home</h1>'
+    return render_template('home.html')
 
 @app.route('/signin', methods=['GET'])
-def signin_from():
-    return open('signin_from.html').read()
+def signin_form():
+    return render_template('signin_form.html')
 
 @app.route('/signin', methods=['POST'])
 def signin():
-    if request.form['username'] == 'admin' and request.form['password'] == 'admin':
-        return b'<h1>Hello, admin!</h1>'
-    return b'<h3>Bad userinfo.</h3>'
+    username = request.form['username']
+    password = request.form['password']
+    if username == 'admin' and password == 'admin':
+        return render_template('signin_ok.html', username=username)
+    return render_template('signin_form.html', message='Bad username or password.', username=username)
 
 if __name__ == '__main__':
     app.run()
