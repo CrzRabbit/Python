@@ -21,3 +21,23 @@ f = fibonacci(10)
 
 for n in f:
     print(n)
+
+def yanghuitrian(hor):
+    ls = [1]
+    count = 0
+    yield ls
+    count += 1
+    while count < hor:
+        count += 1
+        lt = []
+        lt.append(1)
+        if len(ls) >= 2:
+            for n in range(0, len(ls)):
+                if n < len(ls) - 1:
+                    lt.append(ls[n] + ls[n + 1])
+        lt.append(1)
+        yield lt
+        ls = lt
+
+for l in yanghuitrian(6):
+    print(l)
