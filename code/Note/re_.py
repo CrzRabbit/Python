@@ -15,3 +15,5 @@ print(re.match(r"^\w{3}\s", "How are 5_1you51 doing~!"))
 print(re.search(r"\s\w{3}(?=\s)", "How are 5_1you51 doing~!"))
 #替换表达式匹配结果
 print(re.sub(r"\s","", "How are 5_1you51 doing~!"))
+
+re.match(r"")

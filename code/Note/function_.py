@@ -1,4 +1,4 @@
-from functools import reduce
+from functools import reduce, wraps
 from operator import itemgetter
 import time
 import functools
@@ -223,3 +223,21 @@ print(int2("100"))
 
 max2 = functools.partial(max, 10)#将10作为max的第一个参数
 print(max2(2, 6, 3))
+
+
+import logging
+
+def user_logging(level):
+    def derector(func):
+        def wrapper(*args, **kw):
+            if level == "warn":
+                logging.warn("{0} is running...".format(func.__name__))
+            func(*args)
+        return wrapper
+    return derector
+
+@user_logging(level = "warn")
+def color(color = "red"):
+    print("color is {0}".format(color))
+
+color()

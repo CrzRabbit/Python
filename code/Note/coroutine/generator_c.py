@@ -1,4 +1,3 @@
-
 #协程，使用generator实现
 def consumer():
     r = ''
