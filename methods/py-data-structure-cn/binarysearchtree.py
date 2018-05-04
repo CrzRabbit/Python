@@ -77,6 +77,16 @@ class TreeNode:
             current = current.left_child
         return current
 
+    def __iter__(self):
+        if self:
+            if self.has_left_child():
+                for item in self.left_child:
+                    yield item
+            yield self.key
+            if self.has_right_child():
+                for item in self.right_child:
+                    yield  item
+
 class BinarySearchTree:
 
     def __init__(self):
@@ -90,7 +100,7 @@ class BinarySearchTree:
         self.size += 1
 
     def _put(self, key, value, node):
-        if value < node.value:
+        if key < node.key:
             if node.has_left_child():
                 self._put(key, value, node.left_child)
             else:
@@ -108,7 +118,7 @@ class BinarySearchTree:
         if self.root:
             ret = self._get(key, self.root)
             if ret:
-                return ret.value
+                return ret
             else:
                 return None
         else:
@@ -183,8 +193,8 @@ class BinarySearchTree:
                                          current_node.right_child.left_child, current_node.right_child.right_child,
                                          current_node.parent)
 
-    def __del__(self, item):
-        self.delete(item)
+    # def __del__(self, item):
+    #     self.delete(item)
 
     def length(self):
         return self.size
@@ -194,3 +204,30 @@ class BinarySearchTree:
 
     def __iter__(self):
         return self.root.__iter__()
+
+if __name__ == '__main__':
+    btree = BinarySearchTree()
+    btree[1] = 'red'
+    btree[6] = 'grey'
+    btree[4] = 'green'
+    btree[7] = 'pink'
+    btree[2] = 'orange'
+    btree[3] = 'yellow'
+    btree[5] = 'blue'
+
+    # #__iter__
+    # for i in btree:
+    #     print(i)
+    #
+    # #__contains__
+    # print(1 in btree)
+    # print(8 in btree)
+    #
+    # #delete
+    # btree.delete(6)
+    #
+    # for i in btree:
+    #     print(i)
+
+    print(btree[1])
+    print(btree[2])
