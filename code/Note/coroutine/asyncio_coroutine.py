@@ -1,6 +1,6 @@
 import asyncio, random
 
-@asyncio.coroutine
+async
 def stupid_fib(N):
     index = 0
     a = 0
@@ -9,11 +9,11 @@ def stupid_fib(N):
         print(b)
         time = random.uniform(0, 0.4)
         print('Stupid fib is running...')
-        yield from (asyncio.sleep(time))
+        await (asyncio.sleep(time))
         a, b = b, a + b
         index += 1
 
-@asyncio.coroutine
+async
 def smart_fib(N):
     index = 0
     a = 0
@@ -22,7 +22,7 @@ def smart_fib(N):
         print(b)
         time = random.uniform(0, 0.2)
         print('Smart fib is running...')
-        yield from(asyncio.sleep(time))
+        await(asyncio.sleep(time))
         a, b = b, a + b
         index += 1
 

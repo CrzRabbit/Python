@@ -116,11 +116,7 @@ class BinarySearchTree:
 
     def get(self, key):
         if self.root:
-            ret = self._get(key, self.root)
-            if ret:
-                return ret
-            else:
-                return None
+            return self._get(key, self.root)
         else:
             return None
 
@@ -163,6 +159,7 @@ class BinarySearchTree:
                 current_node.parent.left_child = None
             elif current_node.parent.right_child == current_node:
                 current_node.parent.right_child = None
+
         elif current_node.has_both_child():
             succ = current_node.find_successor()
             succ.splice_out()
@@ -205,29 +202,20 @@ class BinarySearchTree:
     def __iter__(self):
         return self.root.__iter__()
 
+class AVLTree(BinarySearchTree):
+    pass
+
 if __name__ == '__main__':
     btree = BinarySearchTree()
-    btree[1] = 'red'
     btree[6] = 'grey'
     btree[4] = 'green'
     btree[7] = 'pink'
     btree[2] = 'orange'
+    btree[1] = 'red'
     btree[3] = 'yellow'
     btree[5] = 'blue'
 
-    # #__iter__
-    # for i in btree:
-    #     print(i)
-    #
-    # #__contains__
-    # print(1 in btree)
-    # print(8 in btree)
-    #
-    # #delete
-    # btree.delete(6)
-    #
-    # for i in btree:
-    #     print(i)
+    for i in btree:
+        print(i)
 
-    print(btree[1])
-    print(btree[2])
+    print(btree[1].value)

@@ -13,7 +13,7 @@ def stupid_fib(N):
 
 def copy_stupid_fib(N):
     print('Copy stupid_fib...')
-    yield from stupid_fib(N)
+    await stupid_fib(N)
     print('Copy end.')
 
 N = 20
