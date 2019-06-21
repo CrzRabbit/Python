@@ -3,6 +3,6 @@ from hello_ import application
 
 httpd = make_server('', 8000, application)
 
-print('Server is running at port 8000...')
+print('server is running at port 8000...')
 
 httpd.serve_forever()
