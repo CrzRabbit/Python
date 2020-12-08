@@ -21,7 +21,7 @@ def test_run(name):
 
 if __name__ == '__main__':
         print('Process {0} is running...'.format(os.getpid()))
-        p = Process(target=test_run, args=('test',))
+        p = Process(target=test_run, args=('leetcode',))
         p.start()
         p.join()
 print_line()
