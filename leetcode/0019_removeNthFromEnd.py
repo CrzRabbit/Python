@@ -11,18 +11,17 @@ class Solution:
         while second != None:
             if first != None:
                 first = first.next
-            if n >= 0:
-                n -= 1
-            if n == -1:
+            if n == 0:
                 first = head
+            n -= 1
             second = second.next
-        self.show_list(first)
+        #self.show_list(first)
         print(n)
         if first != None and first.next != None:
             first.next = first.next.next
-        elif n == -1:
+        elif n == 0:
             head = head.next
-        self.show_list(head)
+        #self.show_list(head)
         return head
 
     def show_list(self, l : ListNode):
@@ -35,7 +34,7 @@ class Solution:
             str += '{}'.format(temp.val)
         print(str)
 
-n1 = [1, 2, 3, 4]
+n1 = [1]
 l1 = ListNode()
 l1.val = n1[0]
 l = l1
@@ -45,4 +44,4 @@ for i in range(1, len(n1)):
     l.next = temp
     l = temp
 so = Solution()
-so.removeNthFromEnd(l1, 0)
+so.removeNthFromEnd(l1, 2)
