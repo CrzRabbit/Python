@@ -17,4 +17,4 @@ class Solution:
         return ret
 
 so = Solution()
-print(so.generateParenthesis(4))
+print(so.generateParenthesis(2))
