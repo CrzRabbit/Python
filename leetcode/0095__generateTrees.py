@@ -1,12 +1,30 @@
-class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
-        self.val = val
-        self.left = left
-        self.right = right
+from leetcode.tools.tree import *
 class Solution:
     def generateTrees(self, n: int):
         nodes = []
-
+        def genTree(x, y):
+            nodes = []
+            if x == y:
+                node = TreeNode(x)
+                nodes.append(node)
+                return nodes
+            if x > y:
+                nodes.append(None)
+                return nodes
+            for i in range(x, y + 1):
+                node = TreeNode(i)
+                left_trees = genTree(x, i - 1)
+                right_trees = genTree(i + 1, y)
+                for l in left_trees:
+                    node.left = l
+                    for r in right_trees:
+                        node.right = r
+                        temp_node = TreeNode(node.val, node.left, node.right)
+                        nodes.append(temp_node)
+            return nodes
+        return genTree(1, n)
 
 so = Solution()
-print(so.generateTrees(3).__len__())
+nodes = so.generateTrees(4)
+for node in nodes:
+    show_tree(node)
