@@ -18,12 +18,13 @@ def show_tree(root):
         temp_nodes = []
         for node in nodes:
             if node == None:
-                count += 1
                 temp_nodes.append(None)
                 temp_nodes.append(None)
             else:
                 temp_nodes.append(node.left)
                 temp_nodes.append(node.right)
+                if node.left == None and node.right == None:
+                    count += 1
         if count == nodes.__len__():
             break
         else:

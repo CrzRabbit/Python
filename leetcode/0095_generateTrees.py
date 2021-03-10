@@ -25,6 +25,7 @@ class Solution:
         return genTree(1, n)
 
 so = Solution()
-nodes = so.generateTrees(4)
-for node in nodes:
-    show_tree(node)
+nodes = so.generateTrees(10)
+print(nodes.__len__())
+# for node in nodes:
+#     show_tree(node)
