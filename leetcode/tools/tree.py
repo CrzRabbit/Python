@@ -20,6 +20,7 @@ def show_tree(root):
             if node == None:
                 temp_nodes.append(None)
                 temp_nodes.append(None)
+                count += 1
             else:
                 temp_nodes.append(node.left)
                 temp_nodes.append(node.right)
@@ -33,26 +34,15 @@ def show_tree(root):
     level = nodes_levels.__len__()
     i = 0
     for ns in nodes_levels:
-        temp_levels = []
         first = 2 ** (level - i)
         second = 2 ** (level - i - 1)
-        for l in lines_levels:
-            temp_l = (' ' * (second)) + l
-            temp_levels.append(temp_l)
-        lines_levels = temp_levels
-        line = ''
+        line = ' ' * (second - 1)
         index = 0
         for n in ns:
             if n:
-                if index % 2 == 0:
-                    line += '{0}{1}'.format(n.val, ' ' * (first - 1))
-                else:
                     line += '{0}{1}'.format(n.val, ' ' * (first - 1))
             else:
-                if index % 2 == 0:
-                    line += '.' + ' ' * (first - 1)
-                else:
-                    line += '.' + ' ' * (first - 1)
+                    line += '·' + ' ' * (first - 1)
             index += 1
         lines_levels.append(line)
         i += 1
