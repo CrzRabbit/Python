@@ -4,7 +4,27 @@ class TreeNode:
         self.left = left
         self.right = right
 
-def show_tree(root):
+def morrisTraverse(root):
+    temp = None
+    vals = []
+    while root:
+        if root.left:
+            temp = root.left
+            while temp.right and temp.right is not root:
+                temp = temp.right
+            if temp.right is None:
+                temp.right = root
+                root = root.left
+            else:
+                temp.right = None
+                vals.append(root.val)
+                root = root.right
+        else:
+            vals.append(root.val)
+            root = root.right
+    print(vals)
+
+def showTree(root):
     lines_levels = []
     nodes_levels = []
     nodes = []

@@ -7,7 +7,6 @@ class TreeNode:
 
 class Solution:
     def inorderTraversal(self, root: TreeNode):
-        nodes = []
         ret = []
         if root == None:
             return ret
