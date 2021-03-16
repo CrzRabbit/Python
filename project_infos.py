@@ -43,5 +43,5 @@ if __name__ == '__main__':
         else:
             get_lines(temp_path)
     print('')
-    print('total file count: {}'.format(file_count))
-    print('total line count: {}'.format(line_count))
+    print('total file: {}'.format(file_count))
+    print('total line: {}'.format(line_count))
