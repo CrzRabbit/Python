@@ -1,6 +1,6 @@
 from leetcode.tools.tree import *
 class Solution:
-    def levelOrder(self, root: TreeNode):
+    def levelOrderBottom(self, root: TreeNode):
         ret = []
         nodes = []
         if root == None:
@@ -19,6 +19,7 @@ class Solution:
                     temp_nodes.append(nodes[i].right)
             ret.append(temp_ret)
             nodes = temp_nodes
+        ret.reverse()
         return ret
 
 n0 = TreeNode(0)
@@ -30,4 +31,4 @@ n3 = TreeNode(3)
 n2.left = n3
 so = Solution()
 showTree(n0)
-print(so.levelOrder(n0))
+print(so.levelOrderBottom(n0))

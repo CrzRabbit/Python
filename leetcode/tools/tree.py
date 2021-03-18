@@ -58,7 +58,10 @@ def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
         right = temp_right
     return True
 
-def showTree(root):
+def showTree(root, len=1):
+    BLANK = ' '
+    NONENODE = '.'
+    len = len + (len + 1) % 2
     lines_levels = []
     nodes_levels = []
     nodes = []
@@ -89,14 +92,16 @@ def showTree(root):
     i = 0
     for ns in nodes_levels:
         first = 2 ** (level - i)
+        first = first * len
         second = 2 ** (level - i - 1)
-        line = ' ' * (second - 1)
+        second = second * len
+        line = BLANK * (second - len)
         index = 0
         for n in ns:
             if n:
-                    line += '{0}{1}'.format(n.val, ' ' * (first - 1))
+                    line += ('{0:^' + '{}'.format(len) + 'd}' + '{1}').format(n.val, BLANK * (first - len))
             else:
-                    line += '·' + ' ' * (first - 1)
+                    line += (BLANK * (len // 2)) + NONENODE + (BLANK * (len // 2)) + BLANK * (first - len)
             index += 1
         lines_levels.append(line)
         i += 1
