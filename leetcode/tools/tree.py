@@ -24,6 +24,29 @@ def morrisTraverse(root):
             root = root.right
     print(vals)
 
+def isBalanced(self, root: TreeNode) -> bool:
+    if not root:
+        return True
+    def getDepth(node):
+        if not node:
+            return 0, True
+        else:
+            left_depth, left_balance = getDepth(node.left)
+            right_depth, right_balance = getDepth(node.right)
+            flag = True
+            if left_depth - right_depth > 1 or left_depth - right_depth < -1 or not left_balance or not right_balance:
+                flag = False
+            if left_depth >= right_depth:
+                return left_depth + 1, flag
+            else:
+                return right_depth + 1, flag
+    left_depth, left_balance = getDepth(root.left)
+    right_depth, right_balance = getDepth(root.right)
+    if (left_depth - right_depth > 1 or left_depth - right_depth < -1) or not left_balance or not right_balance:
+        return False
+    else:
+        return True
+
 def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
     left = []
     right = []
