@@ -34,7 +34,7 @@ class Solution:
             node = ListNode()
             node.val = 1
             temp3.next = node
-        self.show_list(l3)
+        self.showList(l3)
         return l3
 
     def reverse_list(self, l : ListNode):
@@ -46,10 +46,10 @@ class Solution:
             temp3.next = temp2
             temp2 = temp3
         temp1.next = temp2
-        self.show_list(temp1)
+        self.showList(temp1)
         return temp1
 
-    def show_list(self, l : ListNode):
+    def showList(self, l : ListNode):
         temp = l
         str = ''
         while temp.next != None:

@@ -3,7 +3,7 @@ class ListNode:
         self.val = val
         self.next = next
 
-def got_list(nodes):
+def getList(nodes):
     if len(nodes) == 0:
         return None
     head = ListNode()
@@ -16,7 +16,7 @@ def got_list(nodes):
         l = temp
     return head
 
-def show_list(l : ListNode):
+def showList(l : ListNode):
     temp = l
     str = ''
     while temp != None and temp.next != None:

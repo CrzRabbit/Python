@@ -40,4 +40,4 @@ class Solution:
         return ret.next
 
 so = Solution()
-show_list(so.reverseKGroup(got_list([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), 8))
+showList(so.reverseKGroup(getList([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), 8))

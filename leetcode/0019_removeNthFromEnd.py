@@ -15,16 +15,16 @@ class Solution:
                 first = head
             n -= 1
             second = second.next
-        #self.show_list(first)
+        #self.showList(first)
         print(n)
         if first != None and first.next != None:
             first.next = first.next.next
         elif n == 0:
             head = head.next
-        #self.show_list(head)
+        #self.showList(head)
         return head
 
-    def show_list(self, l : ListNode):
+    def showList(self, l : ListNode):
         temp = l
         str = ''
         while temp != None and temp.next != None:

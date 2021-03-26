@@ -14,7 +14,7 @@ class Solution:
         temp1 = ret
         temp2 = None
         while True:
-            show_list(ret.next)
+            showList(ret.next)
             if temp1 != None:
                 temp1 = temp1.next
             else:
@@ -33,4 +33,4 @@ class Solution:
                 break
         return ret.next
 so = Solution()
-show_list(so.swapPairs(got_list([1, 2, 3])))
+showList(so.swapPairs(getList([1, 2, 3])))

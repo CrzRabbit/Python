@@ -30,4 +30,4 @@ class Solution:
         return root
 
 so = Solution()
-showTree(so.sortedListToBST(got_list([-10, -3, 0, 5, 9])), 3)
+showTree(so.sortedListToBST(getList([-10, -3, 0, 5, 9])), 3)
