@@ -97,6 +97,31 @@ def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
         right = temp_right
     return True
 
+def recoverTree(root: TreeNode) -> None:
+    def inorderTraversal(root: TreeNode):
+        ret = []
+        if root == None:
+            return ret
+        if root.left != None:
+            ret += inorderTraversal(root.left)
+        ret.append(root)
+        if root.right != None:
+            ret += inorderTraversal(root.right)
+        return ret
+
+    nodes = inorderTraversal(root)
+    num = nodes.__len__() - 1
+    exchange = True
+    while num != 0 and exchange:
+        exchange = False
+        for i in range(0, num):
+            if nodes[i].val > nodes[i + 1].val:
+                nodes[i].val = nodes[i].val ^ nodes[i + 1].val
+                nodes[i + 1].val = nodes[i].val ^ nodes[i + 1].val
+                nodes[i].val = nodes[i].val ^ nodes[i + 1].val
+                exchange = True
+        num -= 1
+
 def showTree(root, len=1):
     BLANK = ' '
     NONENODE = '.'

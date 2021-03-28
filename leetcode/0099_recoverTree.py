@@ -4,28 +4,19 @@ class Solution:
         """
         Do not return anything, modify root in-place instead.
         """
-        def inorderTraversal(root: TreeNode):
-            ret = []
-            if root == None:
-                return ret
-            if root.left != None:
-                ret += inorderTraversal(root.left)
-            ret.append(root)
-            if root.right != None:
-                ret += inorderTraversal(root.right)
-            return ret
-        nodes = inorderTraversal(root)
-        num = nodes.__len__() - 1
-        exchange = True
-        while num != 0 and exchange:
-            exchange = False
-            for i in range(0, num):
-                if nodes[i].val > nodes[i + 1].val:
-                    nodes[i].val = nodes[i].val ^ nodes[i + 1].val
-                    nodes[i + 1].val = nodes[i].val ^ nodes[i + 1].val
-                    nodes[i].val = nodes[i].val ^ nodes[i + 1].val
-                    exchange = True
-            num -= 1
+        while root:
+            if root.left:
+                temp = root.left
+                while temp and temp.right != root:
+                    temp = temp.right
+                if temp is None:
+                    temp.right = root
+                    root = root.left
+                else:
+                    root = root.right
+                    temp.right = None
+            else:
+                root = root.right
 
 n0 = TreeNode(0)
 n1 = TreeNode(1)
@@ -37,6 +28,8 @@ n2.left = n3
 
 so = Solution()
 showTree(n0)
+morrisTraverse(n0)
+recoverTree(n0)
 morrisTraverse(n0)
 so.recoverTree(n0)
 showTree(n0)
