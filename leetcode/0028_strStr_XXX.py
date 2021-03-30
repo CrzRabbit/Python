@@ -5,11 +5,14 @@ class Solution:
             next.append(-1)
             j = 0
             t = -1
-            while j < part.__len__() and t < part.__len__():
+            while j < part.__len__() - 1:
                 if t < 0 or part[j] == part[t]:
                     j += 1
                     t += 1
-                    next.append(t)
+                    if part[j] != part[t]:
+                        next.append(t)
+                    else:
+                        next.append(next[t])
                 else:
                     t = next[t]
             print(next)
@@ -17,14 +20,17 @@ class Solution:
         next = buildNext(needle)
         i = 0
         j = 0
-        while i < haystack.__len__() and j < needle.__len__() - 1:
+        while i < haystack.__len__() and j < needle.__len__():
+            print(i, j)
             if j < 0 or haystack[i] == needle[j]:
                 i += 1
                 j += 1
             else:
                 j = next[j]
-            print(i, j)
-        return i - j
+        if j == needle.__len__():
+            return i - j
+        else:
+            return -1
 
 so = Solution()
-print(so.strStr('hello', 'll'))
+print(so.strStr('010110114100110156201126574422', '001101'))
