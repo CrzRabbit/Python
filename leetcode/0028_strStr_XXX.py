@@ -9,10 +9,13 @@ class Solution:
                 if t < 0 or part[j] == part[t]:
                     j += 1
                     t += 1
-                    if part[j] != part[t]:
-                        next.append(t)
+                    if False:
+                        if part[j] != part[t]:
+                            next.append(t)
+                        else:
+                            next.append(next[t])
                     else:
-                        next.append(next[t])
+                        next.append(t)
                 else:
                     t = next[t]
             print(next)
@@ -33,4 +36,4 @@ class Solution:
             return -1
 
 so = Solution()
-print(so.strStr('010110114100110156201126574422', '001101'))
+print(so.strStr('010110114100110156201126574422', '0011001111'))
