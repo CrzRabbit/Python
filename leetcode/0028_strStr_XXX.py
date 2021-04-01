@@ -9,13 +9,10 @@ class Solution:
                 if t < 0 or part[j] == part[t]:
                     j += 1
                     t += 1
-                    if False:
-                        if part[j] != part[t]:
-                            next.append(t)
-                        else:
-                            next.append(next[t])
-                    else:
+                    if part[j] != part[t]:
                         next.append(t)
+                    else:
+                        next.append(next[t])
                 else:
                     t = next[t]
             print(next)
