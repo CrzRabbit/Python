@@ -51,8 +51,29 @@ class Solution:
             l = s[i]
             if l == '+' or l == '-':
                 if sign < 0 and dot < 0 and e < 0 and num < 0:
-
+                    sign = i
+                elif e > 0 and e > num:
+                    sign = i
+                else:
+                    return False
+            elif l == '.':
+                if dot < 0 and e < 0:
+                    dot = i
+                else:
+                    return False
+            elif l == 'e' or l == 'E':
+                if num >= 0 and e < 0:
+                    e = i
+                else:
+                    return False
+            elif l >= '0' and l <= '9':
+                num = i
+            else:
+                return False
+        if (e >= 0 and e >= num) or (dot >= 0 and num < 0) or (sign >= 0 and sign >= num):
+            return False
+        return True
         
-s = '-1.1e30'
+s = '-1.1e+30'
 so = Solution()
 print(so.isNumber(s))
