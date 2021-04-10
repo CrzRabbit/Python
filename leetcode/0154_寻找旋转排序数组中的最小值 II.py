@@ -26,7 +26,8 @@ nums 原来是一个升序排序的数组，并进行了 1 至 n 次旋转
 1. mid和right相比
 2. 如果大于right，[mid, right]升序，所查元素在左边
 3. 如果大于right，[left, mid]升序，所查元素在右边
-4. 如果相等，
+4. 如果相等并且等于left，所查元素在中间
+5. 如果相等但是不等于左边，所查元素在左边
 '''
 class Solution:
     def findMin(self, nums) -> int:
