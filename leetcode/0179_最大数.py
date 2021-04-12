@@ -24,8 +24,52 @@
 '''
 class Solution:
     def largestNumber(self, nums) -> str:
-        def compare()
+        def compare(a, b):
+            la = len(a)
+            lb = len(b)
+            i = 0
+            while i < lb and i < la:
+                if a[i] < b[i]:
+                    return True
+                elif a[i] > b[i]:
+                    return False
+                i += 1
+            if la == lb:
+                return True
+            if i == lb:
+                return compare(a[lb:], b)
+            else:
+                return compare(a, b[la:])
+        ret = ''
+        tnums = []
+        count = len(nums)
+        exchange = True
+        for num in nums:
+            tnums.append('{}'.format(num))
+        while count and exchange:
+            exchange = False
+            for i in range(count - 1):
+                if not compare(tnums[i], tnums[i + 1]):
+                    temp = tnums[i]
+                    tnums[i] = tnums[i + 1]
+                    tnums[i + 1] = temp
+                    exchange = True
+            ret += tnums[count - 1]
+            count -= 1
+        i = count
+        while i:
+            ret += tnums[i - 1]
+            i -= 1
+        i = 0
+        for s in ret:
+            if s == '0':
+                i += 1
+            else:
+                break
+        if i == len(ret):
+            i -= 1
+        return ret[i:]
 
-nums = [3,30,34,5,9]
+nums = [0,0,0]
 so = Solution()
 print(so.largestNumber(nums))
