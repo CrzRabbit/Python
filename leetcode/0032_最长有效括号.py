@@ -20,6 +20,13 @@
 s[i] 为 '(' 或 ')'
 '''
 class Solution:
+    '''
+    1. 如果 i = '(', i + 1 = ')', i += 2
+    2. 否则 i 入栈
+    3. 如果 i = ')', 栈顶为’(‘, i 出栈
+    4. 否则 i 入栈
+    5. 栈中的都是无效括号的位置，间隔就是有效括号的长度，遍历计算间隔最大值
+    '''
     def longestValidParentheses(self, s: str) -> int:
         ret = ''
         bad = [0]
