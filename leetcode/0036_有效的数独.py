@@ -12,4 +12,5 @@
 '''
 class Solution:
     def isValidSudoku(self, board) -> bool:
+        pass
         

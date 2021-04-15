@@ -19,6 +19,9 @@
 输出: 0
 '''
 class Solution:
+    '''
+    二分查找
+    '''
     def searchInsert(self, nums, target: int) -> int:
         left = 0
         right = len(nums)
