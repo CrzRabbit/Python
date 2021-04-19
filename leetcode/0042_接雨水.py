@@ -17,3 +17,76 @@ n == height.length
 '''
 class Solution:
     def trap(self, height) -> int:
+        stubs = []
+        stubindex = []
+        ret = 0
+        i = 0
+        l = len(height)
+        if l <= 2:
+            return ret
+        while i < l:
+            if i == 0 and height[i] >= height[i + 1]:
+                stub = height[i]
+                stubs.append(stub)
+                stubindex.append(i)
+            elif 0 < i and i < l - 1 and height[i] > height[i - 1] and height[i] >= height[i + 1]:
+                stub = height[i]
+                stubs.append(stub)
+                stubindex.append(i)
+            elif i == l - 1 and height[i] > height[i - 1]:
+                stub = height[i]
+                stubs.append(stub)
+                stubindex.append(i)
+            i += 1
+        print(stubs)
+        i = 0
+        j = 0
+        stubs1 = []
+        stubindex1 = []
+        l1 = len(stubs)
+        if l1 <= 2:
+            stubs1 = stubs.copy()
+            stubindex1 = stubindex.copy()
+        else:
+            while i < l1:
+                if i == 0 and stubs[i] >= stubs[i + 1]:
+                    j = i
+                    stub = stubs[i]
+                    stubs1.append(stub)
+                    stubindex1.append(stubindex[i])
+                elif 0 < i and i < l1 - 1 and stubs[i] > stubs[i - 1] and stubs[i] >= stubs[i + 1]:
+                    j = i
+                    if len(stubs1) == 0:
+                        stubs1 += stubs[0: i]
+                        stubindex1 += stubindex[0: i]
+                    stub = stubs[i]
+                    stubs1.append(stub)
+                    stubindex1.append(stubindex[i])
+                elif i == l1 - 1 and stubs[i] > stubs[i - 1]:
+                    if len(stubs1) == 0:
+                        stubs1 += stubs[0: i]
+                        stubindex1 += stubindex[0: i]
+                    j = i
+                    stub = stubs[i]
+                    stubs1.append(stub)
+                    stubindex1.append(stubindex[i])
+                i += 1
+            stubs1 += stubs[j + 1:]
+            stubindex1 += stubindex[j + 1:]
+        print(stubs1)
+        print(stubindex1)
+        for i in range(len(stubindex1) - 1):
+            stub = 0
+            if height[stubindex1[i]] <= height[stubindex1[i + 1]]:
+                stub = height[stubindex1[i]]
+            else:
+                stub = height[stubindex1[i + 1]]
+            print(i, stub)
+            for j in range(stubindex1[i] + 1, stubindex1[i + 1]):
+                if stub > height[j]:
+                    ret += stub - height[j]
+        return ret
+
+nums = [0,1,2,0,3,0,1,2,0,0,4,2,1,2,5,0,1,2,0,2]
+so = Solution()
+print(so.trap(nums))
