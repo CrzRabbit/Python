@@ -21,7 +21,6 @@ class Solution:
         i = 0
         j = 0
         while i < haystack.__len__() and j < needle.__len__():
-            print(i, j)
             if j < 0 or haystack[i] == needle[j]:
                 i += 1
                 j += 1

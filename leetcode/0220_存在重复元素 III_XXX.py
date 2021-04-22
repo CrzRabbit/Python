@@ -28,7 +28,6 @@ class Solution:
         # O(N logk)
         window = SortedList()
         for i in range(len(nums)):
-            # len(window) == k
             if i > k:
                 window.remove(nums[i - 1 - k])
             window.add(nums[i])
