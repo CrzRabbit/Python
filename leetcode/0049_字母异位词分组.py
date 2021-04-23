@@ -63,3 +63,4 @@ class Solution:
 
 so = Solution()
 print(so.groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))
+print(so._groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]))

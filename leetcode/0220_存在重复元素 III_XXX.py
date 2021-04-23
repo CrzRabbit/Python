@@ -21,19 +21,25 @@
 0 <= k <= 104
 0 <= t <= 231 - 1
 '''
-from sortedcontainers import SortedList
+from leetcode.tools.sortedcontainers import *
 
 class Solution:
-    def containsNearbyAlmostDuplicate(self, nums: List[int], k: int, t: int) -> bool:
-        # O(N logk)
+    '''
+    滑动窗口 + 有序集合
+    '''
+    def containsNearbyAlmostDuplicate(self, nums, k: int, t: int) -> bool:
         window = SortedList()
         for i in range(len(nums)):
+            #位置长度为k的窗口
             if i > k:
                 window.remove(nums[i - 1 - k])
             window.add(nums[i])
-            idx = bisect.bisect_left(window, nums[i])
+            #有序集合中查找nums[i]的位置
+            idx = window.bisect_left(nums[i])
+            #判断左边
             if idx > 0 and abs(window[idx] - window[idx-1]) <= t:
                 return True
+            #判断右边
             if idx < len(window) - 1 and abs(window[idx+1] - window[idx]) <= t:
                 return True
         return False
