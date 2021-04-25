@@ -23,6 +23,10 @@
 0 <= nums[i] <= 109
 '''
 class Solution:
+    '''
+    对于520和52可以组合为52052和52520，所以52在前面数字更大
+    按字符依次比较520和52的时候，当位于520的0时候，52已经结束，这个时候应当继续比较0和52
+    '''
     def largestNumber(self, nums) -> str:
         def compare(a, b):
             la = len(a)
@@ -36,6 +40,7 @@ class Solution:
                 i += 1
             if la == lb:
                 return True
+            #短数字作为长数字前缀的时候，应当用长数字的剩余部分与短数字继续进行比较
             if i == lb:
                 return compare(a[lb:], b)
             else:
