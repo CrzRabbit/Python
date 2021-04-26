@@ -56,4 +56,3 @@ class Solution:
             return ''.join(st)
 so = Solution()
 print(so.orderlyQueue("nhtq", 1))
-print('abc' > 'aba')
