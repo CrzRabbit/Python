@@ -4,6 +4,17 @@ class TreeNode:
         self.left = left
         self.right = right
 
+def sortedArrayToBST(nums) -> TreeNode:
+    def buildTree(left, right):
+        if left > right:
+            return None
+        index = (left + right + 1) // 2
+        root = TreeNode(nums[index])
+        root.left = buildTree(left, index - 1)
+        root.right = buildTree(index + 1, right)
+        return root
+    return buildTree(0, nums.__len__() - 1)
+
 def morrisTraverse(root):
     temp = None
     vals = []

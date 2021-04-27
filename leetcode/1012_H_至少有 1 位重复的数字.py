@@ -19,39 +19,54 @@
 1 <= N <= 10^9
 '''
 class Solution:
+    '''
+    计算没有重复数字的数的数量
+    '''
     def numDupDigitsAtMostN(self, N: int) -> int:
-        if N < 10:
-            return N
         count = N
-        dic = []
-        l = 0
-        t = N
-        while t > 9:
-            l += 1
-            dic.append(t % 10)
-            t = t // 10
-        dic.append(t)
-        dic.reverse()
-
-        temp = self.numDupDigitsAtMostN(N % (10 ** l))
-        print(N % (10 ** l), temp)
-        count -= temp
-
-        temp = dic[0] - 1
-        for i in range(len(dic) - 1):
+        nums = '{}'.format(N)
+        l = len(nums)
+        used = [0 for i in range(10)]
+        '''
+        使用2324举例:
+        '''
+        #计算1000 ~ 2324部分
+        #i = 0, 计算1000 ~ 1999部分
+        #i = 1, 计算2000 ~ 2299部分
+        #i = 3, 计算2300 ~ 2319部分
+        for i in range(len(nums)):
+            num = ord(nums[i]) - 48
             if i == 0:
-                temp *= 9
+                #第一位不能取0
+                left = 1
             else:
-                temp *= (9 - i)
-        count -= temp
-
-        while l > 0:
+                #第二位开始可以取0
+                left = 0
+            #i = 0, left = 1, num = 2
+            for j in range(left, num):
+                if used[j] != 0:
+                    continue
+                l = len(nums)
+                temp = 1
+                #i = 0, j = 1, 后面还有l - 1 - i个位置
+                #第k位置可选数字的数量为9 - k - i
+                for k in range(l - 1 - i):
+                    temp *= (9 - k - i)
+                count -= temp
+            used[num] += 1
+            if used[num] > 1:
+                break
+            if i == l - 1:
+                count -= 1
+        #计算1 ~ 999的部分
+        l = len(nums)
+        while l - 1 > 0:
             temp = 1
-            for i in range(l):
-                if i <= 1:
+            for i in range(l - 1):
+                if i < 1:
                     temp *= 9
                 else:
-                    temp *= (9 - i + 1)
+                    temp *= 9 - i + 1
             count -= temp
             l -= 1
         return count
@@ -76,7 +91,7 @@ class Solution:
                 t = t // 10
         return count
 
-num = 1100
+num = 1234556
 so = Solution()
 print(so._numDupDigitsAtMostN(num))
 print(so.numDupDigitsAtMostN(num))

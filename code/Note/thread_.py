@@ -14,10 +14,10 @@ class myThread(threading.Thread):
 
     def run(self):
         print("开始线程：" + self.name)
-        print_time(self.name, self.queue)
+        printTime(self.name, self.queue)
         print("结束线程：" + self.name)
 
-def print_time(thread_name, q):
+def printTime(thread_name, q):
     while exitFlag:
         queueLock.acquire()
         if not q.empty():
@@ -59,8 +59,8 @@ print("主线程结束")
 
 os.system("pause")
 # try:
-#     _thread.start_new_thread(print_time,("Thread1", 2))
-#     _thread.start_new_thread(print_time,("Thread2", 3))
+#     _thread.start_new_thread(printTime,("Thread1", 2))
+#     _thread.start_new_thread(printTime,("Thread2", 3))
 # except:
 #     print("No thread start!")
 

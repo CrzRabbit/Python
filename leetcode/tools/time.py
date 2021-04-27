@@ -1,5 +1,5 @@
 import datetime
 
-def print_time():
+def printTime():
     start = datetime.datetime.now()
     print(start)

@@ -33,6 +33,6 @@ class Solution:
         return root
 
 so = Solution()
-print_time()
+printTime()
 showTree(so.buildTree([9,3,15,20,7], [9,15,7,20,3]))
-print_time()
+printTime()
