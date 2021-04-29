@@ -26,10 +26,10 @@ class Solution:
         l = len(points)
         for i in range(l):
             mem.add((points[i][0], points[i][1]))
-        for i in range(l - 1):
+        for i, point in enumerate(points):
             for j in range(i + 1, l):
-                if (points[i][0], points[j][1]) in mem and (points[j][0], points[i][1]) in mem:
-                    temp = abs(points[i][0] - points[j][0]) * abs(points[i][1] - points[j][1])
+                if (point[0], points[j][1]) in mem and (points[j][0], point[1]) in mem:
+                    temp = abs(point[0] - points[j][0]) * abs(point[1] - points[j][1])
                     if temp != 0 and temp < ret:
                         ret = temp
         return ret if ret < float('inf') else 0

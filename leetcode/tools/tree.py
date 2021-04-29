@@ -4,6 +4,37 @@ class TreeNode:
         self.left = left
         self.right = right
 
+def buildTree(nums) -> TreeNode:
+    if len(nums) == 0:
+        return None
+    root = TreeNode(nums[0])
+    nodes = [root]
+    i = 1
+    while len(nodes) and i < len(nums):
+        temp = []
+        for t in nodes:
+            if t:
+                if i < len(nums):
+                    node = None
+                    if nums[i]:
+                        node = TreeNode(nums[i])
+                        t.left = node
+                    i += 1
+                    temp.append(node)
+                if i < len(nums):
+                    node = None
+                    if nums[i]:
+                        node = TreeNode(nums[i])
+                        t.right = node
+                    i += 1
+                    temp.append(node)
+            else:
+                i += 2
+                temp.append(None)
+                temp.append(None)
+            nodes = temp
+    return root
+
 def sortedArrayToBST(nums) -> TreeNode:
     def buildTree(left, right):
         if left > right:
