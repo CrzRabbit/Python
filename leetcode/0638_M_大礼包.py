@@ -32,3 +32,40 @@ A，B，C的价格分别为¥2，¥3，¥4.
 每种物品，你最多只需要购买6个。
 你不可以购买超出待购清单的物品，即使更便宜。
 '''
+from typing import List
+
+
+class Solution:
+    '''
+    递归
+    如果当前的花费已经大于最小花费则停止
+    '''
+    def shoppingOffers(self, price: List[int], special: List[List[int]], needs: List[int]) -> int:
+        ret = [float('inf')]
+        def shopping(cost, needs):
+            #当前的花费已经大于最小花费了，停止递归
+            if cost > ret[0]:
+                return
+            temp = cost
+            for i in range(len(needs)):
+                temp += price[i] * needs[i]
+            if temp < ret[0]:
+                ret[0] = temp
+            for spec in special:
+                found = True
+                temp = needs.copy()
+                for i in range(len(temp)):
+                    if spec[i] > needs[i]:
+                        found = False
+                        break
+                    temp[i] -= spec[i]
+                if found:
+                    shopping(cost + spec[len(needs)], temp)
+        shopping(0, needs)
+        return 0 if ret[0] == float('inf') else ret[0]
+
+price = [0,0,0]
+special = [[1,1,0,4],[2,2,1,9]]
+needs = [1,1,1]
+so = Solution()
+print(so.shoppingOffers(price, special, needs))

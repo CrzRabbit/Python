@@ -21,7 +21,16 @@ from typing import List
 
 class Solution:
     def singleNumber(self, nums: List[int]) -> int:
-
+        ret = {}
+        for num in nums:
+            if num not in ret:
+                ret[num] = 1
+            else:
+                ret[num] += 1
+        for k in ret.keys():
+            if ret[k] == 1:
+                return k
+        return None
 
 nums = [0,1,0,1,0,1,99]
 so = Solution()

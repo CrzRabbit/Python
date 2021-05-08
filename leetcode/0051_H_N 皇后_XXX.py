@@ -11,7 +11,7 @@ n 皇后问题 研究的是如何将 n 个皇后放置在 n×n 的棋盘上，
 '''
 class Solution:
     def solveNQueens(self, n: int):
-
+        pass
 
 so = Solution()
 print(so.solveNQueens(4))
