@@ -36,6 +36,6 @@ class Solution:
                 temp[i] = nums[i]
         return max(temp)
 
-nums = [1, 1, 1]
+nums = [1, 0, 3, 8, 5, 0, 8, 18, 20]
 so = Solution()
 print(so.rob(nums))

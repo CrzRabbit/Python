@@ -37,7 +37,6 @@ class Solution:
         ret = [float('inf')]
         req = [0 for i in range(k)]
         def required(jobs, req):
-            print(jobs, req)
             tr = sorted(req, reverse=True)
             if len(jobs) == 0:
                 req = sorted(req, reverse=True)
@@ -46,8 +45,13 @@ class Solution:
                 return
             if tr[0] > ret[0]:
                 return
+            temp = []
             for i in range(k):
                 tr = req.copy()
+                if tr[i] not in temp:
+                    temp.append(tr[i])
+                else:
+                    continue
                 tr[i] += jobs[0]
                 required(jobs[1:], tr)
         required(jobs, req)
@@ -55,4 +59,5 @@ class Solution:
 
 jobs = [9899456,8291115,9477657,9288480,5146275,7697968,8573153,3582365,3758448,9881935,2420271,4542202]
 so = Solution()
+print(so.minimumTimeRequired([6518448,8819833,7991995,7454298,2087579,380625,4031400,2905811,4901241,8480231,7750692,3544254], 4))
 print(so.minimumTimeRequired(jobs, 9))
