@@ -1,4 +1,7 @@
 class Solution:
+    '''
+    滑动窗口 依次记录上次字符出现的位置
+    '''
     def lengthOfLongestSubstring(self, s: str) -> int:
         size = 0
         substr = dict()

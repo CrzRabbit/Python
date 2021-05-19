@@ -11,6 +11,9 @@ class ListNode:
         self.next = next
 
 class Solution:
+    '''
+    依次遍历，逐位相加，保存进位
+    '''
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         #l1_re = self.reverse_list(l1)
         #l2_re = self.reverse_list(l2)

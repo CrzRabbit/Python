@@ -8,6 +8,9 @@
 from typing import List
 
 class Solution:
+    '''
+    排序 首尾之和大于target，尾部前移一位，小于target，首部后移
+    '''
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         sorted_nums = sorted(range(len(nums)), key=lambda key : nums[key])
         print(sorted_nums)

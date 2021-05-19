@@ -20,4 +20,4 @@ class Solution:
         return ret
 
 so = Solution()
-print(so.generateParenthesis(3))
+print(so.generateParenthesis(10))
