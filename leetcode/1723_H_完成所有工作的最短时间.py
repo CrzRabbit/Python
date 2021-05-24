@@ -36,8 +36,15 @@ class Solution:
             return jobs[0]
         ret = [float('inf')]
         req = [0 for i in range(k)]
+        mem = {}
         def required(jobs, req):
             tr = sorted(req, reverse=True)
+            tru = (x for x in tr)
+            if tru in mem and mem[tru] == jobs:
+                print(mem[tru])
+                return
+            else:
+                mem[tru] = jobs
             if len(jobs) == 0:
                 req = sorted(req, reverse=True)
                 if req[0] < ret[0]:
