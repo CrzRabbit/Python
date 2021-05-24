@@ -64,7 +64,6 @@ class Trie:
 class Solution:
     '''
     前缀树（Trie）
-    
     '''
     def findMaximumXOR(self, nums: List[int]) -> int:
         def toBinStr(num):
