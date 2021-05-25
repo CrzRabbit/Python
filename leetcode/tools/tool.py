@@ -23,5 +23,13 @@ def printMatrix(ret, s, p):
         line += '\r\n'
         print(line)
 
+def printMatrix(matrix):
+    print('---')
+    for i in range(len(matrix)):
+        line = ''
+        for j in range(len(matrix[0])):
+            line += '{:^3}'.format(matrix[i][j])
+        print(line)
+
 if __name__ == '__main__':
     showNotCompleted()

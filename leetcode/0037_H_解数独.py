@@ -15,7 +15,9 @@ class Solution:
                 ret += "{0:^3s}".format(board[i][j])
             print(ret)
         print("   ")
-
+    '''
+    回溯
+    '''
     def solveSudoku(self, board) -> None:
         rows = [{} for i in range(9)]
         columns = [{} for i in range(9)]
@@ -35,8 +37,8 @@ class Solution:
             while j < 9:
                 t = board[i][j]
                 k = table[i][j]
-                print(i, j, t, k)
-                self.shwoSudoku(board)
+                #print(i, j, t, k)
+                #self.shwoSudoku(board)
                 piecesIndex = (i // 3) * 3 + j // 3
                 if t == '.' or int(t) < k:
                     while k < 10:
@@ -57,8 +59,8 @@ class Solution:
                         k += 1
                     t = board[i][j]
                     piecesIndex = (i // 3) * 3 + j // 3
-                    print(i, j, t, k)
-                    self.shwoSudoku(board)
+                    #print(i, j, t, k)
+                    #self.shwoSudoku(board)
                     if k == 10:
                         while i >= 0 and (k == 10 or int(t) >= k):
                             if k == 10:
