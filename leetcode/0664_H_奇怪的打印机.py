@@ -20,45 +20,22 @@
 s 由小写英文字母组成
 '''
 class Solution:
-    def split(self, s):
-        print(s)
-        ret = {}
-        if len(s) == 0:
-            return [], 0
-        left = 0
-        temp = s[0]
-        i = 1
-        for i in range(1, len(s)):
-            if s[i] != temp:
-                if temp not in ret:
-                    ret[temp] = [[left, i]]
-                else:
-                    ret[temp].append([left, i])
-                left = i
-                temp = s[i]
-        if temp not in ret:
-            ret[temp] = [[left, i + 1]]
-        else:
-            ret[temp].append([left, i + 1])
-        ret = sorted(ret.values(), key=lambda x: len(x), reverse=True)
-        return ret[0], ret.__len__()
-
+    '''
+    动态规划
+    '''
     def strangePrinter(self, s: str) -> int:
-        temp, l = self.split(s)
-        print(temp, l)
-        if l == 0:
-            return 0
-        elif l == 1:
-            return 1
-        else:
-            ret = 1
-            if temp[0][0] > 0:
-                ret += self.strangePrinter(s[0: temp[0][0]])
-            for i in range(len(temp) - 1):
-                ret += self.strangePrinter(s[temp[i][1]: temp[i + 1][0]])
-            if temp[len(temp) - 1][1] < len(s):
-                ret += self.strangePrinter(s[temp[len(temp) - 1][1]:])
-        return ret
+        ret = [[0 for i in range(len(s))] for i in range(len(s))]
+        for i in range(len(s) - 1, -1, -1):
+            for j in range(i, len(s)):
+                if i == j:
+                    ret[i][j] = 1
+                elif s[i] == s[j]:
+                    ret[i][j] = ret[i][j - 1]
+                else:
+                    ret[i][j] = float('inf')
+                    for k in range(i, j):
+                        ret[i][j] = min(ret[i][j], ret[i][k] + ret[k + 1][j])
+        return ret[0][len(s) - 1]
 
 s = "tbgtgb"
 so = Solution()
