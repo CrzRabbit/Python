@@ -22,7 +22,7 @@ from typing import List
 
 class Solution:
     def xorGame(self, nums: List[int]) -> bool:
-        pass
+        return True
 
 nums = [1, 1, 2]
 so = Solution()

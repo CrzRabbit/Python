@@ -6,10 +6,10 @@ def showNotCompleted():
         if re.search(r'_XXX\.py', item):
             print(item)
 
-def printMatrix(ret, s, p):
+def printMatrix(ret, s, p, width=6):
     line = ' ' * 8
     for j in range(len(p)):
-        line += '{:^6s}'.format(p[j])
+        line += ('{:^' + '{}'.format(width) + 's}').format(p[j])
     print(line)
     for i in range(0, len(s) + 1):
         line = '  '
@@ -23,12 +23,12 @@ def printMatrix(ret, s, p):
         line += '\r\n'
         print(line)
 
-def printMatrix(matrix):
+def printMatrix(matrix, width=3):
     print('---')
     for i in range(len(matrix)):
         line = ''
         for j in range(len(matrix[0])):
-            line += '{:^3}'.format(matrix[i][j])
+            line += ('{:>' + '{}'.format(width) + '}').format(matrix[i][j])
         print(line)
 
 if __name__ == '__main__':
