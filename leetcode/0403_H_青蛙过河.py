@@ -31,7 +31,7 @@ class Solution:
     '''
     stubs[i]为到达i的时候走了多少步
     stubs[0] = set(0)
-
+    
     '''
     def canCross(self, stones: List[int]) -> bool:
         stubs = {}
