@@ -44,37 +44,21 @@ class Solution:
                 if (temp[j] - temp[i]) % k == 0:
                     return True
         return False
-
+    '''
+    如果出现重复的余数，表明存在满足条件的连续子数组
+    '''
     def checkSubarraySum(self, nums: List[int], k: int) -> bool:
-        cur = 0
         sum = 0
-        mem = {}
-        mem[0] = []
-        for j in range(len(nums)):
-            num = nums[j]
+        mem = set()
+        for num in nums:
             sum += num
-            if sum >= 0 and sum < k:
-                mem[cur].append(sum)
-            elif sum >= cur * k and sum < (cur + 1) * k:
-                if mem[cur].__contains__(sum) and (j >= 1 and (num != k or nums[j - 1] == 0)):
-                    return True
-                else:
-                    mem[cur].append(sum)
-            else:
-                last = cur
-                while sum >= (cur + 1) * k:
-                    cur += 1
-                mem[cur] = [sum]
-                if sum == cur * k and (j >= 1 and (num != k or nums[j - 1] == 0)):
-                    return True
-                for i in range(len(mem[last])):
-                    t1 = mem[last][i] + (cur - last) * k
-                    mem[cur].append(t1)
-                    if sum == t1 and (j >= 1 and (num != k or nums[j - 1] == 0)):
-                        return True
+            rest = sum % k
+            if mem.__contains__(rest):
+                return True
+            mem.add((sum - num) % k)
         return False
 
-nums = [0, 0]
+nums = [1, 0, 2]
 so = Solution()
-print(so._1checkSubarraySum(nums, 1))
-print(so.checkSubarraySum(nums, 1))
+print(so._1checkSubarraySum(nums, 2))
+print(so.checkSubarraySum(nums, 2))

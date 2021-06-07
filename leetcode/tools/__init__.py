@@ -1,1 +1,1 @@
-__all__ = ['list', 'time']
+__all__ = ['list', 'time', 'tree', 'matrix']
