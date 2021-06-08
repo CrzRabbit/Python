@@ -19,6 +19,9 @@
 -231 <= n <= 231 - 1
 '''
 class Solution:
+    '''
+    2的偶次方幂
+    '''
     def isPowerOfFour(self, n: int) -> bool:
         count = 0
         temp = 1

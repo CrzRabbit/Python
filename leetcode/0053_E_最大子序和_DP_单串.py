@@ -32,5 +32,22 @@ from typing import List
 
 
 class Solution:
+    '''
+    动态规划
+    '''
     def maxSubArray(self, nums: List[int]) -> int:
-        pass
+        ret = sorted(nums, reverse=True)
+        ret = ret[0]
+        temp = nums[0]
+        for i in range(1, len(nums)):
+            if temp > 0:
+                temp = temp + nums[i]
+            else:
+                temp = nums[i]
+            if temp > ret:
+                ret = temp
+        return ret
+
+nums = [-2,1,-3,4,-1,2,1,-5,4]
+so = Solution()
+print(so.maxSubArray(nums))
