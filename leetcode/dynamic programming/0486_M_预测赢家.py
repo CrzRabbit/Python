@@ -23,8 +23,8 @@
 如果最终两个玩家的分数相等，那么玩家 1 仍为赢家。
 '''
 from typing import List
-from leetcode.tools.time import *
-from leetcode.tools.tool import *
+
+from leetcode.tools.matrix import printMatrix
 
 class Solution:
     '''
@@ -80,8 +80,5 @@ class Solution:
 nums = [504,427,95,397,468,485,326,112,296,290,106,148,12,334,23,296,122,187,141,187]
 #nums = [1, 5, 2]
 so = Solution()
-printTime()
 print(so.PredictTheWinner(nums))
-printTime()
 print(so._1PredictTheWinner(nums))
-printTime()

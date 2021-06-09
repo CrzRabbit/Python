@@ -20,17 +20,17 @@ class Solution:
     def findNumberOfLIS(self, nums: List[int]) -> int:
         l = len(nums)
         ret = [1 for i in range(l)]
-        ml = 0
-        count = 0
-        for i in range(l):
-            if i == 0:
-                ml = 1
-                count = 1
-                continue
+        count = [1 for i in range(l)]
+        for i in range(1, l):
             for j in range(i):
                 if nums[i] > nums[j]:
-                    ret[i] = max(ret[i], ret[j] + 1)
-        return count
+                    if ret[j] + 1 > ret[i]:
+                        ret[i] = ret[j] + 1
+                        count[i] = count[j]
+                    elif ret[j] + 1 == ret[i]:
+                        count[i] += count[j]
+        ml = max(ret)
+        return sum(c for i, c in enumerate(count) if ret[i] == ml)
 
 nums = [2,2,2,2,2]
 so = Solution()

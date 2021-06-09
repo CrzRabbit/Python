@@ -80,6 +80,5 @@ for c in cases:
     lists.append(getList(c))
 
 so = Solution()
-printTime()
+
 showList(so.mergeKLists1(lists))
-printTime()

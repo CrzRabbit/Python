@@ -34,6 +34,7 @@ from leetcode.tools.time import printTime
 
 
 class Solution:
+    @printTime()
     def lastStoneWeightII(self, stones: List[int]) -> int:
         def lastsw(stones):
             l = len(stones)
@@ -54,15 +55,17 @@ class Solution:
             return ret
         return lastsw(stones)
 
+    @printTime()
     def _1lastStoneWeightII(self, stones: List[int]) -> int:
-        l = len(stones)
-        sum = sum(stones)
+        s = sum(stones)
+        hl = s // 2 + 1
+        ret = [0 for i in range(hl)]
+        for x in stones:
+            for i in range(hl - 1, x - 1, - 1):
+                ret[i] = max(ret[i], ret[i - x] + x)
+        return s - 2 * ret[hl - 1]
 
-
-stones = [31, 26, 33, 21, 40]
+stones = []
 so = Solution()
-printTime()
-print(so.lastStoneWeightII(stones))
-printTime()
-print(so._1lastStoneWeightII(stones))
-printTime()
+so.lastStoneWeightII(stones)
+so._1lastStoneWeightII(stones)

@@ -96,8 +96,7 @@ class Solution:
 
 nums = [9,28,50,9,34,48,2,50,38,10,5,16,44,5,48,21,38,17,21,49]
 so = Solution()
-printTime()
+
 print(so._1findTargetSumWays(nums, 20))
-printTime()
+
 print(so.findTargetSumWays(nums, 20))
-printTime()
