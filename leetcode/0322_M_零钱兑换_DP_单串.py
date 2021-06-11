@@ -63,17 +63,15 @@ class Solution:
         self.minCount = float('inf')
         l = len(coins)
         def dfs(target, index, count):
-            #print(target, index, count)
             coin = coins[index]
-            if target % coin == 0:
-                temp = target // coin
-                if temp + count < self.minCount:
-                    self.minCount = temp + count
+            temp = target // coin
             if math.ceil(target / coin) + count >= self.minCount:
                 return
+            if target % coin == 0:
+                self.minCount = temp + count
             if index == l - 1:
                 return
-            for i in range(target // coin, -1, -1):
+            for i in range(temp, -1, -1):
                 dfs(target - coin * i, index + 1, count + i)
         dfs(amount, 0, 0)
         return self.minCount if self.minCount != float('inf') else -1

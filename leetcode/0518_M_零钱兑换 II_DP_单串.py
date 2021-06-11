@@ -37,7 +37,13 @@ class Solution:
     '''
     @printTime()
     def change(self, amount: int, coins: List[int]) -> int:
-
+        l = len(coins)
+        ret = [0 for i in range(amount + 1)]
+        ret[0] = 1
+        for coin in coins:
+            for i in range(coin, amount + 1):
+                ret[i] = ret[i] + ret[i - coin]
+        return ret[amount]
     '''
     dfs
     '''
@@ -65,6 +71,7 @@ class Solution:
         return dfs(amount, 0)
 
 coins = [3,5,7,8,9,10,11]
+#coins = [1, 2, 5]
 so = Solution()
 so.change(500, coins)
 so._1change(500, coins)
