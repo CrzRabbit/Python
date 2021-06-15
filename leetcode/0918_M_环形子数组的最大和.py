@@ -34,6 +34,7 @@
 -30000 <= A[i] <= 30000
 1 <= A.length <= 30000
 '''
+import collections
 from typing import List
 
 from leetcode.tools.time import printTime
@@ -60,29 +61,24 @@ class Solution:
 
     @printTime()
     def _1maxSubarraySumCircular(self, nums: List[int]) -> int:
-        l1 = len(nums)
-        nums = nums + nums
-        l2 = len(nums)
+        l = len(nums)
         ret = nums[0]
-        dp = [0 for i in range(l2)]
-        dp[0] = nums[0]
-        flag = 0
-        i = 1
-        while i < l2:
-            if i - flag >= l1:
-                i = i - l1 + 1
-                flag = i
-                dp[i] = nums[i]
-                i += 1
-                continue
-            if dp[i - 1] > 0:
-                dp[i] = dp[i - 1] + nums[i]
-            else:
-                flag = i
-                dp[i] = nums[i]
-            if dp[i] > ret:
-                ret = dp[i]
-            i += 1
+        temp = [0]
+        for i in range(2):
+            for num in nums:
+                temp.append(temp[-1] + num)
+        queue = [0]
+        left = 0
+        right = 1
+        for i in range(1, len(temp)):
+            if queue[left] < i - l and left < right:
+                left += 1
+            ret = max(ret, temp[i] - temp[queue[left]])
+            while queue and temp[i] <= temp[queue[right - 1]] and right > left:
+                right -= 1
+            queue = queue[:right]
+            queue.append(i)
+            right += 1
         return ret
 
 nums = [5,5,0,-5,3,-3,2]
