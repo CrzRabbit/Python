@@ -25,6 +25,8 @@ sum(piles) 是奇数。
 '''
 from typing import List
 
+from leetcode.tools.time import printTime
+
 
 class Solution:
     '''
@@ -33,3 +35,22 @@ class Solution:
     '''
     def stoneGame(self, piles: List[int]) -> bool:
         return True
+
+    '''
+    DP
+    '''
+    @printTime()
+    def _1stoneGame(self, piles: List[int]) -> bool:
+        self.len = len(piles)
+        dp = [[0 for j in range(self.len)] for i in range(self.len)]
+        for i in range(self.len - 1, - 1, -1):
+            for j in range(i, self.len):
+                if i == j:
+                    dp[i][j] = piles[i]
+                else:
+                    dp[i][j] = max(piles[i] - dp[i + 1][j], piles[j] - dp[i][j - 1])
+        print(dp)
+        return dp[0][self.len - 1] > 0
+
+piles = [5,3,4,5]
+Solution()._1stoneGame(piles)

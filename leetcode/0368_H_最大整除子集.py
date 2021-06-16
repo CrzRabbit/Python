@@ -18,6 +18,9 @@ answer[j] % answer[i] == 0
 1 <= nums[i] <= 2 * 109
 nums 中的所有整数 互不相同
 '''
+from leetcode.tools.time import printTime
+
+
 class Solution:
     '''
     遍历 + 记忆化
@@ -61,7 +64,25 @@ class Solution:
                 if len(temp) > len(ret):
                     ret = temp
         return ret
+    '''
+    DP
+    '''
+    @printTime()
+    def _1largestDivisibleSubset(self, nums):
+        nums = sorted(nums)
+        self.len = len(nums)
+        dp = [[] for i in range(self.len)]
+        ret = []
+        for i in range(self.len):
+            for j in range(0, i):
+                if nums[i] % nums[j] == 0 and dp[j].__len__() + 1 > dp[i].__len__():
+                    dp[i] = dp[j].copy()
+            dp[i].append(nums[i])
+            if dp[i].__len__() > ret.__len__():
+                ret = dp[i]
+        return ret
 
 nums = [1,2,4,8,16,32,64,128,256,512,1024,2048,4096,8192,16384,32768,65536,131072,262144,524288,1048576,2097152,4194304,8388608,16777216,33554432,67108864,134217728,268435456,536870912,1073741824]
 so = Solution()
 print(so.largestDivisibleSubset(nums))
+Solution()._1largestDivisibleSubset(nums)

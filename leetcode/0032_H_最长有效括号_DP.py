@@ -19,6 +19,9 @@
 0 <= s.length <= 3 * 104
 s[i] 为 '(' 或 ')'
 '''
+from leetcode.tools.time import printTime
+
+
 class Solution:
     '''
     1. 如果 i = '(', i + 1 = ')', i += 2
@@ -47,12 +50,37 @@ class Solution:
                     bad.append(i + 1)
             i += 1
         bad.append(len(s) + 1)
-        print(bad)
         max = 0
         for i in range(1, len(bad)):
             if bad[i] - bad[i - 1] - 1 > max:
                 max = bad[i] - bad[i - 1] - 1
         return max
-
+    '''
+    DP
+    '''
+    @printTime()
+    def _1longestValidParentheses(self, s: str) -> int:
+        self.len = s.__len__()
+        dp = [0 for i in range(self.len)]
+        ret = 0
+        for i in range(1, self.len):
+            if s[i] == ')':
+                if s[i - 1] == '(':
+                    if i > 1:
+                        dp[i] = dp[i - 2] + 2
+                    else:
+                        dp[i] = 2
+                if s[i - 1] == ')':
+                    if i - 1 - dp[i - 1] >= 0 and s[i - 1 - dp[i - 1]] == '(':
+                        if i - 2 - dp[i - 1] >= 0 and s[i - 2 - dp[i - 1]] == ')':
+                            dp[i] = dp[i - 1] + 2 + dp[i - 2 - dp[i - 1]]
+                        else:
+                            dp[i] = dp[i - 1] + 2
+            if dp[i] > ret:
+                ret = dp[i]
+        print(dp)
+        return ret
+s = "(()))())("
 so = Solution()
-print(so.longestValidParentheses('()(()()'))
+print(so.longestValidParentheses(s))
+Solution()._1longestValidParentheses(s)
