@@ -37,6 +37,9 @@
 1 <= s.length <= 100
 s 只包含数字，并且可能包含前导零。
 '''
+from leetcode.tools.time import printTime
+
+
 class Solution:
     '''
     递归
@@ -57,33 +60,33 @@ class Solution:
         decode(s, '')
         print(ret)
         return ret.__len__()
+
     '''
-    根据s[i]的情况从ret[i - 1]和ret[i - 2]计算ret[i]
+    DP
+    根据s[i]的情况从dp[i - 1]和dp[i - 2]计算dp[i]
     '''
     def _numDecodings(self, s: str) -> int:
         if len(s) == 0 or s[0] == '0':
             return 0
-        ret = [0 for i in range(len(s))]
-        ret[0] = 1
+        dp = [0 for i in range(len(s))]
+        dp[0] = 1
         for i in range(1, len(s)):
             if s[i] == '0' and s[i - 1] >= '1' and s[i - 1] <= '2':
                 if i > 2:
-                    ret[i] = ret[i - 2]
+                    dp[i] = dp[i - 2]
                 else:
-                    ret[i] = 1
+                    dp[i] = 1
             elif s[i] >= '1' and s[i] <= '9':
-                ret[i] = ret[i - 1]
-                if int(s[i - 1:i + 1]) >= 10 and int(s[i - 1:i + 1]) <= 26:
+                dp[i] = dp[i - 1]
+                if s[i - 1:i + 1] >= '10' and s[i - 1:i + 1] <= '26':
                     if i > 1:
-                        ret[i] += ret[i - 2]
+                        dp[i] += dp[i - 2]
                     else:
-                        ret[i] += 1
+                        dp[i] += 1
             else:
                 break
-        print(ret)
-        return ret[len(ret) - 1]
+        return dp[len(dp) - 1]
 
 s = "11111111111111111111111111111111111111111111"
 so = Solution()
 print(so._numDecodings(s))
-print(so.numDecodings(s))

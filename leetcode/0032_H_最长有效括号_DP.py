@@ -66,7 +66,7 @@ class Solution:
         for i in range(1, self.len):
             if s[i] == ')':
                 if s[i - 1] == '(':
-                    if i > 1:
+                    if i >= 2:
                         dp[i] = dp[i - 2] + 2
                     else:
                         dp[i] = 2

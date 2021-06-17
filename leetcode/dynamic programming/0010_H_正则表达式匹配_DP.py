@@ -5,6 +5,7 @@
 '*' 匹配零个或多个前面的那一个元素
 所谓匹配，是要涵盖 整个 字符串 s的，而不是部分字符串。
 '''
+from leetcode.tools.matrix import printMatrix
 from leetcode.tools.tool import *
 class Solution:
     '''
