@@ -27,22 +27,17 @@ class Solution:
     @printTime()
     def partition(self, s: str) -> List[List[str]]:
         self.len = len(s)
-        def isPar(s):
-            left = 0
-            right = len(s) - 1
-            while left <= right:
-                if s[left] != s[right]:
-                    return False
-                left += 1
-                right -= 1
-            return True
+        mem1 = [[True for _ in range(self.len)] for _ in range(self.len)]
+        for i in range(self.len - 1, - 1, -1):
+            for j in range(i + 1, self.len):
+                mem1[i][j] = s[i] == s[j] and mem1[i + 1][j - 1]
         mem = {}
         def re(index):
             if index in mem:
                 return mem[index]
             ret = []
             for i in range(index, self.len):
-                if isPar(s[index:i + 1]):
+                if mem1[index][i]:
                     if i + 1 < self.len:
                         temp = re(i + 1)
                         for t in temp:
@@ -59,21 +54,16 @@ class Solution:
     '''
     @printTime()
     def _1partition(self, s: str) -> List[List[str]]:
-        def isPar(s):
-            left = 0
-            right = len(s) - 1
-            while left <= right:
-                if s[left] != s[right]:
-                    return False
-                left += 1
-                right -= 1
-            return True
         self.len = len(s)
+        mem = [[True for _ in range(self.len)] for _ in range(self.len)]
+        for i in range(self.len - 1, - 1, -1):
+            for j in range(i + 1, self.len):
+                mem[i][j] = s[i] == s[j] and mem[i + 1][j - 1]
         dp = [[] for _ in range(self.len)]
         dp[0] = [[s[0]]]
         for i in range(1, self.len):
             for j in range(i + 1):
-                if isPar(s[j:i + 1]):
+                if mem[j][i]:
                     if j == 0:
                         dp[i].append([s[j:i + 1]])
                         continue
