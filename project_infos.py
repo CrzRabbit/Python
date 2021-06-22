@@ -1,6 +1,6 @@
 import os, re
 
-current_path = './'
+current_path = './leetcode/'
 line_count = 0
 file_count = 0
 
@@ -27,8 +27,9 @@ if __name__ == '__main__':
         if os.path.isfile(temp_path):
             try:
                 file_count += 1
+                print(temp_path)
             except UnicodeDecodeError as e:
                 pass
-        else:
+        elif os.path.isdir(temp_path):
             get_lines(temp_path)
     print('total file: {}'.format(file_count))

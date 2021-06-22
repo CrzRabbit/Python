@@ -1,7 +1,7 @@
 import os, re
 
 current_path = './leetcode/'
-name = '相交'
+name = '分割'
 
 def findFiles(current_path):
     for members in os.listdir(current_path):
