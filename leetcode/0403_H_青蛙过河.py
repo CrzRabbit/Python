@@ -29,7 +29,7 @@ from typing import List
 
 class Solution:
     '''
-    stubs[i]为到达i的时候走了多少步
+    stubs[i]为到达i的时候走了多少步的集合
     stubs[0] = set(0)
     
     '''

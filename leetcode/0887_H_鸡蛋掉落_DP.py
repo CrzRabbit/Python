@@ -48,17 +48,80 @@ class Solution:
                 left = 1
                 right = i
                 while left < right:
-                    mid = int((left + right) / 2)
+                    mid = (left + right) >> 1
                     if dp[mid][j - 1] == dp[i - mid][j]:
                         left = mid
                         break
-                    elif dp[mid][j - 1] > dp[i - mid][j]:
-                        right = mid
                     elif dp[mid][j - 1] < dp[i - mid][j]:
                         left = mid + 1
+                    else:
+                        right = mid
                 dp[i][j] = max(dp[left - 1][j - 1], dp[i - left][j]) + 1
-        #print(dp)
         return dp[n][k - 1]
+    @printTime()
+    def _2superEggDrop(self, k: int, n: int) -> int:
+        mem = {}
+        def dp(k, n):
+            if (k, n) in mem:
+                return mem[(k, n)]
+            if n <= 1:
+                ans = 1
+            elif k == 1:
+                ans = n
+            else:
+                left = 0
+                right = n
+                while left < right:
+                    mid = (left + right) >> 1
+                    t1 = dp(k - 1, mid - 1)
+                    t2 = dp(k, n - mid)
+                    if t1 == t2:
+                        left = mid
+                        break
+                    elif t1 < t2:
+                        left = mid + 1
+                    else:
+                        right = mid
+                ans = max(dp(k - 1, left - 1), dp(k, n - left))+ 1
+            mem[k, n] = ans
+            return ans
+        return dp(k, n)
+    '''
+    官方题解
+    '''
+    @printTime()
+    def _1superEggDrop(self, k: int, n: int) -> int:
+        memo = {}
 
-Solution().superEggDrop(100, 8192)
+        def dp(k, n):
+            if (k, n) not in memo:
+                if n == 0:
+                    ans = 0
+                elif k == 1:
+                    ans = n
+                else:
+                    lo, hi = 1, n
+                    # keep a gap of 2 x values to manually check later
+                    while lo + 1 < hi:
+                        x = (lo + hi) // 2
+                        t1 = dp(k - 1, x - 1)
+                        t2 = dp(k, n - x)
+
+                        if t1 < t2:
+                            lo = x
+                        elif t1 > t2:
+                            hi = x
+                        else:
+                            lo = hi = x
+
+                    ans = 1 + min(max(dp(k - 1, x - 1), dp(k, n - x)) for x in (lo, hi))
+
+                memo[k, n] = ans
+            return memo[k, n]
+
+        return dp(k, n)
+
+#Solution().superEggDrop(100, 8192)
+Solution()._1superEggDrop(55, 8000)
+Solution()._2superEggDrop(55, 8000)
 # 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14
