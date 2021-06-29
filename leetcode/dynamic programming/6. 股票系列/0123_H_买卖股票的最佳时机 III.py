@@ -64,26 +64,5 @@ class Solution:
                 ret = dp
         return ret
 
-    '''
-    DP
-    '''
-    @printTime()
-    def _1maxProfit(self, prices: List[int]) -> int:
-        self.len = len(prices)
-        k = 2
-        sell = [[0 for _ in range(k + 1)] for _ in range(self.len)]
-        buy = [[0 for _ in range(k + 1)]for _ in range(self.len)]
-        for i in range(self.len):
-            buy[i][0] = -prices[0]
-        for i in range(1, self.len):
-            for j in range(1, k + 1):
-                sell[i][j] = max(sell[i - 1][j], buy[i - 1][j - 1] + prices[i])
-                buy[i][j] = max(buy[i - 1][j], sell[i - 1][j] - prices[i])
-        print(sell)
-        print(buy)
-        return sell[self.len - 1][k]
-
-prices = [3,3,5,0,0,3,1,4]
 prices = [1,2,3,4,5]
 Solution().maxProfit(prices)
-Solution()._1maxProfit(prices)
