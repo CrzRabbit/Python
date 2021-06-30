@@ -33,6 +33,9 @@ from leetcode.tools.time import printTime
 
 
 class Solution:
+    '''
+    计算所有上涨天数和
+    '''
     @printTime()
     def maxProfit(self, prices: List[int]) -> int:
         ret = 0
@@ -40,6 +43,19 @@ class Solution:
             if prices[i] > prices[i - 1]:
                 ret += prices[i] - prices[i - 1]
         return ret
+    '''
+    DP
+    '''
+    @printTime()
+    def _1maxProfit(self, prices: List[int]) -> int:
+        self.len = len(prices)
+        dp = [[0 for _ in range(2)] for _ in range(self.len)]
+        dp[0][1] = -prices[0]
+        for i in range(1, self.len):
+            dp[i][0] = max(dp[i - 1][0], dp[i - 1][1] + prices[i])
+            dp[i][1] = max(dp[i - 1][1], dp[i - 1][0] - prices[i])
+        return max(dp[self.len - 1][0], dp[self.len - 1][1])
 
 prices = [7,1,5,3,6,4]
 Solution().maxProfit(prices)
+Solution()._1maxProfit(prices)

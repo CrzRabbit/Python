@@ -28,6 +28,9 @@ from leetcode.tools.time import printTime
 
 
 class Solution:
+    '''
+    计算当天前的最低值与当前计算利润并找最大值
+    '''
     @printTime()
     def maxProfit(self, prices: List[int]) -> int:
         min = prices[0]

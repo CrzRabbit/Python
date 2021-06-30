@@ -1,30 +1,30 @@
 class TreeNode:
-    def __init__(self, val=0, left=None, right=None):
+    def __init__(self, val=None, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
 
-def buildTree(nums) -> TreeNode:
-    if len(nums) == 0:
+def buildTree(data) -> TreeNode:
+    if len(data) == 0:
         return None
-    root = TreeNode(nums[0])
+    root = TreeNode(data[0])
     nodes = [root]
     i = 1
-    while len(nodes) and i < len(nums):
+    while len(nodes) and i < len(data):
         temp = []
         for t in nodes:
             if t:
-                if i < len(nums):
+                if i < len(data):
                     node = None
-                    if nums[i]:
-                        node = TreeNode(nums[i])
+                    if data[i]:
+                        node = TreeNode(data[i])
                         t.left = node
                     i += 1
                     temp.append(node)
-                if i < len(nums):
+                if i < len(data):
                     node = None
-                    if nums[i]:
-                        node = TreeNode(nums[i])
+                    if data[i]:
+                        node = TreeNode(data[i])
                         t.right = node
                     i += 1
                     temp.append(node)
@@ -205,9 +205,9 @@ def showTree(root, len=1):
         index = 0
         for n in ns:
             if n:
-                    line += ('{0:^' + '{}'.format(len) + 'd}' + '{1}').format(n.val, BLANK * (first - len))
+                line += ('{0:^' + '{}'.format(len) + '}' + '{1}').format(n.val, BLANK * (first - len))
             else:
-                    line += (BLANK * (len // 2)) + NONENODE + (BLANK * (len // 2)) + BLANK * (first - len)
+                line += (BLANK * (len // 2)) + NONENODE + (BLANK * (len // 2)) + BLANK * (first - len)
             index += 1
         lines_levels.append(line)
         i += 1
