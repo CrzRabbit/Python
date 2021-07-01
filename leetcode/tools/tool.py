@@ -5,7 +5,7 @@ import threading
 def timeoutCallback():
     print("运行超时")
 
-def timeoutexit(interval=5, callback=timeoutCallback):
+def timeoutExit(interval=5, callback=timeoutCallback):
     def decorator(func):
         def wrapper(*args, **kwargs):
             t = threading.Thread(target=func, args=args, kwargs=kwargs)
@@ -19,7 +19,7 @@ def timeoutexit(interval=5, callback=timeoutCallback):
         return wrapper
     return decorator
 
-@timeoutexit(5)
+@timeoutExit(5)
 def showNotCompleted():
     os.chdir('..')
     for item in os.listdir('.'):
