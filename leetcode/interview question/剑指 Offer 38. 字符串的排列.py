@@ -24,8 +24,16 @@ class Solution:
     def permutation(self, s: str) -> List[str]:
         self.len = len(s)
         list = [s[i] for i in range(self.len)]
-        ret = list.copy()
-
+        ret = []
+        def re(s, list):
+            if len(list) == 1:
+                ret.append(s + list[0])
+            temp = []
+            for i in range(len(list)):
+                if list[i] not in temp:
+                    temp.append(list[i])
+                    re(s + list[i], list[:i] + list[i + 1:])
+        re('', list)
         return ret
 
-Solution().permutation('abc')
+Solution().permutation('aab')
