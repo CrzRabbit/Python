@@ -57,6 +57,24 @@ class Solution:
                     ret = dp[i][j]
         return ret
 
+    @printTime()
+    def _1findLength(self, nums1: List[int], nums2: List[int]) -> int:
+        self.len1 = len(nums1)
+        self.len2 = len(nums2)
+        ret = 0
+        dp = [[0 for _ in range(self.len2 + 1)] for _ in range(self.len1 + 1)]
+        dp[0][0] = 0
+        for i in range(1, self.len1 + 1):
+            for j in range(1, self.len2 + 1):
+                if nums1[i - 1] == nums2[j - 1]:
+                    dp[i][j] = max(dp[i][j], dp[i - 1][j - 1] + 1)
+                else:
+                    dp[i][j] = 0
+                if dp[i][j] > ret:
+                    ret = dp[i][j]
+        return ret
+
 nums1 = [1,0,0,0,1]
 nums2 = [1,0,0,1,1]
 Solution().findLength(nums1, nums2)
+Solution()._1findLength(nums1, nums2)

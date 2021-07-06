@@ -34,7 +34,7 @@ class Solution:
                 else:
                     if match(s, p, i, j):
                         ret[i][j] |= ret[i - 1][j - 1]
-        printMatrix(ret, s, p)
+        #printMatrix(ret, s, p)
         return ret[len(s)][len(p)]
 
     def _1isMatch(self, s: str, p: str) -> bool:

@@ -62,3 +62,4 @@ class Solution:
 s1 = "sea"
 s2 = "eat"
 Solution().minimumDeleteSum(s1, s2)
+Solution()._1minimumDeleteSum(s1, s2)

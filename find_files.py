@@ -1,7 +1,7 @@
 import os, re
 
 current_path = './leetcode/'
-name = '锁'
+name = '匹配'
 
 def findFiles(current_path):
     for members in os.listdir(current_path):

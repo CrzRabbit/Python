@@ -56,6 +56,20 @@ class Solution:
                     dp[i][j] = max(dp[i][j], dp[i - 1][j - 1] + 1)
         return dp[-1][-1]
 
+    @printTime()
+    def _1longestCommonSubsequence(self, text1: str, text2: str) -> int:
+        self.len1 = len(text1)
+        self.len2 = len(text2)
+        dp = [[0 for _ in range(self.len2 + 1)] for _ in range(self.len1 + 1)]
+        dp[0][0] = 0
+        for i in range(1, self.len1 + 1):
+            for j in range(1, self.len2 + 1):
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+                if text1[i - 1] == text2[j - 1]:
+                    dp[i][j] = max(dp[i][j], dp[i - 1][j - 1] + 1)
+        return dp[-1][-1]
+
 text1 = "abcde"
 text2 = "ace"
 Solution().longestCommonSubsequence(text1, text2)
+Solution()._1longestCommonSubsequence(text1, text2)
