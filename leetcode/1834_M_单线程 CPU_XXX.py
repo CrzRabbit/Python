@@ -42,10 +42,8 @@ tasks.length == n
 1 <= enqueueTimei, processingTimei <= 109
 '''
 import heapq
+
 from typing import List
-
-from leetcode.tools.tool import timeoutexit
-
 
 class Solution:
     def shiftDown(self, list):
