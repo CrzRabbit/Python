@@ -32,18 +32,6 @@ class Solution:
                 if bottom != top + 1:
                     for i in range(len(matrix[0])):
                         rem[i] += matrix[bottom - 1][i]
-                # print(rem)
-                # for left in range(len(matrix[0])):
-                #         sum = None
-                #         for i in range(left, len(matrix[0])):
-                #             if sum is None:
-                #                 sum = rem[i]
-                #             else:
-                #                 sum += rem[i]
-                #             if sum != None and sum < k and (not ret or ret < sum):
-                #                 ret = sum
-                #             elif sum != None and sum == k:
-                #                 return k
                 totalSet = SortedList([0])
                 s = 0
                 for v in rem:
