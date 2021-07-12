@@ -38,48 +38,41 @@ from leetcode.tools.time import printTime
 
 
 class Solution:
-    '''
-    递归
-    '''
     @printTime()
     def ways(self, pizza: List[str], k: int) -> int:
-        self.ret = 0
-        self.rows = len(pizza)
-        self.cols = len(pizza[0])
-        mem = {}
-        def re(row, col, n):
-            if (row, col, n) in mem:
-                return mem[(row, col, n)]
-            count = 0
-            if n == 1:
-                for i in range(row, self.rows):
-                    for j in range(col, self.cols):
-                        if pizza[i][j] == 'A':
-                            count = 1
-                mem[(row, col, n)] = count
-                return count
-            found = False
-            for i in range(row, self.rows - 1):
-                if not found:
-                    for j in range(col, self.cols):
-                        if pizza[i][j] == 'A':
-                            found = True
-                            break
-                if found:
-                    count += re(i + 1, col, n - 1)
-            found = False
-            for j in range(col, self.cols - 1):
-                if not found:
-                    for i in range(row, self.rows):
-                        if pizza[i][j] == 'A':
-                            found = True
-                            break
-                if found:
-                    count += re(row, j + 1, n - 1)
-            mem[(row, col, n)] = count
-            return count
-        self.ret = re(0, 0, k)
-        return self.ret % (10 ** 9 + 7)
+        len1 = len(pizza)
+        len2 = len(pizza[0])
+        dp = [[[0 for _ in range(k)] for _ in range(len2)] for _ in range(len1)]
+        if pizza[0][0] == 'A':
+            dp[0][0][0] = 1
+        for j in range(1, len2):
+            for i in range(k):
+                if i == 0 and (pizza[0][j] == 'A' or dp[0][j - 1][0]):
+                    dp[0][j][i] = 1
+                    continue
+                dp[0][j][i] += dp[0][j - 1][i]
+                if pizza[0][j] == 'A':
+                    dp[0][j][i] += dp[0][j - 1][i - 1]
+        for i in range(1, len1):
+            for j in range(k):
+                if j == 0 and (pizza[i][0] == 'A' or dp[i - 1][0][0]):
+                    dp[i][0][j] = 1
+                    continue 
+                dp[i][0][j] += dp[i - 1][0][j]
+                if pizza[i][0] == 'A':
+                    dp[i][0][j] += dp[i - 1][0][j - 1]
+        for i in range(1, len1):
+            for j in range(1, len2):
+                for l in range(k):
+                    if l == 0 and (pizza[i][j] == 'A' or dp[i][j - 1][l] or dp[i - 1][j][l]):
+                        dp[i][j][l] = 1
+                        continue
+                    dp[i][j][l] += dp[i - 1][j][l] + dp[i][j - 1][l]
+                    if pizza[i][j] == 'A':
+                        dp[i][j][l] +=  dp[i - 1][j - 1][l - 1]
+        print(dp)
+        return dp[-1][-1][k - 1]
+
 
 pizza = ["A..",
          "AAA",

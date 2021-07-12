@@ -28,62 +28,25 @@ from leetcode.tools.time import printTime
 
 
 class Solution:
+    '''
+    反向DP
+    '''
     @printTime()
     def calculateMinimumHP(self, dungeon: List[List[int]]) -> int:
         len1 = len(dungeon)
         len2 = len(dungeon[0])
-        dp = [[[0, 0] for _ in range(len2)] for _ in range(len1)]
-        dp[0][0][0] = dungeon[0][0]
-        for i in range(len1):
-            for j in range(len2):
-                dp[i][j][1] += dungeon[i][j]
-                if i == 0 and j != 0:
-                    dp[i][j][1] += dp[i][j - 1][1]
-                    if dp[i][j][1] < dp[i][j - 1][0]:
-                        dp[i][j][0] = dp[i][j][1]
-                    else:
-                        dp[i][j][0] = dp[i][j - 1][0]
-                elif i != 0 and j == 0:
-                    dp[i][j][1] += dp[i - 1][j][1]
-                    if dp[i][j][1] < dp[i - 1][j][0]:
-                        dp[i][j][0] = dp[i][j][1]
-                    else:
-                        dp[i][j][0] = dp[i - 1][j][0]
-                elif i > 0 and j > 0:
-                    if dp[i - 1][j][0] > dp[i][j - 1][0]:
-                        dp[i][j][1] += dp[i - 1][j][1]
-                        if dp[i][j][1] < dp[i - 1][j][0]:
-                            dp[i][j][0] = dp[i][j][1]
-                        else:
-                            dp[i][j][0] = dp[i - 1][j][0]
-                    else:
-                        dp[i][j][1] += dp[i][j - 1][1]
-                        if dp[i][j][1] < dp[i][j - 1][0]:
-                            dp[i][j][0] = dp[i][j][1]
-                        else:
-                            dp[i][j][0] = dp[i][j - 1][0]
-        print(dp)
-        return 1 if dp[-1][-1][0] >= 0 else 1 - dp[-1][-1][0]
-
-    @printTime()
-    def _1calculateMinimumHP(self, dungeon: List[List[int]]) -> int:
-        len1 = len(dungeon)
-        len2 = len(dungeon[0])
         dp = [[0 for _ in range(len2)] for _ in range(len1)]
-        for i in range(len1):
-            for j in range(len2):
-                dp[i][j] += dungeon[i][j]
-                if i == 0 and j != 0:
-                    dp[i][j] += dp[i][j - 1]
-                elif i != 0 and j == 0:
-                    dp[i][j] += dp[i - 1][j]
-                elif i > 0 and j > 0:
-                    dp[i][j] += max(dp[i - 1][j], dp[i][j - 1])
-        print(dp)
-        return dp[-1][-1]
+        dp[-1][-1] = max(1 - dungeon[-1][-1], 1)
+        for i in range(len1 - 2, -1, -1):
+            dp[i][-1] = max(dp[i + 1][-1] - dungeon[i][-1], 1)
+        for j in range(len2 - 2, -1, -1):
+            dp[-1][j] = max(dp[-1][j + 1] - dungeon[-1][j], 1)
+        for i in range(len1 - 2, -1, -1):
+            for j in range(len2 - 2, -1, -1):
+                dp[i][j] = max(min(dp[i + 1][j], dp[i][j + 1]) - dungeon[i][j], 1)
+        return dp[0][0]
 
 dungeon = [[1,-3,3],
            [0,-2,0],
            [-3,-3,-3]]
 Solution().calculateMinimumHP(dungeon)
-Solution()._1calculateMinimumHP(dungeon)
