@@ -38,9 +38,48 @@ from leetcode.tools.time import printTime
 
 
 class Solution:
+    '''
+    递归
+    '''
     @printTime()
     def ways(self, pizza: List[str], k: int) -> int:
-        pass
+        self.ret = 0
+        self.rows = len(pizza)
+        self.cols = len(pizza[0])
+        mem = {}
+        def re(row, col, n):
+            if (row, col, n) in mem:
+                return mem[(row, col, n)]
+            count = 0
+            if n == 1:
+                for i in range(row, self.rows):
+                    for j in range(col, self.cols):
+                        if pizza[i][j] == 'A':
+                            count = 1
+                mem[(row, col, n)] = count
+                return count
+            found = False
+            for i in range(row, self.rows - 1):
+                if not found:
+                    for j in range(col, self.cols):
+                        if pizza[i][j] == 'A':
+                            found = True
+                            break
+                if found:
+                    count += re(i + 1, col, n - 1)
+            found = False
+            for j in range(col, self.cols - 1):
+                if not found:
+                    for i in range(row, self.rows):
+                        if pizza[i][j] == 'A':
+                            found = True
+                            break
+                if found:
+                    count += re(row, j + 1, n - 1)
+            mem[(row, col, n)] = count
+            return count
+        self.ret = re(0, 0, k)
+        return self.ret % (10 ** 9 + 7)
 
 pizza = ["A..",
          "AAA",
