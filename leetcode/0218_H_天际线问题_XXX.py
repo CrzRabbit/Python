@@ -99,6 +99,8 @@ class Solution:
             if rb2 == sl.__len__():
                 if sl[rb2 - 1][0] != b[1]:
                     sl.add([b[1], 0])
+                else:
+                    rb2 -= 1
             else:
                 if b[1] == sl[rb2 - 1][0]:
                     rb2 -= 1
@@ -116,7 +118,6 @@ class Solution:
                 else:
                     break
                 rb2 -= 1
-            print(sl)
         temp = 0
         for s in sl:
             if s[1] != temp:
