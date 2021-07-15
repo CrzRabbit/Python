@@ -25,7 +25,7 @@
 示例 4：
 
 输入：n = 1000000000, a = 2, b = 217983653, c = 336916467
-输出：19999999841818.
+输出：1999999984.
 
 提示：
 
@@ -33,14 +33,30 @@
 1 <= a * b * c <= 10^18
 本题结果在 [1, 2 * 10^9] 的范围内
 '''
+from math import gcd
+
 from leetcode.tools.time import printTime
 
 
 class Solution:
     @printTime()
     def nthUglyNumber(self, n: int, a: int, b: int, c: int) -> int:
-        primes = sorted([a, b, c])
         self.len = 3
+        def lcm(num1, num2):
+            return (num1 * num2) // gcd(num1, num2)
+        lab = lcm(a, b)
+        lac = lcm(a, c)
+        lbc = lcm(b, c)
+        labc = lcm(lab, c)
+        left = min(a, b, c)
+        right = min(left * n, 2 * (10 ** 9) + 1)
+        while left < right:
+            mid = (right + left) >> 1
+            temp = mid // a + mid // b + mid // c - mid // lab - mid // lac - mid // lbc + mid // labc
+            if temp < n:
+                left = mid + 1
+            else:
+                right = mid
+        return left
 
-
-Solution().nthUglyNumber(1000000000, 2, 217983653, 336916467)
+Solution().nthUglyNumber(4, 2, 3, 4)

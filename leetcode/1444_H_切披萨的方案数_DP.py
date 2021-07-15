@@ -74,8 +74,81 @@ class Solution:
         return dp[-1][-1][k - 1]
 
 
-pizza = ["A..",
-         "AAA",
-         "..."]
-k = 3
+    '''
+    DP
+    '''
+    @printTime()
+    def _1ways(self, pizza: List[str], k: int) -> int:
+        self.rows = len(pizza)
+        self.cols = len(pizza[0])
+        self.frow = [False for _ in range(self.rows)]
+        self.fcol = [False for _ in range(self.cols)]
+        dp = [[[0 for _ in range(k)] for _ in range(self.cols)] for _ in range(self.rows)]
+        if pizza[self.rows - 1][self.cols - 1] == 'A':
+            dp[self.rows - 1][self.cols - 1][0] = 1
+            self.frow[self.rows - 1] = True
+            self.fcol[self.cols - 1] = True
+        for j in range(self.cols - 2, -1, -1):
+            if dp[self.rows - 1][j + 1][0] or pizza[self.rows - 1][j] == 'A':
+                dp[self.rows - 1][j][0] = 1
+            found = False
+            for a in range(j, self.cols - 1):
+                if not found and pizza[self.rows - 1][a] == 'A':
+                    self.fcol[a] = True
+                    found = True
+                if found:
+                    for b in range(1, k):
+                        dp[self.rows - 1][j][b] += dp[self.rows - 1][a + 1][b - 1]
+        for i in range(self.rows - 2, -1, -1):
+            if dp[i + 1][self.cols - 1][0] or pizza[i][self.cols - 1] == 'A':
+                dp[i][self.cols - 1][0] = 1
+            found = False
+            for a in range(i, self.rows - 1):
+                if not found and pizza[a][self.cols - 1] == 'A':
+                    self.frow[a] = True
+                    found = True
+                if found:
+                    for b in range(1, k):
+                        dp[i][self.cols - 1][b] += dp[a + 1][self.cols - 1][b - 1]
+        for i in range(self.rows - 2, -1, -1):
+            for j in range(self.cols - 2, -1, -1):
+                if pizza[i][j] == 'A':
+                    self.fcol[j] = True
+                    self.frow[i] = True
+                if pizza[i][j] == 'A' or dp[i + 1][j][0] or dp[i][j + 1][0]:
+                    dp[i][j][0] = 1
+                found = False
+                for a in range(j, self.cols - 1):
+                    if not found and self.fcol[a]:
+                        found = True
+                    if found:
+                        for b in range(1, k):
+                            dp[i][j][b] += dp[i][a + 1][b - 1]
+                found = False
+                for a in range(i, self.rows - 1):
+                    if not found and self.frow[a]:
+                        found = True
+                    if found:
+                        for b in range(1, k):
+                            dp[i][j][b] += dp[a + 1][j][b - 1]
+        print(dp)
+        return dp[0][0][-1] % (10 ** 9 + 7)
+
+pizza = ["..AA..AA..A...",
+         "...AA..AAAA...",
+         "A..A........AA",
+         ".AAAA....AAAA.",
+         "A..AAA.A.AAAA.",
+         "AAAAAA..AAA.A.",
+         "AA.AA..A.A.AA.",
+         "AAA...A...AAA.",
+         "..AAAAAA..A...",
+         "..AA..AA.AAA..",
+         ".AAAAA.AAA.A.A",
+         "..AAA.....A...",
+         "..A.....AA...A",
+         ".AAA...A..A.AA",
+         "A........A..A."]
+k = 2
 Solution().ways(pizza, k)
+Solution()._1ways(pizza, k)
