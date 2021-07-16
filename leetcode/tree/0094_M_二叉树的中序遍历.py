@@ -19,29 +19,6 @@ class Solution:
         if root.right != None:
             ret += self.inorderTraversal(root.right)
         return ret
-        # if root.left != None:
-        #     nodes.append(root)
-        # elif root.right != None:
-        #     ret.append(root.val)
-        #     nodes.append(root.right)
-        # else:
-        #     ret.append(root.val)
-        #     return ret
-        # while nodes.__len__():
-        #     temp = nodes[nodes.__len__() - 1]
-        #     nodes = nodes[:nodes.__len__() - 1]
-        #     print(temp.val)
-        #     if temp.left != None:
-        #         t1 = temp.left
-        #         temp.left = None
-        #         nodes.append(temp)
-        #         nodes.append(t1)
-        #     elif temp.right != None:
-        #         ret.append(temp.val)
-        #         nodes.append(temp.right)
-        #     else:
-        #         ret.append(temp.val)
-        # return ret
 
 n0 = TreeNode(0)
 n1 = TreeNode(1)

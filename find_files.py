@@ -2,7 +2,7 @@
 import os, re
 
 current_path = './leetcode/'
-name = '天际线'
+name = '前缀'
 
 def findFiles(current_path):
     for members in os.listdir(current_path):
