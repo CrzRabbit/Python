@@ -19,12 +19,12 @@
 提示：
 1 <= nums.length <= 2500
 -104 <= nums[i] <= 104
- 
+
 
 进阶：
 
 你可以设计时间复杂度为 O(n2) 的解决方案吗？
-你能将算法的时间复杂度降低到 O(n log(n)) 吗?
+你能将算法的时间复杂度降低到 O(n log(n)) 吗?
 '''
 from typing import List
 

@@ -1,9 +1,9 @@
 '''
-有一个正整数数组 arr，现给你一个对应的查询数组 queries，其中 queries[i] = [Li, Ri]。
+有一个正整数数组 arr，现给你一个对应的查询数组 queries，其中 queries[i] = [Li, Ri]。
 
-对于每个查询 i，请你计算从 Li 到 Ri 的 XOR 值（即 arr[Li] xor arr[Li+1] xor ... xor arr[Ri]）作为本次查询的结果。
+对于每个查询 i，请你计算从 Li 到 Ri 的 XOR 值（即 arr[Li] xor arr[Li+1] xor ... xor arr[Ri]）作为本次查询的结果。
 
-并返回一个包含给定查询 queries 所有结果的数组。
+并返回一个包含给定查询 queries 所有结果的数组。
 
 示例 1：
 输入：arr = [1,3,4,8], queries = [[0,1],[1,2],[0,3],[3,3]]
@@ -25,7 +25,7 @@
 输出：[8,0,4,4]
 
 提示：
-1 <= arr.length <= 3 * 10^4
+1 <= arr.length <= 3 * 10^4
 1 <= arr[i] <= 10^9
 1 <= queries.length <= 3 * 10^4
 queries[i].length == 2

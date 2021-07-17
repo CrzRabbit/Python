@@ -35,7 +35,7 @@ Table,Beef Burrito,Ceviche,Fried Chicken,Water
 
 提示：
 
-1 <= orders.length <= 5 * 10^4
+1 <= orders.length <= 5 * 10^4
 orders[i].length == 3
 1 <= customerNamei.length, foodItemi.length <= 20
 customerNamei 和 foodItemi 由大小写英文字母及空格字符 ' ' 组成。

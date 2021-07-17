@@ -13,8 +13,8 @@
 
 提示：
 1 <= points.length <= 500
-0 <= points[i][0] <= 40000
-0 <= points[i][1] <= 40000
+0 <= points[i][0] <= 40000
+0 <= points[i][1] <= 40000
 所有的点都是不同的。
 '''
 from typing import List

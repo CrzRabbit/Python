@@ -20,13 +20,13 @@ S.next(85) 被调用并返回 6。
 
 注意 (例如) S.next(75) 返回 4，因为截至今天的最后 4 个价格
 (包括今天的价格 75) 小于或等于今天的价格。
- 
+ 
 
 提示：
 
-调用 StockSpanner.next(int price) 时，将有 1 <= price <= 10^5。
-每个测试用例最多可以调用  10000 次 StockSpanner.next。
-在所有测试用例中，最多调用 150000 次 StockSpanner.next。
+调用 StockSpanner.next(int price) 时，将有 1 <= price <= 10^5。
+每个测试用例最多可以调用  10000 次 StockSpanner.next。
+在所有测试用例中，最多调用 150000 次 StockSpanner.next。
 此问题的总时间限制减少了 50%。
 '''
 class StockSpanner:
