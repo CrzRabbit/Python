@@ -82,7 +82,7 @@ class Solution:
         return self.ret % (10 ** 9 + 7)
 
     '''
-    DP
+    DP, 未完成
     '''
     @printTime()
     def _1ways(self, pizza: List[str], k: int) -> int:
