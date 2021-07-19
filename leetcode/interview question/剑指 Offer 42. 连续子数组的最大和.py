@@ -17,3 +17,21 @@
 1 <= arr.length <= 10^5
 -100 <= arr[i] <= 100
 '''
+from typing import List
+
+from leetcode.tools.time import printTime
+
+
+class Solution:
+    @printTime()
+    def maxSubArray(self, nums: List[int]) -> int:
+        sum = nums[0]
+        ret = sum
+        for i in range(1, len(nums)):
+            sum = sum + nums[i] if sum >= 0 else nums[i]
+            if ret == None or sum > ret:
+                ret = sum
+        return ret
+
+nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+Solution().maxSubArray(nums)
