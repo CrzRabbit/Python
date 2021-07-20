@@ -27,8 +27,11 @@
 '''
 from typing import List
 
+from leetcode.tools.time import printTime
+
 
 class Solution:
+    @printTime()
     def deleteAndEarn(self, nums: List[int]) -> int:
         nums = sorted(nums)
         points = []
@@ -50,6 +53,10 @@ class Solution:
                 temp[i] = points[i] + max(temp[:i - 1])
         return max(temp)
 
+    @printTime()
+    def _1deleteAndEarn(self, nums: List[int]) -> int:
+
 nums = [8,10,4,9,1,3,5,9,4,10]
 so = Solution()
-print(so.deleteAndEarn(nums))
+so.deleteAndEarn(nums)
+so._1deleteAndEarn(nums)
