@@ -29,27 +29,25 @@ class Solution:
     temp2[i]为从第0家偷到第i家但是除去第0家的最多金钱
     '''
     def rob(self, nums) -> int:
-        ret = {}
-        l = len(nums)
-        temp = [0] * l
-        temp2 = [0] * l
-        for i in range(l):
-            if i != l - 1:
-                if i >= 2:
-                    temp[i] = nums[i] + max(temp[:i - 1])
-                    temp2[i] = nums[i] + max(temp2[:i - 1])
-                else:
-                    if i == 0:
-                        temp2[i] = 0
-                    else:
-                        temp2[i] = nums[i]
-                    temp[i] = nums[i]
+        self.len = len(nums)
+        if self.len <= 3:
+            return max(nums)
+        dp = [[0 for _ in range(2)] for _ in range(3)]
+        dp[0][0] = nums[0]
+        dp[1][0] = max(dp[0][0], nums[1])
+        dp[1][1] = nums[1]
+        ret = 0
+        for i in range(2, self.len):
+            dp[2][0] = max(dp[1][0], nums[i] + dp[0][0])
+            dp[2][1] = max(dp[1][1], nums[i] + dp[0][1])
+            if i == self.len - 1:
+                ret = max(ret, dp[2][1])
             else:
-                if i >= 3:
-                    temp[i] = nums[i] + max(temp2[:i - 1])
-                else:
-                    temp[i] = nums[i]
-        return max(temp)
+                ret = max(ret, dp[2][0])
+            dp[0] = dp[1]
+            dp[1] = dp[2]
+            dp[2] = [0] * 2
+        return ret
 
 nums = [3,1,2,3,4,5,5]
 so = Solution()

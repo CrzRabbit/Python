@@ -58,7 +58,7 @@ class Solution:
     '''
     @printTime()
     def _1countVowelPermutation(self, n: int) -> int:
-        
+        pass
 
 Solution().countVowelPermutation(200000)
 Solution()._1countVowelPermutation(200000)

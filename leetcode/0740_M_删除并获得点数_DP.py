@@ -31,32 +31,29 @@ from leetcode.tools.time import printTime
 
 
 class Solution:
+    '''
+    DP
+    '''
     @printTime()
     def deleteAndEarn(self, nums: List[int]) -> int:
-        nums = sorted(nums)
-        points = []
-        temp = nums[0]
-        for i in range(len(nums) - 1):
-            if nums[i] == nums[i + 1]:
-                temp += nums[i + 1]
+        nums.sort()
+        dp = [0 for _ in range(len(nums))]
+        index = 0
+        left = 0
+        dp[index] = nums[0]
+        for right in range(1, len(nums)):
+            if nums[right] == nums[left]:
+                dp[index] += nums[right]
             else:
-                points.append(temp)
-                if nums[i] + 1 != nums[i + 1]:
-                    points.append(0)
-                temp = nums[i + 1]
-        points.append(temp)
-        temp = [0 for i in range(len(points))]
-        for i in range(len(points)):
-            if i < 2:
-                temp[i] = points[i]
-            else:
-                temp[i] = points[i] + max(temp[:i - 1])
-        return max(temp)
+                index += 1
+                dp[index] = nums[right]
+                if (nums[left] + 1) == nums[right] and index >= 2:
+                    dp[index] += max(dp[:index - 1])
+                elif (nums[left] + 1) != nums[right] and index > 0:
+                    dp[index] += max(dp[:index])
+                left = right
+        return max(dp)
 
-    @printTime()
-    def _1deleteAndEarn(self, nums: List[int]) -> int:
-
-nums = [8,10,4,9,1,3,5,9,4,10]
+nums = [1,1,1,2,4,5,5,5,6]
 so = Solution()
 so.deleteAndEarn(nums)
-so._1deleteAndEarn(nums)
