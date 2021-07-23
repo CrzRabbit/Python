@@ -37,8 +37,6 @@ kv.get("foo", 5); // 输出 "bar2"
 1 <= timestamp <= 10^7
 TimeMap.set 和 TimeMap.get 函数在每个测试用例中将（组合）调用总计 120000 次。
 '''
-from bisect import bisect_right
-
 from leetcode.tools.sortedcontainers import SortedList
 
 

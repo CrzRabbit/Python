@@ -1,3 +1,6 @@
+from leetcode.tools.time import printTime
+
+
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         ret = ''
@@ -33,6 +36,24 @@ class Solution:
             right += 1
         if (right - 1 - left) > len(ret):
             ret = s[left + 1:right]
+        return ret
+
+    '''
+    DP
+    '''
+    @printTime()
+    def _1longestPalindrome(self, s: str) -> str:
+        ret = s[0]
+        dp = [[False for _ in range(len(s))] for _ in range(len(s))]
+        for i in range(len(s) - 1, -1, -1):
+            for j in range(i, len(s)):
+                if i == j:
+                    dp[i][j] = True
+                    continue
+                if s[i] == s[j] and (dp[i + 1][j - 1] or i + 1 == j):
+                    dp[i][j] = True
+                if dp[i][j]:
+                    ret = s[i:j + 1] if j + 1 - i > len(ret) else ret
         return ret
 
 st = 'ccd'

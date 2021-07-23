@@ -66,12 +66,11 @@ class Solution:
         for top in range(self.len1):
             temp = matrix[top]
             for bottom in range(top, self.len1):
-                if top != bottom:
-                    for right in range(self.len2):
-                        temp[right] += matrix[bottom][right]
                 sum = 0
                 mem = {0: 1}
                 for right in range(self.len2):
+                    if top != bottom:
+                        temp[right] += matrix[bottom][right]
                     sum += temp[right]
                     if sum - target in mem:
                         count += mem[sum - target]

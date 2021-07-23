@@ -22,9 +22,9 @@
 -105 <= lower <= upper <= 105
 题目数据保证答案是一个 32 位 的整数
 '''
+import bisect
 from typing import List
 
-from leetcode.tools.sortedcontainers import SortedList
 from leetcode.tools.time import printTime
 
 
@@ -41,16 +41,15 @@ class Solution:
     '''
     @printTime()
     def _1countRangeSum(self, nums: List[int], lower: int, upper: int) -> int:
-        sl = SortedList()
-        sl.add(0)
+        sl = [0]
         sum = 0
         count = 0
         for n in nums:
             sum += n
-            bl = sl.bisect_left(sum - upper)
-            br = sl.bisect_right(sum - lower)
+            bl = bisect.bisect_left(sl, sum - upper)
+            br = bisect.bisect_right(sl, sum - lower)
             count += br - bl
-            sl.add(sum)
+            bisect.insort(sl, sum)
         return count
 
 nums = [-2, 5, -1]

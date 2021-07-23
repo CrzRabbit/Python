@@ -61,7 +61,6 @@ class Solution:
         for i in range(len(arr)):
             temp ^= arr[i]
             arrxor[i] = temp
-        print(arrxor)
         for k in arrxor.keys():
             xor = arrxor[k]
             if xor not in mem:

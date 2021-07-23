@@ -15,7 +15,7 @@ class Solution:
     依次遍历，逐位相加，保存进位
     '''
     def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
-        #l1_re = self.reverse_list(l1)
+        #l_1re = self.reverse_list(l1)
         #l2_re = self.reverse_list(l2)
         l3 = None
         temp1 = l1
