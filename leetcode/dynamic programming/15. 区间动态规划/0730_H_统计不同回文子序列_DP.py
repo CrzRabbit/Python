@@ -43,15 +43,17 @@ class Solution:
             for j in range(i, len(s)):
                 if i == j:
                     dp[i][j] = 1
-                    continue
-                dp[i][j] = dp[i][j - 1]
-                if not s[i:j].__contains__(s[j]):
-                    dp[i][j] += 1
-                if s[i] == s[j]:
-                    dp[i][j] += dp[i + 1][j - 1] + 1
-                dp[i][j] %= MAGIC
+                elif i + 1 == j:
+                    dp[i][j] = 2
+                else:
+                    dp[i][j] = dp[i][j - 1]
+                    t = s[i:j + 1].find(s[j])
+                    if t + i != j:
+                        dp[i][j] += dp[t + i + 1][j - 1] + 1
+                    else:
+                        dp[i][j] += 1
         print(dp)
-        return dp[0][-1] % MAGIC
+        return dp[0][-1]
 
-S = 'abbc'
+S = "abcdadcba"
 Solution().countPalindromicSubsequences(S)

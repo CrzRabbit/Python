@@ -63,6 +63,6 @@ class Solution:
                     prev = dpj
         return dp[0]
 
-s = "bbbab" * 200
+s = "leetcode"
 Solution().longestPalindromeSubseq(s)
 Solution()._1longestPalindromeSubseq(s)

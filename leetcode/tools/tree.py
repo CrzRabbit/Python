@@ -35,6 +35,28 @@ def buildTree(data) -> TreeNode:
             nodes = temp
     return root
 
+def buildLTree(data) -> TreeNode:
+    if len(data) == 0:
+        return None
+    root = TreeNode(data[0])
+    nodes = [root]
+    i = 1
+    while len(nodes) and i < len(data):
+        temp = []
+        for node in nodes:
+            if i < len(data) and data[i] != None:
+                t = TreeNode(data[i])
+                node.left = t
+                temp.append(t)
+            i += 1
+            if i < len(data) and data[i] != None:
+                t = TreeNode(data[i])
+                node.right = t
+                temp.append(t)
+            i += 1
+        nodes = temp
+    return root
+
 def sortedArrayToBST(nums) -> TreeNode:
     def buildTree(left, right):
         if left > right:

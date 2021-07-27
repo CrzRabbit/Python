@@ -48,6 +48,9 @@ from leetcode.tools.time import printTime
 
 
 class Solution:
+    '''
+    DP
+    '''
     @printTime()
     def numDistinct(self, s: str, t: str) -> int:
         lens = len(s)
@@ -64,8 +67,6 @@ class Solution:
                     dp[i][j] += dp[i - 1][j - 1]
         return dp[-1][-1]
 
-# s = "babgbag"
-# t = "bag"
 s = "rabbbit"
 t = "rabbit"
 Solution().numDistinct(s, t)
