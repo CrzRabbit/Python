@@ -2,7 +2,7 @@
 import os, re
 
 current_path = './leetcode/'
-name = '石'
+name = '不相交'
 
 def findFiles(current_path):
     for members in os.listdir(current_path):
