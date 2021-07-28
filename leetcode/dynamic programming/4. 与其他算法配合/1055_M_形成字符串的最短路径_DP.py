@@ -40,7 +40,6 @@ class Solution:
         self.tlen = target.__len__()
         self.slen = source.__len__()
         dp = [-1 for i in range(len(target))]
-        count = 0
         if source.__contains__(target[0]):
             dp[0] = 1
             count = source.find(target[0])
@@ -48,7 +47,6 @@ class Solution:
         else:
             return -1
         for i in range(1, len(target)):
-            print(i, count)
             if source[count:].__contains__(target[i]):
                 dp[i] = dp[i - 1]
                 count = source[count:].find(target[i]) + count

@@ -75,3 +75,4 @@ class Solution:
 
 costs = [[1,5,3],[2,9,4]]
 Solution().minCostII(costs)
+Solution()._1minCostII(costs)

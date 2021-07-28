@@ -85,7 +85,7 @@ class Solution:
                         left = mid + 1
                     else:
                         right = mid
-                ans = max(dp(k - 1, left - 1), dp(k, n - left))+ 1
+                ans = max(dp(k - 1, left - 1), dp(k, n - left)) + 1
             mem[k, n] = ans
             return ans
         return dp(k, n)

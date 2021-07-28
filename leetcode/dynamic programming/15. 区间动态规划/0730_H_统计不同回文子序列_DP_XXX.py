@@ -37,23 +37,31 @@ from leetcode.tools.time import printTime
 class Solution:
     @printTime()
     def countPalindromicSubsequences(self, s: str) -> int:
-        MAGIC = 10**9 + 7
-        dp = [[0 for _ in range(len(s))] for _ in range(len(s))]
-        for i in range(len(s) - 1, -1, -1):
-            for j in range(i, len(s)):
-                if i == j:
-                    dp[i][j] = 1
-                elif i + 1 == j:
-                    dp[i][j] = 2
-                else:
-                    dp[i][j] = dp[i][j - 1]
-                    t = s[i:j + 1].find(s[j])
-                    if t + i != j:
-                        dp[i][j] += dp[t + i + 1][j - 1] + 1
-                    else:
-                        dp[i][j] += 1
-        print(dp)
-        return dp[0][-1]
+        mod = 10 ** 9 + 7
+        count = 0
+        dp = [[] for _ in range(4)]
+        for i in range(len(s)):
+            temp = [s[i]]
+            for j in range(4):
+                for sub in dp[j]:
+                    temp.append(sub + s[i])
+            dp[ord(s[i]) - ord('a')] = temp
+        def isPal(s):
+            left = 0
+            right = len(s) - 1
+            while left < right:
+                if s[left] != s[right]:
+                    return False
+                left += 1
+                right -= 1
+            return True
+        #print(dp)
+        for t in dp:
+            for tt in t:
+                if isPal(tt):
+                    count += 1
+                    count %= mod
+        return count % mod
 
-S = "abcdadcba"
+S = 'abcdabcdabcdabcdabcdab'
 Solution().countPalindromicSubsequences(S)
