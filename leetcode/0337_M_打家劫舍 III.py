@@ -19,20 +19,20 @@
      3   1
 
 输出: 7
-解释: 小偷一晚能够盗取的最高金额 = 3 + 3 + 1 = 7.
+解释: 小偷一晚能够盗取的最高金额 = 3 + 3 + 1 = 7.
 
 示例 2:
 
 输入: [3,4,5,1,3,null,1]
 
-     3
+     3
     / \
    4   5
   / \   \
  1   3   1
 
 输出: 9
-解释: 小偷一晚能够盗取的最高金额 = 4 + 5 = 9.
+解释: 小偷一晚能够盗取的最高金额 = 4 + 5 = 9.
 '''
 from leetcode.tools.time import printTime
 from leetcode.tools.tree import TreeNode, buildTree, showTree, constructMaximumBinaryTree
