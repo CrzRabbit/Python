@@ -69,7 +69,12 @@ class Solution:
                     dp[i][j] = max(dp[i][j], dp[i - 1][j - 1] + 1)
         return dp[-1][-1]
 
+    @printTime()
+    def _2longestCommonSubsequence(self, text1: str, text2: str) -> int:
+
+
 text1 = "abcde"
 text2 = "ace"
 Solution().longestCommonSubsequence(text1, text2)
 Solution()._1longestCommonSubsequence(text1, text2)
+Solution()._2longestCommonSubsequence(text1, text2)

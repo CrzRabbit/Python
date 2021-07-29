@@ -35,6 +35,9 @@ from leetcode.tools.time import printTime
 
 
 class Solution:
+    '''
+    Trie
+    '''
     @printTime()
     def countPalindromicSubsequences(self, s: str) -> int:
         mod = 10 ** 9 + 7
@@ -63,5 +66,43 @@ class Solution:
                     count %= mod
         return count % mod
 
-S = 'abcdabcdabcdabcdabcdab'
+    '''
+    DP
+    dp[i][j][k]表示s[i]到s[j]之间，并且s[i] == s[j] == chr(ord('a') + k)的回文串数量
+    '''
+    @printTime()
+    def _1countPalindromicSubsequences(self, s: str) -> int:
+        n = len(s)
+        mod = 10 ** 9 + 7
+        dp = [[[0 for _ in range(4)] for _ in range(n)] for _ in range(n)]
+        for i in range(n - 1, -1, -1):
+            for j in range(i, n):
+                for k in range(4):
+                    c = chr(ord('a') + k)
+                    if i == j:
+                        if c == s[j]:
+                            dp[i][j][k] = 1
+                        else:
+                            dp[i][j][k] = 0
+                    else:
+                        if c != s[i]:
+                            dp[i][j][k] = dp[i + 1][j][k]
+                        elif c != s[j]:
+                            dp[i][j][k] = dp[i][j - 1][k]
+                        else:
+                            if i + 1 == j:
+                                dp[i][j][k] = 2
+                            else:
+                                dp[i][j][k] = 2
+                                for t in range(4):
+                                    dp[i][j][k] += dp[i + 1][j - 1][t]
+                                    dp[i][j][k] %= mod
+        ans = 0
+        for k in range(4):
+            ans += dp[0][n - 1][k]
+            ans %= mod
+        return ans
+
+S = 'abcdabcdab'
 Solution().countPalindromicSubsequences(S)
+Solution()._1countPalindromicSubsequences(S)
