@@ -33,50 +33,38 @@ from leetcode.tools.time import printTime
 
 
 class Solution:
+    '''
+    记忆化搜索
+    '''
     @printTime()
     def maxCoins(self, nums: List[int]) -> int:
+        nums = [1] + nums
+        nums += [1]
         n = len(nums)
-        dp = [[0 for _ in range(n)] for _ in range(n)]
-        for i in range(n - 1, -1, -1):
-            for j in range(i, n):
-                if i == j:
-                    dp[i][j] = nums[i]
-                else:
-                    pass
-        return dp[0][-1]
+        mem = {}
+        def recursion(left, right):
+            if (left, right) in mem:
+                return mem[(left, right)]
+            if left + 2 > right:
+                ans = 0
+            elif left + 2 == right:
+                ans = nums[left] * nums[left + 1] * nums[right]
+            else:
+                ans = nums[left] * nums[left + 1] * nums[right] + recursion(left + 1, right)
+                for i in range(left + 2, right):
+                    ans = max(ans, nums[left] * nums[i] * nums[right] + recursion(left, i) + recursion(i, right))
+            mem[(left, right)] = ans
+            return ans
+        recursion(0, n - 1)
+        return mem[(0, n - 1)]
 
-    '''
-    递归
-    '''
     @printTime()
     def _1maxCoins(self, nums: List[int]) -> int:
-        self.ret = 0
-        def recursion(nums, coins):
-            if len(nums) == 2:
-                ans = (min(nums) + 1) * max(nums) + coins
-                self.ret = max(self.ret, ans)
-                return
-            for i in range(len(nums)):
-                temp = 1
-                if i - 1 >= 0:
-                    temp *= nums[i - 1]
-                temp *= nums[i]
-                if i + 1 <= len(nums) - 1:
-                    temp *= nums[i + 1]
-                recursion(nums[:i] + nums[i + 1:], temp + coins)
-        recursion(nums, 0)
-        return self.ret
+        nums = [1] + nums
+        nums += [1]
+        n = len(nums)
+        pass
 
 nums = [3,1,5,8]
 Solution().maxCoins(nums)
 Solution()._1maxCoins(nums)
-'''
-1 3
-1 * 3 + 3 = 6
-
-3 5
-3 * 5 + 5 = 20
-
-1 3 5
-1 * 3 * 5 + 1 * 5 + 5 = 25
-'''
