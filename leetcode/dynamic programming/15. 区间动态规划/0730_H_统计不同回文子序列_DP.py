@@ -133,7 +133,7 @@ class Solution:
                 dp[i][j] %= mod
         return dp[0][-1] % mod
 
-S = 'abcdabcdab'
+S = 'abcdabcdab' * 100
 Solution().countPalindromicSubsequences(S)
 Solution()._1countPalindromicSubsequences(S)
 Solution()._2countPalindromicSubsequences(S)
