@@ -61,6 +61,36 @@ class Solution:
                     ret = s[temp - 1:index + 1]
         return ret
 
-s = "a"
-t = "aa"
+    @printTime()
+    def _1minWindow(self, s: str, t: str) -> str:
+        mem = {}
+        for chr in t:
+            if chr not in mem:
+                mem[chr] = 0
+            mem[chr] += 1
+        mem1 = {}
+        r = ''
+        ret = ''
+        for index, chr in enumerate(s):
+            if chr in mem:
+                if chr not in mem1:
+                    mem1[chr] = [0]
+                mem1[chr].append(index + 1)
+                temp = index + 1
+                found = True
+                if len(ret) == 0 or chr == ret[0]:
+                    for key in mem:
+                        if key in mem1 and mem1[key].__len__() - 1 >= mem[key]:
+                            temp = min(temp, mem1[key][-(mem[key])])
+                        else:
+                            found = False
+                            break
+                    if found:
+                        ret = s[temp - 1:index + 1]
+                        r = ret if len(r) == 0 or len(ret) < len(r) else r
+        return r
+
+s = "cabwefgewcwaefgcf" * 10000
+t = "caef"
 Solution().minWindow(s, t)
+Solution()._1minWindow(s, t)

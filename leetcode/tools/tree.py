@@ -55,7 +55,7 @@ def buildLTree(data) -> TreeNode:
                 temp.append(t)
             i += 1
         nodes = temp
-    #showTree(root)
+    showTree(root)
     return root
 
 def sortedArrayToBST(nums) -> TreeNode:
