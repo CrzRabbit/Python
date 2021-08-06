@@ -46,7 +46,7 @@ class SortedDict(dict):
     Sorted dict keys must be hashable and comparable. The hash and total
     ordering of keys must not change while they are stored in the sorted dict.
 
-    Mutable mapping methods:
+    Mutable mapping algorithm:
 
     * :func:`SortedDict.__getitem__` (inherited from dict)
     * :func:`SortedDict.__setitem__`
@@ -87,7 +87,7 @@ class SortedDict(dict):
     * :func:`SortedDict.__repr__`
     * :func:`SortedDict._check`
 
-    Sorted list methods available (applies to keys):
+    Sorted list algorithm available (applies to keys):
 
     * :func:`SortedList.bisect_left`
     * :func:`SortedList.bisect_right`
@@ -97,7 +97,7 @@ class SortedDict(dict):
     * :func:`SortedList.islice`
     * :func:`SortedList._reset`
 
-    Additional sorted list methods available, if key-function used:
+    Additional sorted list algorithm available, if key-function used:
 
     * :func:`SortedKeyList.bisect_key_left`
     * :func:`SortedKeyList.bisect_key_right`
@@ -152,7 +152,7 @@ class SortedDict(dict):
         self._list = SortedList(key=_key)
 
         # Reaching through ``self._list`` repeatedly adds unnecessary overhead
-        # so cache references to sorted list methods.
+        # so cache references to sorted list algorithm.
 
         _list = self._list
         self._list_add = _list.add
@@ -163,7 +163,7 @@ class SortedDict(dict):
         self._list_remove = _list.remove
         self._list_update = _list.update
 
-        # Expose some sorted list methods publicly.
+        # Expose some sorted list algorithm publicly.
 
         self.bisect_left = _list.bisect_left
         self.bisect = _list.bisect_right
@@ -382,7 +382,7 @@ class SortedDict(dict):
 
 
     class _NotGiven(object):
-        # pylint: disable=too-few-public-methods
+        # pylint: disable=too-few-public-algorithm
         def __repr__(self):
             return '<not-given>'
 

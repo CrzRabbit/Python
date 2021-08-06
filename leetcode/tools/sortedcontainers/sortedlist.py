@@ -134,7 +134,7 @@ class SortedList(MutableSequence):
     Sorted lists use lexicographical ordering semantics when compared to other
     sequences.
 
-    Some methods of mutable sequences are not supported and will raise
+    Some algorithm of mutable sequences are not supported and will raise
     not-implemented error.
 
     """
@@ -1694,10 +1694,10 @@ class SortedKeyList(SortedList):
     The sorted-key list maintains values in comparison order based on the
     result of a key function applied to every value.
 
-    All the same methods that are available in :class:`SortedList` are also
+    All the same algorithm that are available in :class:`SortedList` are also
     available in :class:`SortedKeyList`.
 
-    Additional methods provided:
+    Additional algorithm provided:
 
     * :attr:`SortedKeyList.key`
     * :func:`SortedKeyList.bisect_key_left`

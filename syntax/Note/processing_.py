@@ -52,7 +52,7 @@ import subprocess
 
 print('$ nslookup www.python.org')
 r = subprocess.call(['nslookup', 'www.python.org'])
-print('Exit code: {0}'.format(r))
+print('Exit syntax: {0}'.format(r))
 print_line()
 
 #使用communicate控制进程的输入
@@ -60,7 +60,7 @@ print('$ nslookup')
 p = subprocess.Popen(['nslookup'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 code, err = p.communicate(b'set q=mx\npython.org\nexit\n')
 print(code.decode('utf-8'))
-print('Exit code: {0}'.format(p.returncode))
+print('Exit syntax: {0}'.format(p.returncode))
 print_line()
 
 #使用队列进行进程间通信

@@ -43,7 +43,7 @@ class SortedSet(MutableSet, Sequence):
     Sorted set values must be hashable and comparable. The hash and total
     ordering of values must not change while they are stored in the sorted set.
 
-    Mutable set methods:
+    Mutable set algorithm:
 
     * :func:`SortedSet.__contains__`
     * :func:`SortedSet.__iter__`
@@ -51,7 +51,7 @@ class SortedSet(MutableSet, Sequence):
     * :func:`SortedSet.add`
     * :func:`SortedSet.discard`
 
-    Sequence methods:
+    Sequence algorithm:
 
     * :func:`SortedSet.__getitem__`
     * :func:`SortedSet.__delitem__`
@@ -63,7 +63,7 @@ class SortedSet(MutableSet, Sequence):
     * :func:`SortedSet.pop`
     * :func:`SortedSet.remove`
 
-    Set-operation methods:
+    Set-operation algorithm:
 
     * :func:`SortedSet.difference`
     * :func:`SortedSet.difference_update`
@@ -81,7 +81,7 @@ class SortedSet(MutableSet, Sequence):
     * :func:`SortedSet.__repr__`
     * :func:`SortedSet._check`
 
-    Sorted list methods available:
+    Sorted list algorithm available:
 
     * :func:`SortedList.bisect_left`
     * :func:`SortedList.bisect_right`
@@ -90,7 +90,7 @@ class SortedSet(MutableSet, Sequence):
     * :func:`SortedList.islice`
     * :func:`SortedList._reset`
 
-    Additional sorted list methods available, if key-function used:
+    Additional sorted list algorithm available, if key-function used:
 
     * :func:`SortedKeyList.bisect_key_left`
     * :func:`SortedKeyList.bisect_key_right`
@@ -140,14 +140,14 @@ class SortedSet(MutableSet, Sequence):
 
         self._list = SortedList(self._set, key=key)
 
-        # Expose some set methods publicly.
+        # Expose some set algorithm publicly.
 
         _set = self._set
         self.isdisjoint = _set.isdisjoint
         self.issubset = _set.issubset
         self.issuperset = _set.issuperset
 
-        # Expose some sorted list methods publicly.
+        # Expose some sorted list algorithm publicly.
 
         _list = self._list
         self.bisect_left = _list.bisect_left
@@ -698,7 +698,7 @@ class SortedSet(MutableSet, Sequence):
     def __reduce__(self):
         """Support for pickle.
 
-        The tricks played with exposing methods in :func:`SortedSet.__init__`
+        The tricks played with exposing algorithm in :func:`SortedSet.__init__`
         confuse pickle so customize the reducer.
 
         """
