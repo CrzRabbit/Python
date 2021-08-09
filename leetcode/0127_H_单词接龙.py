@@ -38,6 +38,9 @@ from leetcode.tools.time import printTime
 
 
 class Solution:
+    '''
+    BFS
+    '''
     @printTime()
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
         if endWord not in wordList:

@@ -40,15 +40,17 @@ from leetcode.tools.time import printTime
 
 
 class Solution:
+    '''
+    BFS
+    '''
     @printTime()
     def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
         ret = []
-        wordList = [beginWord] + wordList + [endWord]
+        wordList = [beginWord] + wordList
         n = len(wordList)
         mem = {}
+        visited = [n for _ in range(n)]
         def same(str1, str2):
-            if len(str1) != len(str2):
-                return False
             count = 0
             for i in range(len(str1)):
                 if str1[i] != str2[i]:
@@ -72,15 +74,18 @@ class Solution:
             if wordList[index] == endWord:
                 if len(ret) == 0 or len(route) < len(ret[0]):
                     ret.clear()
-                    ret.append([wordList[i] for i in route])
+                    if [wordList[i] for i in route] not in ret:
+                        ret.append([wordList[i] for i in route])
                 elif len(route) == len(ret[0]):
-                    ret.append([wordList[i] for i in route])
+                    if [wordList[i] for i in route] not in ret:
+                        ret.append([wordList[i] for i in route])
                 else:
                     break
             for i in mem[index]:
-                if i not in route:
+                if visited[i] >= route.__len__() + 1 and i not in route:
                     t = route.copy()
                     t.append(i)
+                    visited[i] = t.__len__()
                     q.put([i, t])
         return ret
 
