@@ -41,43 +41,16 @@ class Solution:
         q = queue.Queue()
         n = len(board)
         m = len(board[0])
+        cnt = len(word)
+        vis = [[[set(), set()] for _ in range(m)] for _ in range(n)]
         for i in range(n):
             for j in range(m):
                 if board[i][j] == word[0]:
-                    q.put([[i, j]])
-        while not q.empty():
-            route = q.get()
-            cur = route[-1]
-            index = len(route)
-            if index == len(word):
-                return True
-            if cur[0] > 0 and board[cur[0] - 1][cur[1]] == word[index] and [cur[0] - 1, cur[1]] not in route:
-                t = route.copy()
-                t.append([cur[0] - 1, cur[1]])
-                q.put(t)
-            if cur[0] < n - 1 and board[cur[0] + 1][cur[1]] == word[index] and [cur[0] + 1, cur[1]] not in route:
-                t = route.copy()
-                t.append([cur[0] + 1, cur[1]])
-                q.put(t)
-            if cur[1] > 0 and board[cur[0]][cur[1] - 1] == word[index] and [cur[0], cur[1] - 1] not in route:
-                t = route.copy()
-                t.append([cur[0], cur[1] - 1])
-                q.put(t)
-            if cur[1] < m - 1 and board[cur[0]][cur[1] + 1] == word[index] and [cur[0], cur[1] + 1] not in route:
-                t = route.copy()
-                t.append([cur[0], cur[1] + 1])
-                q.put(t)
-        return False
-
-    @printTime()
-    def _1exist(self, board: List[List[str]], word: str) -> bool:
-        q = queue.Queue()
-        n = len(board)
-        m = len(board[0])
-        for i in range(n):
-            for j in range(m):
-                if board[i][j] == word[0]:
-                    q.put([[i, j]])
+                    vis[i][j][0].add(1)
+                    q.put([0, [[i, j]]])
+                if board[i][j] == word[-1]:
+                    q.put([1, [[i, j]]])
+                    vis[i][j][1].add(1)
         while not q.empty():
             route = q.get()
             cur = route[-1]
@@ -103,11 +76,11 @@ class Solution:
         return False
 
 
-# board = [["A","B","C","E"],
-#          ["S","F","E","S"],
-#          ["A","D","E","E"]]
-# word = "ABCESEEEFS"
-# Solution().exist(board, word)
+board = [["A","B","C","E"],
+         ["S","F","E","S"],
+         ["A","D","E","E"]]
+word = "ABCESEEEFS"
+Solution().exist(board, word)
 board1 = [["A","A","A","A","A","A"],
           ["A","A","A","A","A","A"],
           ["A","A","A","A","A","A"],
@@ -115,4 +88,4 @@ board1 = [["A","A","A","A","A","A"],
           ["A","A","A","A","A","A"],
           ["A","A","A","A","A","A"]]
 word1 = "AAAAAAAAAAAAAAA"
-Solution()._1exist(board1, word1)
+Solution().exist(board1, word1)
