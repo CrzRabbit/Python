@@ -36,23 +36,40 @@ from leetcode.tools.time import printTime
 
 
 class Solution:
+    '''
+    双向同时搜索
+    '''
     @printTime()
     def exist(self, board: List[List[str]], word: str) -> bool:
-        q = queue.Queue()
+        q1 = queue.Queue()
+        q2 = queue.Queue()
         n = len(board)
         m = len(board[0])
         cnt = len(word)
-        vis = [[[set(), set()] for _ in range(m)] for _ in range(n)]
+        vis = [[[[[], []] for _ in range(cnt + 1)] for _ in range(m)] for _ in range(n)]
         for i in range(n):
             for j in range(m):
                 if board[i][j] == word[0]:
-                    vis[i][j][0].add(1)
-                    q.put([0, [[i, j]]])
+                    if len(word) == 1:
+                        return True
+                    q1.put([[i, j]])
+                    vis[i][j][1][0].append([i, j])
                 if board[i][j] == word[-1]:
-                    q.put([1, [[i, j]]])
-                    vis[i][j][1].add(1)
-        while not q.empty():
-            route = q.get()
+                    if len(word) == 1:
+                        return True
+                    q2.put([[i, j]])
+                    vis[i][j][cnt][1].append([i, j])
+        def found(vis, t):
+            for v in vis:
+                count = 0
+                for tt in t:
+                    if tt in v:
+                        count += 1
+                if count == 1:
+                    return True
+            return False
+        while not q1.empty() and not q2.empty():
+            route = q1.get()
             cur = route[-1]
             index = len(route)
             if index == len(word):
@@ -60,32 +77,72 @@ class Solution:
             if cur[0] > 0 and board[cur[0] - 1][cur[1]] == word[index] and [cur[0] - 1, cur[1]] not in route:
                 t = route.copy()
                 t.append([cur[0] - 1, cur[1]])
-                q.put(t)
+                vis[cur[0] - 1][cur[1]][len(t)][0].append(t)
+                if found(vis[cur[0] - 1][cur[1]][len(t)][1], t):
+                    return True
+                q1.put(t)
             if cur[0] < n - 1 and board[cur[0] + 1][cur[1]] == word[index] and [cur[0] + 1, cur[1]] not in route:
                 t = route.copy()
                 t.append([cur[0] + 1, cur[1]])
-                q.put(t)
+                vis[cur[0] + 1][cur[1]][len(t)][0].append(t)
+                if found(vis[cur[0] + 1][cur[1]][len(t)][1], t):
+                    return True
+                q1.put(t)
             if cur[1] > 0 and board[cur[0]][cur[1] - 1] == word[index] and [cur[0], cur[1] - 1] not in route:
                 t = route.copy()
                 t.append([cur[0], cur[1] - 1])
-                q.put(t)
+                vis[cur[0]][cur[1] - 1][len(t)][0].append(t)
+                if found(vis[cur[0]][cur[1] - 1][len(t)][1], t):
+                    return True
+                q1.put(t)
             if cur[1] < m - 1 and board[cur[0]][cur[1] + 1] == word[index] and [cur[0], cur[1] + 1] not in route:
                 t = route.copy()
                 t.append([cur[0], cur[1] + 1])
-                q.put(t)
+                vis[cur[0]][cur[1] + 1][len(t)][0].append(t)
+                if found(vis[cur[0]][cur[1] + 1][len(t)][1], t):
+                    return True
+                q1.put(t)
+
+            route = q2.get()
+            cur = route[-1]
+            index = len(route)
+            if index == len(word):
+                return True
+            if cur[0] > 0 and board[cur[0] - 1][cur[1]] == word[cnt - index - 1] and [cur[0] - 1, cur[1]] not in route:
+                t = route.copy()
+                t.append([cur[0] - 1, cur[1]])
+                vis[cur[0] - 1][cur[1]][cnt + 1 - len(t)][1].append(t)
+                if found(vis[cur[0] - 1][cur[1]][cnt + 1 - len(t)][0], t):
+                    return True
+                q2.put(t)
+            if cur[0] < n - 1 and board[cur[0] + 1][cur[1]] == word[cnt - index - 1] and [cur[0] + 1, cur[1]] not in route:
+                t = route.copy()
+                t.append([cur[0] + 1, cur[1]])
+                vis[cur[0] + 1][cur[1]][cnt + 1 - len(t)][1].append(t)
+                if found(vis[cur[0] + 1][cur[1]][cnt + 1 - len(t)][0], t):
+                    return True
+                q2.put(t)
+            if cur[1] > 0 and board[cur[0]][cur[1] - 1] == word[cnt - index - 1] and [cur[0], cur[1] - 1] not in route:
+                t = route.copy()
+                t.append([cur[0], cur[1] - 1])
+                vis[cur[0]][cur[1] - 1][cnt + 1 - len(t)][1].append(t)
+                if found(vis[cur[0]][cur[1] - 1][cnt + 1 - len(t)][0], t):
+                    return True
+                q2.put(t)
+            if cur[1] < m - 1 and board[cur[0]][cur[1] + 1] == word[cnt - index - 1] and [cur[0], cur[1] + 1] not in route:
+                t = route.copy()
+                t.append([cur[0], cur[1] + 1])
+                vis[cur[0]][cur[1] + 1][cnt + 1 - len(t)][1].append(t)
+                if found(vis[cur[0]][cur[1] + 1][cnt + 1 - len(t)][0], t):
+                    return True
+                q2.put(t)
         return False
 
-
-board = [["A","B","C","E"],
-         ["S","F","E","S"],
-         ["A","D","E","E"]]
-word = "ABCESEEEFS"
+board = [["A","A","A","A","A","A"],
+         ["A","A","A","A","A","A"],
+         ["A","A","A","A","A","A"],
+         ["A","A","A","A","A","A"],
+         ["A","A","A","A","A","A"],
+         ["A","A","A","B","A","A"]]
+word = "AAAAAAAABAAAAAB"
 Solution().exist(board, word)
-board1 = [["A","A","A","A","A","A"],
-          ["A","A","A","A","A","A"],
-          ["A","A","A","A","A","A"],
-          ["A","A","A","A","A","A"],
-          ["A","A","A","A","A","A"],
-          ["A","A","A","A","A","A"]]
-word1 = "AAAAAAAAAAAAAAA"
-Solution().exist(board1, word1)
