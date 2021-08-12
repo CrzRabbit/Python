@@ -2,7 +2,7 @@
 import os, re
 
 current_path = './leetcode/'
-name = '丑数'
+name = '重复'
 
 def findFiles(current_path):
     for members in os.listdir(current_path):
