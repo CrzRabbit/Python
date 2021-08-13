@@ -15,9 +15,9 @@ class UFDSets:
     def merge(self, index1, index2):
         fa1 = self.find(index1)
         fa2 = self.find(index2)
-        if self.rank[index1] >= self.rank[index2]:
+        if self.rank[fa1] >= self.rank[fa2]:
             self.fa[fa2] = fa1
         else:
             self.fa[fa1] = fa2
-        if self.rank[index1] == self.rank[index2] and index1 != index2:
-            self.rank[index1] += 1
+        if self.rank[fa1] == self.rank[fa2] and fa1 != fa2:
+            self.rank[fa1] += 1
