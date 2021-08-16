@@ -50,6 +50,9 @@ from leetcode.tools.time import printTime
 
 
 class Solution:
+    '''
+    并查集
+    '''
     @printTime()
     def numIslands2(self, m: int, n: int, positions: List[List[int]]) -> List[int]:
         n, m = m, n
@@ -76,25 +79,22 @@ class Solution:
             x, y = pos[0], pos[1]
             grid[x][y] = 1
             if x > 0 and grid[x - 1][y] == 1:
-                mem.remove(find((x - 1) * m + y))
+                if find((x - 1) * m + y) in mem:
+                    mem.remove(find((x - 1) * m + y))
                 merge((x - 1) * m + y, x * m + y)
-                mem.add(find((x - 1) * m + y))
             if x < n - 1 and grid[x + 1][y] == 1:
-                mem.remove(find((x + 1) * m + y))
+                if find((x + 1) * m + y) in mem:
+                    mem.remove(find((x + 1) * m + y))
                 merge(x * m + y, (x + 1) * m + y)
-                mem.add(find((x + 1) * m + y))
             if y > 0 and grid[x][y - 1] == 1:
-                mem.remove(find(x * m + y - 1))
+                if find(x * m + y - 1) in mem:
+                    mem.remove(find(x * m + y - 1))
                 merge(x * m + y - 1, x * m + y)
-                mem.add(find(x * m + y - 1))
             if y < m - 1 and grid[x][y + 1] == 1:
-                mem.remove(find(x * m + y + 1))
+                if find(x * m + y + 1) in mem:
+                    mem.remove(find(x * m + y + 1))
                 merge(x * m + y, x * m + y + 1)
-                mem.add(find(x * m + y + 1))
             mem.add(find(x * m + y))
-            # for k in range(n):
-            #     print(fa[k * m: (k + 1) * m])
-            # print(mem)
             ret.append(mem.__len__())
         return ret
 
