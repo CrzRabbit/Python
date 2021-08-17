@@ -41,13 +41,13 @@ class ChainFS:
             self.next = next
     def __init__(self, n, m):
         self.cnt = 0
-        self.head = [0 for _ in range(n)]
-        self.edges = [ChainFS.Edge() for _ in range(m)]
+        self.head = [0 for _ in range(n + 1)]
+        self.edges = [ChainFS.Edge() for _ in range(m + 1)]
 
     def add(self, fr, to, w):
+        self.cnt += 1
         self.edges[self.cnt].fr = fr
         self.edges[self.cnt].to = to
         self.edges[self.cnt].w = w
         self.edges[self.cnt].next = self.head[fr]
         self.head[fr] = self.cnt
-        self.cnt += 1

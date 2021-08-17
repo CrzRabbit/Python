@@ -1,6 +1,7 @@
 '''
 最短路径
 '''
+import heapq
 import queue
 
 
@@ -21,26 +22,26 @@ class BellmanFord:
         self.cfs = cfs
         self.n = len(self.cfs.head)
         self.m = len(self.cfs.edges)
-        self.dist = [float('inf') for i in range(self.n)]
-        self.dist[0] = 0
+        self.dist = [float('inf') for i in range(self.n + 1)]
+        self.dist[1] = 0
         for j in range(self.n - 1):
             for i in range(self.m):
                 self.dist[self.cfs.edges[i].to] = min(self.dist[self.cfs.edges[i].to], self.dist[self.cfs.edges[i].fr] + self.cfs.edges[i].w)
 
     def get(self, n):
-        return self.dist[n - 1]
+        return self.dist[n]
 
 class SPFA:
     def __init__(self, cfs):
         self.cfs = cfs
         self.n = len(self.cfs.head)
         self.m = len(self.cfs.edges)
-        self.dist = [float('inf') for i in range(self.n)]
-        self.vis = [False for i in range(self.n)]
-        self.dist[0] = 0
+        self.dist = [float('inf') for i in range(self.n + 1)]
+        self.vis = [False for i in range(self.n + 1)]
+        self.dist[1] = 0
         q = queue.Queue()
-        q.put(0)
-        self.vis[0] = True
+        q.put(1)
+        self.vis[1] = True
         while not q.empty():
             cur = q.get()
             edge = self.cfs.head[cur]
@@ -51,3 +52,31 @@ class SPFA:
                         self.vis[edge.to] = True
                         q.put(edge.to)
                 edge = edge.next
+
+    def get(self, n):
+        return self.dist[n]
+
+class Dijkstra:
+    def __init__(self, cfs):
+        self.cfs = cfs
+        self.n = len(self.cfs.head)
+        self.m = len(self.cfs.edges)
+        self.dist = [float('inf') for i in range(self.n + 1)]
+        self.vis = [False for i in range(self.n + 1)]
+        self.dist[1] = 0
+        q = []
+        hq = heapq(q)
+        hq.heappush(q, [0, 1])
+        while q.__len__():
+            dis, cur = hq.heappop(q)
+            if self.vis[cur]:
+                continue
+            self.vis[cur] = True
+            edge = self.cfs.head[cur]
+            while edge:
+                self.dist[edge.to] = min(self.dist[edge.to], self.dist[cur] + edge.w)
+                if not self.vis(edge.to):
+                    hq.heappush(q, [self.dist[edge.to], edge.to])
+
+    def get(self, n):
+        return self.dist[n]
