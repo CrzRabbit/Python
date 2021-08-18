@@ -55,7 +55,7 @@ from leetcode.tools.time import printTime
 class Solution:
     @printTime()
     def numDistinctIslands2(self, grid: List[List[int]]) -> int:
-
+        pass
 
 grid = [[1,1,0,0,0],
         [1,0,0,0,0],

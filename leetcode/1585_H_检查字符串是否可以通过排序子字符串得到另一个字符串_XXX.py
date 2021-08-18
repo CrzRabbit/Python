@@ -47,7 +47,7 @@ from leetcode.tools.time import printTime
 class Solution:
     @printTime()
     def isTransformable(self, s: str, t: str) -> bool:
-
+        pass
 
 s = "34521"
 t = "23415"

@@ -65,8 +65,6 @@ class Solution:
             for j in range(m):
                 if find(i * m + j) != 0:
                     board[i][j] = 'X'
-        print(board)
-        print(fa)
 
 board = [["X","X","X","X","O","X"],
          ["O","X","X","O","O","X"],
