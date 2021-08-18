@@ -31,36 +31,47 @@ from leetcode.tools.time import printTime
 
 
 class Solution:
+    '''
+    并查集
+    '''
     @printTime()
     def findRedundantDirectedConnection(self, edges: List[List[int]]) -> List[int]:
         n = len(edges)
         fa = [i for i in range(n + 1)]
+        rank = [1 for i in range(n + 1)]
+        pa = [i for i in range(n + 1)]
         def find(idx):
             if idx == fa[idx]:
                 return fa[idx]
-            return find(fa[idx])
+            fa[idx] = find(fa[idx])
+            return fa[idx]
         def merge(idx1, idx2):
             fa1 = find(idx1)
             fa2 = find(idx2)
-            if fa1 == fa2:
-                return False
-            fa[fa2] = fa1
-            return True
-        ret = None
-        node = None
+            if rank[fa1] >= rank[fa2]:
+                fa[fa2] = fa1
+            else:
+                fa[fa1] = fa2
+            if rank[fa1] == rank[fa2] and fa1 != fa2:
+                rank[fa1] += 1
+        tc = None
+        te = None
         for edge in edges:
-            if find(edge[1]) != edge:
-                node = edge[1]
+            if pa[edge[1]] != edge[1]:
+                te = edge
+            else:
+                pa[edge[1]] = edge[0]
+                if find(edge[0]) == find(edge[1]):
+                    tc = edge
+                else:
+                    merge(edge[0], edge[1])
+        if not te:
+            return tc
+        else:
+            if tc:
+                return [pa[te[1]], te[1]]
+            else:
+                return te
 
-        if not node:
-            return edges[-1]
-
-        return ret
-
-    @printTime()
-    def _1findRedundantDirectedConnection(self, edges: List[List[int]]) -> List[int]:
-
-
-edges = [[1, 2], [2, 3], [4, 3], [3, 4], [1, 5]]
+edges = [[3,4],[4,1],[1,2],[2,3],[5,1]]
 Solution().findRedundantDirectedConnection(edges)
-Solution()._1findRedundantDirectedConnection(edges)
