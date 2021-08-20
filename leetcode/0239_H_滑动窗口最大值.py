@@ -96,6 +96,9 @@ class Solution:
             ret.append(dq[0])
         return ret
 
+    '''
+    稀疏表
+    '''
     @printTime()
     def _2maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
         class SparseTable:
@@ -106,20 +109,19 @@ class Solution:
                 for i in range(1, self.n + 1):
                     self.f[i][0] = table[i - 1]
                 for i in range(1, self.m + 1):
-                    for j in range(1, self.n - 2 ** i + 2):
+                    for j in range(1, self.n - (1 << i) + 2):
                         self.f[j][i] = max(self.f[j][i - 1], self.f[j + (1 << (i - 1))][i - 1])
                 self.mem = [0 for i in range(self.n + 1)]
                 for i in range(2, self.n + 1):
                     self.mem[i] = self.mem[i // 2] + 1
-                print(self.f, self.mem)
 
             def get(self, l, r):
                 s = self.mem[r - l + 1]
-                return max(self.f[l][s], self.f[r - (1 << s)][s])
+                return max(self.f[l][s], self.f[r - (1 << s) + 1][s])
         st = SparseTable(nums)
         ret = []
-        for i in range(len(nums) - k):
-            ret.append(st.get(i + 1, i + 1 + k))
+        for i in range(len(nums) - k + 1):
+            ret.append(st.get(i + 1, i + k))
         return ret
 
 nums = [1,3,-1,-3,5,3,6,7]
