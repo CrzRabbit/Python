@@ -32,7 +32,7 @@
 
 提示：
 
-1  <= nums.length <= 1000
+1  <= nums.length <= 1000
 -231 <= nums[i] <= 231 - 1
 '''
 from typing import List

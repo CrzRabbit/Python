@@ -37,15 +37,15 @@ u 与 x 的亲近程度胜过 u 与 v
 
 2 <= n <= 500
 n 是偶数
-preferences.length == n
-preferences[i].length == n - 1
+preferences.length == n
+preferences[i].length == n - 1
 0 <= preferences[i][j] <= n - 1
 preferences[i] 不包含 i
 preferences[i] 中的所有值都是独一无二的
-pairs.length == n/2
-pairs[i].length == 2
+pairs.length == n/2
+pairs[i].length == 2
 xi != yi
-0 <= xi, yi <= n - 1
+0 <= xi, yi <= n - 1
 每位朋友都 恰好 被包含在一对中
 '''
 from typing import List

@@ -22,7 +22,7 @@
 11
 是相同的岛屿。因为我们通过 180° 旋转第一个岛屿，两个岛屿的形状相同。
 
-样例 2:
+样例 2:
 
 11100
 10001
@@ -45,7 +45,7 @@
 111
 相同的岛屿。因为我们通过上下翻转第一个岛屿，两个岛屿的形状相同。
 
-注释 :  二维数组每维的大小都不会超过50。
+注释 :  二维数组每维的大小都不会超过50。
 '''
 from typing import List
 
@@ -117,7 +117,10 @@ class Solution:
                 for i in range(board[0], board[1], board[2]):
                     t1 = []
                     for j in range(board[3], board[4], board[5]):
-                        t1.append(grid[i][j])
+                        if fa[i * m + j] == k:
+                            t1.append(grid[i][j])
+                        else:
+                            t1.append(0)
                     t.append(t1)
                 if t in ret:
                     found = True
@@ -130,7 +133,10 @@ class Solution:
                     for i in range(board[0], board[1], board[2]):
                         t1 = []
                         for j in range(board[3], board[4], board[5]):
-                            t1.append(grid1[i][j])
+                            if fa[j * m + i] == k:
+                                t1.append(grid1[i][j])
+                            else:
+                                t1.append(0)
                         t.append(t1)
                     if t in ret:
                         found = True

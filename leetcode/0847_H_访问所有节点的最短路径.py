@@ -22,7 +22,7 @@
 
 n == graph.length
 1 <= n <= 12
-0 <= graph[i].length < n
+0 <= graph[i].length < n
 graph[i] 不包含 i
 如果 graph[a] 包含 b ，那么 graph[b] 也包含 a
 输入的图总是连通图

@@ -39,7 +39,7 @@
 
 s.length == t.length
 1 <= s.length <= 105
-s 和 t 都只包含数字字符，即 '0' 到 '9' 。
+s 和 t 都只包含数字字符，即 '0' 到 '9' 。
 '''
 from leetcode.tools.time import printTime
 
