@@ -50,4 +50,4 @@ class ChainFS:
         self.edges[self.cnt].to = to
         self.edges[self.cnt].w = w
         self.edges[self.cnt].next = self.head[fr]
-        self.head[fr] = self.cnt
+        self.head[fr] = self.edges[self.cnt]

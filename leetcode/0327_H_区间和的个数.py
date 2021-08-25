@@ -34,7 +34,54 @@ class Solution:
     '''
     @printTime()
     def countRangeSum(self, nums: List[int], lower: int, upper: int) -> int:
-        pass
+        class SegmentTreeS:
+            def __init__(self, data):
+                self.n = len(data)
+                self.tree = [0 for _ in range(self.n << 1)]
+                self.tree[self.n:] = data
+                for i in range(self.n - 1, 0, -1):
+                    self.tree[i] = self.tree[i << 1] + self.tree[(i << 1) + 1]
+
+            def supdate(self, index, val):
+                index += self.n
+                self.tree[index] += val
+                while index > 0:
+                    left = index
+                    right = index
+                    if left % 2 == 1:
+                        left -= 1
+                    else:
+                        right += 1
+                    index >>= 1
+                    self.tree[index] = self.tree[left] + self.tree[right]
+
+            def update(self, l, r, val):
+                for i in range(l, r + 1):
+                    self.supdate(i, val)
+
+            def query(self, left, right):
+                left += self.n
+                right += self.n
+                sum = 0
+                while left <= right:
+                    if left % 2 == 1:
+                        sum += self.tree[left]
+                        left += 1
+                    if right % 2 == 0:
+                        sum += self.tree[right]
+                        right -= 1
+                    left >>= 1
+                    right >>= 1
+                return sum
+        n = len(nums)
+        count = 0
+        st = SegmentTreeS(nums)
+        for i in range(0, n):
+            for j in range(i, n):
+                t = st.query(i, j)
+                if t >= lower and t <= upper:
+                    count += 1
+        return count
 
     '''
     有序链表
@@ -52,8 +99,8 @@ class Solution:
             bisect.insort(sl, sum)
         return count
 
-nums = [-2, 5, -1]
+nums = [-2, 5, -1] * 100000
 lower = -2
 upper = 2
-Solution().countRangeSum(nums, lower, upper)
+#Solution().countRangeSum(nums, lower, upper)
 Solution()._1countRangeSum(nums, lower, upper)

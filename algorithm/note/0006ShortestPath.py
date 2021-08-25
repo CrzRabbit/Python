@@ -77,6 +77,7 @@ class Dijkstra:
                 self.dist[edge.to] = min(self.dist[edge.to], self.dist[cur] + edge.w)
                 if not self.vis(edge.to):
                     hq.heappush(q, [self.dist[edge.to], edge.to])
+                edge = edge.next
 
     def get(self, n):
         return self.dist[n]
