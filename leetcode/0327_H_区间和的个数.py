@@ -30,7 +30,7 @@ from leetcode.tools.time import printTime
 
 class Solution:
     '''
-    线段树
+    线段树 超时
     '''
     @printTime()
     def countRangeSum(self, nums: List[int], lower: int, upper: int) -> int:
