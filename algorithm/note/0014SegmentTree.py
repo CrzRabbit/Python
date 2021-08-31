@@ -9,8 +9,8 @@ class SegmentTree:
     def __init__(self, data):
         self.data = data
         self.n = len(data)
-        self.tree = [0 for _ in range(self.n << 1)]
-        self.mark = [0 for _ in range(self.n << 1)]
+        self.tree = [0 for _ in range(self.n << 2)]
+        self.mark = [0 for _ in range(self.n << 2)]
         self.build(1, self.n, 1)
 
     def build(self, l, r, p):
@@ -24,9 +24,9 @@ class SegmentTree:
 
     def push_down(self, p, len):
         self.mark[p << 1] += self.mark[p]
-        self.mark[p << 1 + 1] += self.mark[p]
-        self.tree[p << 1] += self.mark[p] * (len - len >> 1)
-        self.tree[p << 1 + 1] += self.mark[p] * (len >> 1)
+        self.mark[(p << 1) + 1] += self.mark[p]
+        self.tree[p << 1] += self.mark[p] * (len - (len >> 1))
+        self.tree[(p << 1) + 1] += self.mark[p] * (len >> 1)
         self.mark[p] = 0
 
     def update(self, l, r, d):
@@ -43,7 +43,8 @@ class SegmentTree:
                 update(l, r, d, cl, mid, p << 1)
                 update(l, r, d, mid + 1, cr, (p << 1) + 1)
                 self.tree[p] = self.tree[p << 1] + self.tree[(p << 1) + 1]
-        update(l + 1, r + 1, d, 1, self.n, 1)
+
+        update(l, r, d, 1, self.n, 1)
 
     def query(self, l, r):
         def query(l, r, cl, cr, p):
@@ -55,7 +56,10 @@ class SegmentTree:
                 mid = (cl + cr) >> 1
                 self.push_down(p, (cr - cl + 1))
                 return query(l, r, cl, mid, p << 1) + query(l, r, mid + 1, cr, (p << 1) + 1)
-        return query(l + 1, r + 1, 1, self.n, 1)
+        return query(l, r, 1, self.n, 1)
+
+    def query(self, index):
+        return self.query(index, index)
 
 '''
 从叶子开始更新和查询
