@@ -33,6 +33,7 @@ heighti 是第 i 座建筑物的高度。
 1 <= heighti <= 231 - 1
 buildings 按 lefti 非递减排序
 '''
+import bisect
 from typing import List
 
 from leetcode.tools.sortedcontainers import SortedList
@@ -42,27 +43,6 @@ from leetcode.tools.time import printTime
 class Solution:
     @printTime()
     def getSkyline(self, buildings: List[List[int]]) -> List[List[int]]:
-        ret = []
-        mem = {}
-        cur = 0
-        temp = 0
-        for i in range(buildings[0][0], buildings[-1][1] + 1):
-            while cur < len(buildings) and i >= buildings[cur][0]:
-                for j in range(buildings[cur][0], buildings[cur][1]):
-                    if j not in mem:
-                        mem[j] = 0
-                    mem[j] = max(mem[j], buildings[cur][2])
-                if buildings[cur][1] not in mem:
-                    mem[buildings[cur][1]] = 0
-                cur += 1
-            if i in mem:
-                if mem[i] != temp:
-                    temp = mem[i]
-                    ret.append([i, mem[i]])
-        return ret
-
-    @printTime()
-    def _1getSkyline(self, buildings: List[List[int]]) -> List[List[int]]:
         ret = []
         mem = {}
         sl = SortedList()
@@ -125,8 +105,89 @@ class Solution:
                 ret.append(s)
         return ret
 
+    '''
+    珂朵莉树
+    '''
+    @printTime()
+    def _1getSkyline(self, buildings: List[List[int]]) -> List[List[int]]:
+        class Node:
+            def __init__(self, d):
+                self.l = d[0]
+                self.r = d[1]
+                self.v = d[2]
+
+            def __lt__(self, other):
+                return self.l < other.l
+
+            def __str__(self):
+                return '[{0}, {1}, {2}]'.format(self.l, self.r, self.v)
+
+        class ChthollyTree:
+            def __init__(self, data):
+                self.tree = []
+                for d in data:
+                    bisect.insort(self.tree, Node(d))
+
+            def merge(self):
+                if self.tree.__len__() < 2:
+                    return
+                tree = []
+                tn = self.tree[0]
+                for node in self.tree:
+                    if node.v == tn.v:
+                        tn.r = node.r
+                    else:
+                        tree.append(tn)
+                        tn = node
+                tree.append(tn)
+                self.tree = tree
+
+            def split(self, pos):
+                index = bisect.bisect_left(self.tree, Node([pos, 0, 0]))
+                if index != self.tree.__len__() and pos == self.tree[index].l:
+                    return index
+                index -= 1
+                l = self.tree[index].l
+                r = self.tree[index].r
+                v = self.tree[index].v
+                self.tree.remove(self.tree[index])
+                bisect.insort(self.tree, Node([l, pos - 1, v]))
+                bisect.insort(self.tree, Node([pos, r, v]))
+                return index + 1
+
+            def assign(self, l, r, v):
+                self.split(l)
+                self.split(r + 1)
+                begin = bisect.bisect_left(self.tree, Node([l, 0, 0]))
+                end = bisect.bisect_left(self.tree, Node([r + 1, 0, 0]))
+                self.tree = self.tree[:begin] + self.tree[end:]
+                bisect.insort(self.tree, Node([l, r, v]))
+
+            def __str__(self):
+                ret = ''
+                for node in self.tree:
+                    ret += node.__str__()
+                    ret += ' '
+                return ret
+
+        ct = ChthollyTree([[0, 2 ** 31, 0]])
+        buildings.sort(key=lambda x : x[2])
+        for b in buildings:
+            ct.assign(b[0], b[1] - 1, b[2])
+        ct.merge()
+        found = False
+        ans = []
+        for t in ct.tree:
+            if not found and t.v > 0:
+                found = True
+                ans.append([t.l, t.v])
+            elif found:
+                ans.append([t.l, t.v])
+        return ans
+
+
 #buildings = [[1,38,219],[2,19,228],[2,64,106],[3,80,65],[3,84,8],[4,12,8],[4,25,14],[4,46,225],[4,67,187],[5,36,118],[5,48,211],[5,55,97],[6,42,92],[6,56,188],[7,37,42],[7,49,78],[7,84,163],[8,44,212],[9,42,125],[9,85,200],[9,100,74],[10,13,58],[11,30,179],[12,32,215],[12,33,161],[12,61,198],[13,38,48],[13,65,222],[14,22,1],[15,70,222],[16,19,196],[16,24,142],[16,25,176],[16,57,114],[18,45,1],[19,79,149],[20,33,53],[21,29,41],[23,77,43],[24,41,75],[24,94,20],[27,63,2],[31,69,58],[31,88,123],[31,88,146],[33,61,27],[35,62,190],[35,81,116],[37,97,81],[38,78,99],[39,51,125],[39,98,144],[40,95,4],[45,89,229],[47,49,10],[47,99,152],[48,67,69],[48,72,1],[49,73,204],[49,77,117],[50,61,174],[50,76,147],[52,64,4],[52,89,84],[54,70,201],[57,76,47],[58,61,215],[58,98,57],[61,95,190],[66,71,34],[66,99,53],[67,74,9],[68,97,175],[70,88,131],[74,77,155],[74,99,145],[76,88,26],[82,87,40],[83,84,132],[88,99,99]]
-#buildings = [[2,9,10],[3,7,15],[5,12,12],[15,20,10],[19,24,8]]
-buildings = [[1,2,1],[1,2,2],[1,2,3]]
+# Solution().getSkyline(buildings)
+buildings = [[0,2,3],[2,5,3]]
 Solution()._1getSkyline(buildings)
 #[[1,219],[2,228],[19,225],[45,229],[89,190],[95,175],[97,152],[99,74],[100,0]]

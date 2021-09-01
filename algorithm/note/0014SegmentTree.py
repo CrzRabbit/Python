@@ -43,7 +43,6 @@ class SegmentTree:
                 update(l, r, d, cl, mid, p << 1)
                 update(l, r, d, mid + 1, cr, (p << 1) + 1)
                 self.tree[p] = self.tree[p << 1] + self.tree[(p << 1) + 1]
-
         update(l, r, d, 1, self.n, 1)
 
     def query(self, l, r):
@@ -85,8 +84,8 @@ class SegmentTreeS:
             index >>= 1
             self.tree[index] = self.tree[left] + self.tree[right]
 
-    def update(self, l, r, val):
-        for i in range(l, r + 1):
+    def update(self, left, right, val):
+        for i in range(left, right + 1):
             self.supdate(i, val)
 
     def query(self, left, right):
