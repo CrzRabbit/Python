@@ -26,17 +26,37 @@ class Solution:
             return 1
         if n == 1:
             return 2
-        l = 0
-        t = 1
-        while t <= n:
-            t <<= 1
-            l += 1
+        mem = []
+        t = n
+        while t > 0:
+            mem.append(1 if t & 1 else 0)
+            t >>= 1
+        l = len(mem)
         dp = [[0, 0] for _ in range(l)]
         dp[0][0] = 1
         dp[0][1] = 1
         for i in range(1, l):
             dp[i][0] = dp[i - 1][0] + dp[i - 1][1]
             dp[i][1] = dp[i - 1][0]
+        mem1 = {}
+        def get(l, t, cur):
+            cur += t << l
+            # if (l, t, cur) in mem1:
+            #     return mem1[l, t, cur]
+            ans = 0
+            if l == 0:
+                if t == 0:
+                    ans = dp[0][0]
+                elif cur <= n:
+                    ans = dp[0][1]
+            elif t == 0:
+                ans = get(l - 1, 1, cur) + get(l - 1, 0, cur)
+            else:
+                if cur <= n:
+                    ans = get(l - 1, 0, cur)
+            # mem1[l, t, cur] = ans
+            return ans
+        dp[l - 1][1] = get(l - 2, 0, 1 << (l - 1))
         return sum(dp[l - 1])
 
-Solution().findIntegers(5)
+Solution().findIntegers(944060589)
