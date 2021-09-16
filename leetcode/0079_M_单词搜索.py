@@ -37,7 +37,7 @@ from leetcode.tools.time import printTime
 
 class Solution:
     '''
-    双向同时搜索
+    双向BFS
     '''
     @printTime()
     def exist(self, board: List[List[str]], word: str) -> bool:
@@ -138,6 +138,30 @@ class Solution:
                 q2.put(t)
         return False
 
+    '''
+    DFS
+    '''
+    @printTime()
+    def _1exist(self, board: List[List[str]], word: str) -> bool:
+        n = len(board)
+        m = len(board[0])
+        l = len(word)
+        vis = [[False for _ in range(m)] for _ in range(n)]
+        def dfs(cur, i, j):
+            if cur == l:
+                return True
+            if i < 0 or i >= n or j < 0 or j >= m or vis[i][j] or word[cur] != board[i][j]:
+                return False
+            vis[i][j] = True
+            found = dfs(cur + 1, i - 1, j) or dfs(cur + 1, i + 1, j) or dfs(cur + 1, i, j + 1) or dfs(cur + 1, i, j - 1)
+            vis[i][j] = False
+            return found
+        for i in range(n):
+            for j in range(m):
+                if dfs(0, i, j):
+                    return True
+        return False
+
 board = [["A","A","A","A","A","A"],
          ["A","A","A","A","A","A"],
          ["A","A","A","A","A","A"],
@@ -146,3 +170,4 @@ board = [["A","A","A","A","A","A"],
          ["A","A","A","B","A","A"]]
 word = "AAAAAAAABAAAAAB"
 Solution().exist(board, word)
+Solution()._1exist(board, word)

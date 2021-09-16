@@ -20,6 +20,9 @@ from leetcode.tools.time import printTime
 
 
 class Solution:
+    '''
+    超时
+    '''
     @printTime()
     def findIntegers(self, n: int) -> int:
         if n == 0:
@@ -47,7 +50,10 @@ class Solution:
                 elif cur <= n:
                     ans = dp[0][1]
             elif t == 0:
-                ans = get(l - 1, 1, cur) + get(l - 1, 0, cur)
+                if mem[l] == 1:
+                    return dp[l][0]
+                else:
+                    ans = get(l - 1, 1, cur) + get(l - 1, 0, cur)
             else:
                 if cur <= n:
                     ans = get(l - 1, 0, cur)
@@ -55,26 +61,5 @@ class Solution:
         dp[l - 1][1] = get(l - 2, 0, 1 << (l - 1))
         return sum(dp[l - 1])
 
-    @printTime()
-    def _1findIntegers(self, n: int) -> int:
-        if n == 0:
-            return 1
-        if n == 1:
-            return 2
-        mem = []
-        t = n
-        while t > 0:
-            mem.append(1 if t & 1 else 0)
-            t >>= 1
-        l = len(mem)
-        dp = [[0, 0] for _ in range(l)]
-        dp[0][0] = 1
-        dp[0][1] = 1
-        for i in range(1, l):
-            dp[i][0] = dp[i - 1][0] + dp[i - 1][1]
-            dp[i][1] = dp[i - 1][0]
-        return sum(dp[l - 1])
-
-n = 132425
+n = 924235445
 Solution().findIntegers(n)
-Solution()._1findIntegers(n)

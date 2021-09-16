@@ -64,5 +64,21 @@ class Solution:
                 right -= 1
         return 0
 
+    @printTime()
+    def _1findPeakElement(self, nums: List[int]) -> int:
+        nums = nums + [-float("inf")]
+        n = len(nums)
+        if n == 1:
+            return 0
+        left = 0
+        right = n - 1
+        while left < right:
+            mid = (left + right) >> 1
+            if nums[mid] < nums[mid + 1]:
+                left = mid + 1
+            else:
+                right = mid
+        return left
+
 nums = [1,2,1,3,5,6,4]
 Solution().findPeakElement(nums)
