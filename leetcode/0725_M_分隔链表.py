@@ -56,13 +56,15 @@ class Solution:
                     temp = temp.next
                     k += 1
             if t2:
+                if t1:
+                    temp = temp.next
                 t2 -= 1
             head = temp.next
             temp.next = None
             showList(ret[cnt - 1])
         return ret
 
-head = getList([1, 2, 3, 4, 5, 6, 6, 7])
+head = getList([1, 2, 3, 4, 5, 6])
 k = 5
 Solution().splitListToParts(head, k)
 
