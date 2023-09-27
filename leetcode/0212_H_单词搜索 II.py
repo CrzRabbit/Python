@@ -32,6 +32,9 @@ from leetcode.tools.time import printTime
 
 
 class Solution:
+    '''
+    双向BFS
+    '''
     @printTime()
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
         def exist(board: List[List[str]], word: str) -> bool:
@@ -142,6 +145,10 @@ class Solution:
             if exist(board, word):
                 ret.append(word)
         return ret
+
+    @printTime()
+    def _1findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
+        pass
 
 board = [["o", "a", "a", "n"],
          ["e", "t", "a", "e"],
