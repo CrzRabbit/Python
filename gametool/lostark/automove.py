@@ -17,12 +17,14 @@ color_black = (0, 0, 0)
 color_red = (255, 0, 0)
 color_green = (0, 255, 0)
 
+me = 18
+
 #获取屏幕的长宽
-len = 360
 screen_width, screen_height = win32api.GetSystemMetrics(0), win32api.GetSystemMetrics(1)
 print("屏幕宽：{0:4d} 屏幕高：{1:4d}".format(screen_width, screen_height))
 
 #计算截屏范围
+len = 360
 mini_map = (screen_width - 410, 40, screen_width - 410 + len, 40 + len)
 
 # 读取图标图片
@@ -56,7 +58,7 @@ def get_contours():
 
     image = array(image.getdata(), uint8).reshape(image.size[1], image.size[0], 3)
     #缩放
-    # image = cv.resize(image, None, fx=0.3, fy=0.3, interpolation=cv.INTER_CUBIC)
+    # image = cv.resize(image, None, fx=0.5, fy=0.5, interpolation=cv.INTER_CUBIC)
 
     #转化为灰度图
     gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
@@ -72,7 +74,7 @@ def get_contours():
 
     #绘制图像轮廓函数drawContours():图像、轮廓信息、轮廓索引(需要多少轮廓，-1默认全部)、颜色模式、线条厚度
     draw_img = image.copy()
-    draw_img = cv.drawContours(draw_img, contours, -1, color_white, 3)
+    draw_img = cv.drawContours(draw_img, contours, -1, (0, 0, 255), 3)
 
     #绘制当前位置
     # cv.drawMarker(res, pos, (255, 255, 255), cv.MARKER_STAR)
@@ -83,10 +85,12 @@ def get_contours():
 
 def get_path(image, x, y, w, h, pre_dir):
     print(x, y, w, h)
-    cv.imwrite("res.jpg", image)
     found = False
-    image[y, x] = color_green
-    direc = None
+    for i in range(y - me, y + me + 1):
+        for j in range(x - me, x + me + 1):
+                 image[i, j] = color_green
+    image[y, x] = color_black
+    cv.imwrite("res.jpg", image)
     # 0 1 2
     # 3   4
     # 5 6 7
@@ -111,19 +115,32 @@ def get_path(image, x, y, w, h, pre_dir):
             direc = [1, 2, 0, 4, 3, 7, 5, 6]
         else:
             return image, True
-    if direc is not None:
-        for dir in direc:
-            step = steps[dir]
-            tx = x + step[0]
-            ty = y + step[1]
-            b, g, r = image[ty, tx]
-            if (r, g, b) != color_white and (r, g, b) != color_red and (r, g, b) != color_green:
-                if pre_dir != 8 and dir == pre_dirs[pre_dir]:
-                    image[y, x] = color_red
-                    return image, False
-                image, found = get_path(image, tx, ty, w, h, dir)
-                if found:
+    for dir in direc:
+        step = steps[dir]
+        tx = x + step[0]
+        ty = y + step[1]
+        # if pre_dir != 8 and dir == pre_dirs[pre_dir]:
+        #     return image, False
+        ok = False
+        for i in range(ty - me, ty + me + 1):
+            for j in range(tx - me, tx + me + 1):
+                b, g, r = image[i, j]
+                if (abs(j - x) > me or abs(i - y) > me) and ((r, g, b) != color_green and (r, g, b) != color_red):
+                    ok = True
+        if ok:
+            for i in range(ty - me, ty + me + 1):
+                if ok:
+                    for j in range(tx - me, tx + me + 1):
+                        b, g, r = image[i, j]
+                        if (abs(j - x) > me or abs(i - y) > me) and ((r, g, b) == color_red or b > 200):
+                            ok = False
+                            break
+                else:
                     break
+        if ok and (pre_dir == 8 or dir != pre_dirs[pre_dir]):
+            image, found = get_path(image, tx, ty, w, h, dir)
+        if found:
+            break
     return image, found
 
 def find_origin(image):
@@ -151,15 +168,16 @@ def find_origin(image):
 
             # cv.imwrite("./test/res{0}_{1}.jpg".format(index, minVal), tmp_image)
             index += 1
-            print(index, minVal, maxVal, minLoc, maxLoc)
+            # print(index, minVal, maxVal, minLoc, maxLoc)
 
-            if minVal >= 0.5:
+            if minVal >= min_val:
                 cv.imwrite("./test/res{0}_{1}.jpg".format(index, minVal), tmp_image)
                 index += 1
 
-                image, found = get_path(image, 180, 180, w, h, 8)
+                image, found = get_path(image, len // 2 - 6, len // 2 + 5, w, h, 8)
                 print("位置X：{0:4d} 位置Y：{1:4d} 结果：{2}".format(w, h, found))
-                # move(w, h)
+                # cv.imshow("temp", tmp_image)
+                # cv.waitKey(0)
                 return image
             w += 2
         h += 2
