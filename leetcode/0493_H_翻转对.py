@@ -1,5 +1,5 @@
 '''
-给定一个数组 nums ，如果 i < j 且 nums[i] > 2*nums[j] 我们就将 (i, j) 称作一个重要翻转对。
+给定一个数组 nums ，如果 i < j 且 nums[i] > 2*nums[j] 我们就将 (i, j) 称作一个重要翻转对。
 
 你需要返回给定数组中的重要翻转对的数量。
 
@@ -25,7 +25,8 @@ class Solution:
     @printTime()
     def reversePairs(self, nums: List[int]) -> int:
         n = 2 ** 32
-        tree = [0 for _ in range(n * 2)]
+        m = len(nums)
+        tree = [0 for _ in range(n << 1)]
         for i in range(n - 1, 0, -1):
             tree[i] = tree[i << 1] + tree[(i << 1) + 1]
         def update(index, val):
@@ -40,11 +41,25 @@ class Solution:
                     right += 1
                 index >>= 1
                 tree[index] = tree[left] + tree[right]
-        def query(left, right, val):
+        def query(left, right):
             left += n
             right += n
             sum = 0
-
+            while left <= right:
+                if left % 2 == 1:
+                    sum += tree[left]
+                    left += 1
+                if right % 2 == 0:
+                    sum += tree[right]
+                    right -= 1
+                left >>= 1
+                right >>= 1
+            return sum
+        ans = 0
+        for i in range(m - 1, -1, -1):
+            ans += query(0, (nums[i] - 1) >> 1)
+            update(nums[i], 1)
+        return ans
 
 nums = [2,4,3,5,1]
-Solution().reversePairs()
+Solution().reversePairs(nums)
