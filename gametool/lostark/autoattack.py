@@ -21,8 +21,6 @@ def attack(count):
     width, height = win32api.GetSystemMetrics(0), win32api.GetSystemMetrics(1)
     print("屏幕长：", width)
     print("屏幕宽：", height)
-
-    time.sleep(1)
     win32api.SetCursorPos((width // 2, height // 2))
 
     win32api.mouse_event(win32con.MOUSEEVENTF_MOVE, 0, -100, 0, 0)
@@ -30,7 +28,7 @@ def attack(count):
     ms.press(Button.left)
     ms.release(Button.left)
     time.sleep(1.5)
-    if count % 2500 == 0:
+    if count % 50 == 0:
         win32api.mouse_event(win32con.MOUSEEVENTF_MOVE, 0, -100, 0, 0)
         time.sleep(0.5)
         ms.press(Button.left)
@@ -52,5 +50,4 @@ if __name__ == "__main__":
         time.sleep(7)
         press('s', 3)
         time.sleep(1)
-        if count % 50 == 0:
-            attack(count)
+        attack(count)

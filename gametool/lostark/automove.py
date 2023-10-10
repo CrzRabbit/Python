@@ -17,7 +17,7 @@ color_black = (0, 0, 0)
 color_red = (255, 0, 0)
 color_green = (0, 255, 0)
 
-me = 18
+me = 10
 
 #获取屏幕的长宽
 screen_width, screen_height = win32api.GetSystemMetrics(0), win32api.GetSystemMetrics(1)
@@ -119,8 +119,8 @@ def get_path(image, x, y, w, h, pre_dir):
         step = steps[dir]
         tx = x + step[0]
         ty = y + step[1]
-        # if pre_dir != 8 and dir == pre_dirs[pre_dir]:
-        #     return image, False
+        if pre_dir != 8 and dir == pre_dirs[pre_dir]:
+            continue
         ok = False
         for i in range(ty - me, ty + me + 1):
             for j in range(tx - me, tx + me + 1):
@@ -132,7 +132,7 @@ def get_path(image, x, y, w, h, pre_dir):
                 if ok:
                     for j in range(tx - me, tx + me + 1):
                         b, g, r = image[i, j]
-                        if (abs(j - x) > me or abs(i - y) > me) and ((r, g, b) == color_red or b > 200):
+                        if (abs(j - x) > me or abs(i - y) > me) and ((r, g, b) == color_red or (b > 200 and r <= 130 and g > 190)):
                             ok = False
                             break
                 else:
@@ -170,11 +170,11 @@ def find_origin(image):
             index += 1
             # print(index, minVal, maxVal, minLoc, maxLoc)
 
-            if minVal >= min_val:
+            if minVal >= 0.5:
                 cv.imwrite("./test/res{0}_{1}.jpg".format(index, minVal), tmp_image)
                 index += 1
 
-                image, found = get_path(image, len // 2 - 6, len // 2 + 5, w, h, 8)
+                image, found = get_path(image, len // 2 - 6, len // 2 + 5, w + (ori_width // 2), h + (ori_height // 2), 8)
                 print("位置X：{0:4d} 位置Y：{1:4d} 结果：{2}".format(w, h, found))
                 # cv.imshow("temp", tmp_image)
                 # cv.waitKey(0)
