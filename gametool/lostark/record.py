@@ -11,7 +11,7 @@ keyboard_controller = keyboard.Controller()
 
 dx, dy = 0, 0
 cx, cy = 1280, 707
-record = open('1.txt', 'w+')
+record = open('火炬之光.txt', 'w+')
 record.write('3 mouse 0 {0} {1} \n'.format(cx, cy))
 record.write('0 mouse 1 {0} {1} Button.right True \n'.format(cx, cy))
 record.write('0 mouse 1 {0} {1} Button.right False \n'.format(cx, cy))
@@ -26,7 +26,7 @@ mouse 0 934 836 1696682946810601600
 mouse 0 972 822 1696682946815622100
 '''
 pre_time = time.time_ns()
-time.sleep(2)
+time.sleep()
 
 def record_event(info):
     global pre_time

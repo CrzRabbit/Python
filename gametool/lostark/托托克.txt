@@ -1,0 +1,350 @@
+3 mouse 0 1280 707 
+0 mouse 1 1280 707 Button.right True 
+0 mouse 1 1280 707 Button.right False 
+7.2311605 mouse 1 1701 736 Button.right True 
+0.1258835 mouse 1 1701 736 Button.right False 
+1.1340466 mouse 1 1820 732 Button.right True 
+0.0978714 mouse 1 1820 732 Button.right False 
+1.6081498 mouse 1 2058 568 Button.right True 
+0.0889695 mouse 1 2051 568 Button.right False 
+1.9150772 key 0 's' 
+0.510231 key 0 's' 
+0.031247 key 0 's' 
+0.031249 key 0 's' 
+0.0302577 key 0 's' 
+0.0309985 key 0 's' 
+0.0309328 key 0 's' 
+0.0457109 key 0 's' 
+0.0310291 key 0 's' 
+0.0304891 key 0 's' 
+0.0309143 key 0 's' 
+0.0302392 key 0 's' 
+0.0307877 key 0 's' 
+0.0459049 key 0 's' 
+0.0307418 key 0 's' 
+0.0310416 key 0 's' 
+0.030453 key 0 's' 
+0.0307325 key 0 's' 
+0.0307805 key 0 's' 
+0.0306975 key 0 's' 
+0.046635 key 0 's' 
+0.0308566 key 0 's' 
+0.031253 key 0 's' 
+0.030975 key 0 's' 
+0.0299321 key 0 's' 
+0.0308946 key 0 's' 
+0.0304591 key 0 's' 
+0.0456392 key 0 's' 
+0.0305161 key 0 's' 
+0.0310318 key 0 's' 
+0.0313887 key 0 's' 
+0.0310014 key 0 's' 
+0.0304602 key 0 's' 
+0.04542 key 0 's' 
+0.0306919 key 0 's' 
+0.0305872 key 0 's' 
+0.0306036 key 0 's' 
+0.0309436 key 0 's' 
+0.0311761 key 0 's' 
+0.0265526 key 1 's' 
+0.5676347 key 0 'w' 
+0.1587097 key 1 'w' 
+2.174063 mouse 1 753 876 Button.right True 
+0.1160923 mouse 1 742 876 Button.right False 
+1.0930408 mouse 1 521 760 Button.right True 
+0.1106812 mouse 1 521 760 Button.right False 
+1.3709703 mouse 1 539 610 Button.right True 
+0.0869504 mouse 1 539 610 Button.right False 
+1.6432081 mouse 1 686 519 Button.right True 
+0.0911714 mouse 1 686 522 Button.right False 
+1.5927428 mouse 1 693 543 Button.right True 
+0.115975 mouse 1 693 543 Button.right False 
+1.4260374 mouse 1 819 477 Button.right True 
+0.0940163 mouse 1 819 480 Button.right False 
+1.4200155 key 0 's' 
+0.5114833 key 0 's' 
+0.0310905 key 0 's' 
+0.0304476 key 0 's' 
+0.0308589 key 0 's' 
+0.0311571 key 0 's' 
+0.0309835 key 0 's' 
+0.045046 key 0 's' 
+0.0308957 key 0 's' 
+0.0303912 key 0 's' 
+0.0307514 key 0 's' 
+0.0309353 key 0 's' 
+0.030752 key 0 's' 
+0.0458633 key 0 's' 
+0.0314947 key 0 's' 
+0.0305696 key 0 's' 
+0.0304869 key 0 's' 
+0.030563 key 0 's' 
+0.0310617 key 0 's' 
+0.0313677 key 0 's' 
+0.0451642 key 0 's' 
+0.0305195 key 0 's' 
+0.0308489 key 0 's' 
+0.03033 key 0 's' 
+0.0312465 key 0 's' 
+0.0302574 key 0 's' 
+0.0456608 key 0 's' 
+0.0317258 key 0 's' 
+0.0297489 key 0 's' 
+0.0312476 key 0 's' 
+0.0307533 key 0 's' 
+0.0307516 key 0 's' 
+0.0302549 key 0 's' 
+0.0462261 key 0 's' 
+0.0315472 key 0 's' 
+0.0301358 key 0 's' 
+0.0305246 key 0 's' 
+0.0313539 key 0 's' 
+0.0241899 key 1 's' 
+0.8033596 key 0 'w' 
+0.1500134 key 1 'w' 
+1.0950298 mouse 1 1806 1093 Button.right True 
+0.1118628 mouse 1 1806 1093 Button.right False 
+1.3321428 mouse 1 1841 956 Button.right True 
+0.0942502 mouse 1 1841 959 Button.right False 
+1.1977611 mouse 1 1838 680 Button.right True 
+0.0951342 mouse 1 1838 680 Button.right False 
+1.2348116 mouse 1 1855 781 Button.right True 
+0.0990091 mouse 1 1855 781 Button.right False 
+1.2471769 mouse 1 1942 711 Button.right True 
+0.1168757 mouse 1 1942 711 Button.right False 
+1.3679875 key 0 's' 
+0.51357 key 0 's' 
+0.0308307 key 0 's' 
+0.0306409 key 0 's' 
+0.0306441 key 0 's' 
+0.0308073 key 0 's' 
+0.0307786 key 0 's' 
+0.0316591 key 0 's' 
+0.0457885 key 0 's' 
+0.0306513 key 0 's' 
+0.0306773 key 0 's' 
+0.0312544 key 0 's' 
+0.0305232 key 0 's' 
+0.0314555 key 0 's' 
+0.0305894 key 0 's' 
+0.0463227 key 0 's' 
+0.0308727 key 0 's' 
+0.0309913 key 0 's' 
+0.0309191 key 0 's' 
+0.0316878 key 0 's' 
+0.0309601 key 0 's' 
+0.0303653 key 0 's' 
+0.0307962 key 0 's' 
+0.0465219 key 0 's' 
+0.0320847 key 0 's' 
+0.029761 key 0 's' 
+0.0307786 key 0 's' 
+0.0071514 key 1 's' 
+0.4247925 mouse 1 1851 746 Button.right True 
+0.1441349 mouse 1 1848 746 Button.right False 
+8.5498111 mouse 1 1802 575 Button.right True 
+0.1190807 mouse 1 1802 575 Button.right False 
+1.1122307 key 0 's' 
+0.5116856 key 0 's' 
+0.0306739 key 0 's' 
+0.0308654 key 0 's' 
+0.0308819 key 0 's' 
+0.0300405 key 0 's' 
+0.0315326 key 0 's' 
+0.0455247 key 0 's' 
+0.0308453 key 0 's' 
+0.0317852 key 0 's' 
+0.0302713 key 0 's' 
+0.0308912 key 0 's' 
+0.0302018 key 0 's' 
+0.0310835 key 0 's' 
+0.0462668 key 0 's' 
+0.030975 key 0 's' 
+0.0305669 key 0 's' 
+0.0303203 key 0 's' 
+0.0308278 key 0 's' 
+0.0309469 key 0 's' 
+0.0309686 key 0 's' 
+0.0459848 key 0 's' 
+0.0305134 key 0 's' 
+0.0304954 key 0 's' 
+0.0299151 key 0 's' 
+0.0309148 key 0 's' 
+0.0310572 key 0 's' 
+0.0460489 key 0 's' 
+0.0308997 key 0 's' 
+0.0307766 key 0 's' 
+0.031283 key 0 's' 
+0.0300279 key 0 's' 
+0.0307291 key 0 's' 
+0.0309795 key 0 's' 
+0.046136 key 0 's' 
+0.0307934 key 0 's' 
+0.030878 key 0 's' 
+0.0308109 key 0 's' 
+0.0305191 key 0 's' 
+0.0306894 key 0 's' 
+0.0309036 key 0 's' 
+0.0462526 key 0 's' 
+0.0311742 key 0 's' 
+0.0308379 key 0 's' 
+0.0310644 key 0 's' 
+0.031115 key 0 's' 
+0.0320927 key 0 's' 
+0.0298099 key 0 's' 
+0.045532 key 0 's' 
+0.0310488 key 0 's' 
+0.030936 key 0 's' 
+0.0309496 key 0 's' 
+0.0306183 key 0 's' 
+0.0304177 key 0 's' 
+0.0306757 key 0 's' 
+0.046432 key 0 's' 
+0.0314326 key 0 's' 
+0.0019833 key 1 's' 
+1.5054032 key 0 'w' 
+0.1185703 key 1 'w' 
+0.8758704 mouse 1 693 833 Button.right True 
+0.1281978 mouse 1 686 837 Button.right False 
+1.2797952 mouse 1 672 792 Button.right True 
+0.1088481 mouse 1 672 792 Button.right False 
+1.3701797 mouse 1 679 624 Button.right True 
+0.1248917 mouse 1 679 624 Button.right False 
+1.3249392 mouse 1 711 645 Button.right True 
+0.1251306 mouse 1 697 645 Button.right False 
+1.2179111 mouse 1 738 540 Button.right True 
+0.1069634 mouse 1 738 540 Button.right False 
+2.1414277 mouse 1 497 417 Button.right True 
+0.100042 mouse 1 494 417 Button.right False 
+2.3596014 key 0 's' 
+0.5066042 key 0 's' 
+0.0308743 key 0 's' 
+0.0301239 key 0 's' 
+0.0467007 key 0 's' 
+0.0310661 key 0 's' 
+0.0306545 key 0 's' 
+0.0304328 key 0 's' 
+0.0307319 key 0 's' 
+0.0314586 key 0 's' 
+0.0308717 key 0 's' 
+0.0462004 key 0 's' 
+0.0305381 key 0 's' 
+0.030703 key 0 's' 
+0.0297677 key 0 's' 
+0.0306901 key 0 's' 
+0.0307222 key 0 's' 
+0.0305504 key 0 's' 
+0.0463268 key 0 's' 
+0.0309389 key 0 's' 
+0.0306458 key 0 's' 
+0.0307235 key 0 's' 
+0.0305484 key 0 's' 
+0.0311578 key 0 's' 
+0.0302553 key 0 's' 
+0.0464826 key 0 's' 
+0.0302478 key 0 's' 
+0.0308037 key 0 's' 
+0.0306017 key 0 's' 
+0.0310384 key 0 's' 
+0.0305321 key 0 's' 
+0.0068455 key 1 's' 
+1.4851379 mouse 1 1935 960 Button.right True 
+0.1241951 mouse 1 1935 963 Button.right False 
+1.3510587 mouse 1 1897 876 Button.right True 
+0.1320525 mouse 1 1897 876 Button.right False 
+1.2828748 mouse 1 1838 813 Button.right True 
+0.1208304 mouse 1 1824 816 Button.right False 
+1.1602421 mouse 1 1869 757 Button.right True 
+0.1220531 mouse 1 1869 767 Button.right False 
+1.2458868 mouse 1 1876 722 Button.right True 
+0.1152001 mouse 1 1873 725 Button.right False 
+9.7352693 mouse 1 2037 602 Button.right True 
+0.11465 mouse 1 2037 602 Button.right False 
+2.2117678 key 0 's' 
+0.5132173 key 0 's' 
+0.0308067 key 0 's' 
+0.0309407 key 0 's' 
+0.0311046 key 0 's' 
+0.0307237 key 0 's' 
+0.0315144 key 0 's' 
+0.0445729 key 0 's' 
+0.0315731 key 0 's' 
+0.0305958 key 0 's' 
+0.0314381 key 0 's' 
+0.0308159 key 0 's' 
+0.0308834 key 0 's' 
+0.030172 key 0 's' 
+0.0462841 key 0 's' 
+0.0304772 key 0 's' 
+0.030045 key 0 's' 
+0.0301792 key 0 's' 
+0.0312477 key 0 's' 
+0.0307519 key 0 's' 
+0.0302874 key 0 's' 
+0.0461747 key 0 's' 
+0.0305834 key 0 's' 
+0.0310735 key 0 's' 
+0.0306717 key 0 's' 
+0.0309421 key 0 's' 
+0.03078 key 0 's' 
+0.0311811 key 0 's' 
+0.0454276 key 0 's' 
+0.0306293 key 0 's' 
+0.030503 key 0 's' 
+0.0316689 key 0 's' 
+0.0297849 key 0 's' 
+0.031919 key 0 's' 
+0.0458681 key 0 's' 
+0.0302804 key 0 's' 
+0.0307619 key 0 's' 
+0.0305104 key 0 's' 
+0.0308421 key 0 's' 
+0.030633 key 0 's' 
+0.0081797 key 1 's' 
+0.9880597 key 0 'w' 
+0.1127767 key 1 'w' 
+1.4312143 mouse 1 599 827 Button.right True 
+0.1163194 mouse 1 595 827 Button.right False 
+1.2757079 mouse 1 627 767 Button.right True 
+0.1272008 mouse 1 627 770 Button.right False 
+1.2235788 mouse 1 595 592 Button.right True 
+0.1193957 mouse 1 595 592 Button.right False 
+1.4367924 mouse 1 560 589 Button.right True 
+0.1121849 mouse 1 560 589 Button.right False 
+1.5879074 mouse 1 861 564 Button.right True 
+0.0891321 mouse 1 861 564 Button.right False 
+1.5686123 mouse 1 714 445 Button.right True 
+0.1133815 mouse 1 711 445 Button.right False 
+1.604677 key 0 's' 
+0.5020503 key 0 's' 
+0.0457272 key 0 's' 
+0.0307522 key 0 's' 
+0.0308337 key 0 's' 
+0.0307041 key 0 's' 
+0.0311916 key 0 's' 
+0.0306066 key 0 's' 
+0.0300435 key 0 's' 
+0.0458609 key 0 's' 
+0.0306363 key 0 's' 
+0.0309965 key 0 's' 
+0.0309163 key 0 's' 
+0.0307824 key 0 's' 
+0.0310007 key 0 's' 
+0.0314223 key 0 's' 
+0.0452826 key 0 's' 
+0.030182 key 0 's' 
+0.0309288 key 0 's' 
+0.0305681 key 0 's' 
+0.0305328 key 0 's' 
+0.0307227 key 0 's' 
+0.0144894 key 1 's' 
+1.0207152 mouse 1 1953 1089 Button.right True 
+0.1299932 mouse 1 1953 1086 Button.right False 
+1.4922672 mouse 1 1876 879 Button.right True 
+0.1119399 mouse 1 1869 879 Button.right False 
+1.4720525 mouse 1 1736 774 Button.right True 
+0.0967114 mouse 1 1694 809 Button.right False 
+3.9515157 mouse 1 1792 746 Button.right True 
+0.1048134 mouse 1 1792 746 Button.right False 
+2.2409678 key 0 Key.esc 
+0.1036633 key 1 Key.esc 

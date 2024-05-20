@@ -1,0 +1,47 @@
+3 mouse 0 1280 707 
+0 mouse 1 1280 707 Button.right True 
+0 mouse 1 1280 707 Button.right False 
+3.0409087 mouse 1 1265 746 Button.left True 
+0.1592742 mouse 1 1265 746 Button.left False 
+1.9000807 key 0 'd' 
+0.0997064 key 1 'd' 
+1.8709058 mouse 1 1943 1121 Button.left True 
+0.11968 mouse 1 1943 1121 Button.left False 
+1.7768457 mouse 1 1114 508 Button.left True 
+0.1266605 mouse 1 1114 508 Button.left False 
+1.3509816 mouse 1 2143 1317 Button.left True 
+0.1063449 mouse 1 2143 1317 Button.left False 
+0.6952832 mouse 1 302 1163 Button.left True 
+0.1137945 mouse 1 302 1163 Button.left False 
+0.1317225 mouse 1 302 1163 Button.left True 
+0.0957165 mouse 1 302 1163 Button.left False 
+0.142142 mouse 1 302 1163 Button.left True 
+0.0988364 mouse 1 302 1163 Button.left False 
+0.1485021 mouse 1 302 1163 Button.left True 
+0.1048409 mouse 1 302 1163 Button.left False 
+0.1805156 mouse 1 302 1163 Button.left True 
+0.0919094 mouse 1 302 1163 Button.left False 
+1.0630546 mouse 1 2238 1289 Button.left True 
+0.1056921 mouse 1 2238 1289 Button.left False 
+1.3335579 mouse 1 1692 432 Button.left True 
+0.1095131 mouse 1 1692 435 Button.left False 
+0.9893965 key 0 'd' 
+0.1466953 key 1 'd' 
+2.2976008 mouse 1 1394 428 Button.right True 
+0.0893369 mouse 1 1391 431 Button.right False 
+1.9914325 key 0 'w' 
+0.0568472 key 0 'e' 
+0.0698128 key 1 'w' 
+0.0 key 0 'r' 
+0.0549321 key 1 'e' 
+0.0440307 key 1 'r' 
+6.9363741 key 0 'd' 
+0.1286575 key 1 'd' 
+0.55799 mouse 1 1380 754 Button.right True 
+0.1166895 mouse 1 1331 722 Button.right False 
+1.6991926 key 0 't' 
+0.1315668 key 1 't' 
+2.8032287 key 0 'd' 
+0.1148402 key 1 'd' 
+9.2074563 key 0 Key.esc 
+0.1515925 key 1 Key.esc 

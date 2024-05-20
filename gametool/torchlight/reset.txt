@@ -1,0 +1,14 @@
+1.905765 mouse 1 500 491 Button.left True $a
+0.1226967 mouse 1 500 491 Button.left False $
+1.2161722 key 0 't'
+0.1146836 key 1 't'
+3.0791905 key 0 'd'
+0.117093 key 1 'd'
+4.2939885 mouse 1 1637 479 Button.left True $
+0.1160634 mouse 1 1637 479 Button.left False $
+1.3193296 mouse 1 1626 521 Button.left True $
+0.0875257 mouse 1 1626 521 Button.left False $
+1.2009963 mouse 1 1523 639 Button.left True $
+0.0989132 mouse 1 1523 639 Button.left False $
+1.2700152 key 0 Key.esc
+0.1700696 key 1 Key.esc

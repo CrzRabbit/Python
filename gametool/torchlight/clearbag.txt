@@ -1,0 +1,18 @@
+1.8896255 key 0 'b'
+0.1453275 key 1 'b'
+2.1987643 mouse 1 2334 1319 Button.left True $
+0.1168957 mouse 1 2334 1319 Button.left False $
+1.3278181 mouse 1 1602 759 Button.left True $
+0.1143889 mouse 1 1602 759 Button.left False $
+0.5679182 mouse 1 1616 654 Button.left True $
+0.1179665 mouse 1 1616 654 Button.left False $
+0.5168601 mouse 1 1613 535 Button.left True $
+0.1110235 mouse 1 1613 535 Button.left False $
+1.4810506 mouse 1 2302 1256 Button.left True $
+0.1130614 mouse 1 2302 1256 Button.left False $
+2.2389743 mouse 1 1501 948 Button.left True $
+0.1160626 mouse 1 1501 948 Button.left False $
+2.2260438 mouse 1 1675 955 Button.left True $
+0.1240012 mouse 1 1675 955 Button.left False $
+1.8896255 key 0 'b'
+0.1453275 key 1 'b'

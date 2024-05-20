@@ -7,7 +7,7 @@ import time
 mouse_controller = mouse.Controller()
 keyboard_controller = keyboard.Controller()
 
-record = open('2.txt', 'r')
+record = open('火炬之光.txt', 'r')
 ops = record.readlines()
 direc = {'Button.left': Button.left, 'Button.right': Button.right}
 while True:
@@ -27,7 +27,6 @@ while True:
         if op[1] == 'key':
             if op[3] == 'Key.esc':
                 print('操作结束')
-                break
             if op[2] == '0':
                 keyboard_controller.press(op[3][1])
             elif op[2] == '1':
