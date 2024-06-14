@@ -6,12 +6,13 @@ from pynput import mouse
 from pynput import keyboard
 import time
 #0: 2K 1:1080p
-display_type = 1
+display_type = 0
 
 tx = 1
 ty = 1
 boss_icon = 'bosspos.jpg'
 boss_points_full = 'boss_points_0.jpg'
+#boss_points_full = 'img.png'
 
 if display_type == 1:
     tx = 2560 / 1920
@@ -23,7 +24,6 @@ def play(line):
     mouse_controller = mouse.Controller()
     keyboard_controller = keyboard.Controller()
     direc = {'Button.left': Button.left, 'Button.right': Button.right}
-    # print(line)
     op = line.split(' ')
     if float(op[0]) > 0.0073:
         time.sleep(float(op[0]))
@@ -48,7 +48,7 @@ def play(line):
     if op[1] == 'key':
         if op[3] == 'Key.esc':
             pass
-        if op[2] == '0':
+        elif op[2] == '0':
             keyboard_controller.press(op[3][1])
         elif op[2] == '1':
             keyboard_controller.release(op[3][1])
@@ -69,21 +69,38 @@ def reset():
 
 def kill_boss():
     print("kill_boss")
-    record = open('killboss.txt', 'r')
+    record = open('killboss1.txt', 'r')
     ops = record.readlines()
     for line in ops:
         play(line)
     #clear_bag()
 
+def enter_map():
+    print('enter_map')
+    record = open('entermap.txt', 'r')
+    ops = record.readlines()
+    for line in ops:
+        ret = play(line)
+        if not ret:
+            break
+
 def clear_map():
     print('clear_map')
-    record = open('clearmap.txt', 'r')
+    record = open('clearmap1.txt', 'r')
     ops = record.readlines()
-    while True:
-        for line in ops:
-            ret = play(line)
-            if not ret:
-                break
+    for line in ops:
+        ret = play(line)
+        if not ret:
+            break
+
+def exit_map():
+    print('exit_map')
+    record = open('exitmap.txt', 'r')
+    ops = record.readlines()
+    for line in ops:
+        ret = play(line)
+        if not ret:
+            break
 
 def clear_bag():
     print("clear_bag")
@@ -105,7 +122,6 @@ def check_image(image, oring_img):
 
     # 找到最大匹配
     minVal, maxVal, minLoc, maxLoc = cv.minMaxLoc(res)
-    print(minVal, maxVal, minLoc, maxLoc)
     return maxVal
 
 def is_right_pos(index):
@@ -116,7 +132,6 @@ def is_right_pos(index):
     image = ImageGrab.grab(bbox=(x1, y1, x2, y2))
     image = array(image.getdata(), uint8).reshape(image.size[1], image.size[0], 3)
     cv.imwrite("./test/boss_icon_{0}.jpg".format(index), image)
-    print(check_image(image, boss_icon))
     if check_image(image, boss_icon) > 0.96:
         return True
     return False
@@ -133,8 +148,11 @@ def is_boss_points_full(index):
         return True
     return False
 
-time.sleep(3)
+time.sleep(2)
 # test()
-#is_right_pos(0)
-#is_boss_points_full(1)
-clear_map()
+# is_right_pos(0)
+# is_boss_points_full(1)
+while True:
+    enter_map()
+    clear_map()
+    exit_map()

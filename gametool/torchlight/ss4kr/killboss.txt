@@ -1,8 +1,8 @@
 0.4029755 mouse 0 1294 395 $
-1.3213044 mouse 1 1294 395 Button.left True $
+1.0213044 mouse 1 1294 395 Button.left True $
 0.1191964 mouse 1 1294 395 Button.left False $
 0.4029755 mouse 0 1280 1308 $
-1.8566717 mouse 1 1280 1308 Button.left True $
+0.8566717 mouse 1 1280 1308 Button.left True $
 0.1130371 mouse 1 1280 1308 Button.left False $
 0.4029755 mouse 0 1605 493 $
 0.8530293 mouse 1 1605 493 Button.left True $

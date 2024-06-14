@@ -12,7 +12,7 @@ keyboard_controller = keyboard.Controller()
 dx, dy = 0, 0
 cx, cy = 1280, 707
 record = open('test.txt', 'w+')
-record.write('3 mouse 0 {0} {1} \n'.format(cx, cy))
+# record.write('3 mouse 0 {0} {1} \n'.format(cx, cy))
 # record.write('0 mouse 1 {0} {1} Button.right True \n'.format(cx, cy))
 # record.write('0 mouse 1 {0} {1} Button.right False \n'.format(cx, cy))
 
@@ -59,7 +59,7 @@ def mouse_click(x, y, button, pressed):
         global dy
         dx += (x - cx)
         dy += (y - cy)
-        print(x, y, dx, dy)
+    mouse_move(x, y)
     record_event('mouse 1 {0} {1} {2} {3} $'.format(x, y, button, pressed))
 
 def mouse_scroll(x, y, dx, dy):
